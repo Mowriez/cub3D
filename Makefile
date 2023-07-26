@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/07/26 21:45:02 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/07/26 21:47:37 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,9 +72,10 @@ re : fclean all
 
 git:
 	git add .
-	@read -p "Enter the commit message: " tmp; \
+	@echo -n "Enter the commit message: "; \
+	read tmp; \
 	git commit -m "$$tmp"
 	git push
-	@echo "$(COLOR)git add ., commit with message $$tmp and push executed.$(RESET)"
+	@echo "\033[34mgit add ., commit with message '$$tmp', and push executed.\033[0m"
 
 .PHONY: all clean fclean re
