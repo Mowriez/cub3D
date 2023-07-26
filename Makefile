@@ -6,10 +6,12 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/07/26 21:50:23 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/07/26 21:53:41 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+BLU = \033[34m
+RES = \033[0m
 
 CC = cc
 CCFLAG = -Wall -Werror -Wextra
@@ -41,23 +43,23 @@ all: $(D_OBJ) $(NAME)
 
 $(D_OBJ):
 	@mkdir -p $(D_OBJ)
-	@echo "\033[34m$@ created successfully!\033[0m"
+	@echo "$(BLU)$@ created successfully!$(RES)"
 
 $(D_OBJ)%.o: $(D_SRC)%.c
 	@$(CC) $(CCFLAG) -I$(D_INC) -I$(D_MLX) -o $@ -c $<
-	@echo "\033[34m$@ built successfully!\033[0m"
+	@echo "$(BLU)$@ built successfully!$(RES)"
 
 $(MLX):
 	@make -C $(D_MLX)
-	@echo "\033[34mlibmlx.a built successfully!\033[0m"
+	@echo "$(BLU)libmlx.a built successfully!$(RES)"
 
 $(LIBFT):
 	@make -C $(D_INC)libft
-	@echo "\033[34mlibft built successfully!\033[0m"
+	@echo "$(BLU)libft built successfully!$(RES)"
 
 $(NAME): $(MLX) $(LIBFT) $(OBJ)
 	@$(CC) $(CCFLAG) $(LIBS) $(OBJ) -o $(NAME)
-	@echo "\033[34m$@ built successfully!\033[0m"
+	@echo "$(BLU)$@ built successfully!$(RES)"
 
 clean:
 	@rm -f $(OBJ)
@@ -68,13 +70,14 @@ fclean:
 	@rm -f $(NAME)
 	@make clean -C $(D_MLX)
 
-re : fclean all
+re: fclean all
 
 git:
 	git add .
-	@read -p "Enter the commit message: " tmp; \
+	@echo -n "Enter the commit message: "; \
+	read tmp; \
 	git commit -m "$$tmp"
 	git push
-	@echo "$(COLOR)git add ., commit with message $$tmp and push executed.$(RESET)"
+	@echo "$(BLU)$git add ., commit, and push executed.$(RES)"
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re git
