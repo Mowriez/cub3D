@@ -6,14 +6,28 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:48:03 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/26 16:49:47 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/07/26 23:54:51 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-
-#include "./mlx/minilibx_opengl_20191021/mlx.h"
+// System Headers
 #include <math.h>
+#include <stdio.h>
 
-#endif
+// Project specific headers
+#include "colors.h"
+#include "./libft/libft.h"
+#include "./mlx/minilibx-linux/mlx.h"
+#include "./mlx/minilibx-linux/mlx_int.h"
+
+// OS specific Headers
+#ifdef __linux__
+# include "./mlx/minilibx-linux/mlx.h"
+
+#elif defined(__APPLE__)
+# include "./mlx/minilibx_opengl_20191021/mlx.h"
+
+#else
+# error "Unsupported operating system"
+# endif
+

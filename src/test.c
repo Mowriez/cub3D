@@ -1,5 +1,6 @@
-#include <unistd.h>
-#include "../inc/cub3d.h"
+#include	"/home/mtrautne/projects/12_cub3D/cub3d_gh/inc/mlx/minilibx-linux/mlx.h"
+#include	"/home/mtrautne/projects/12_cub3D/cub3d_gh/inc/mlx/minilibx-linux/mlx_int.h"
+#include <math.h>
 
 int main(void)
 {
