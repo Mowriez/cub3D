@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/07/26 16:31:19 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/07/26 16:38:08 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,9 @@ D_OBJ = ./obj/
 D_INC = ./inc/
 
 ifeq ($(shell uname), Linux)
- D_MLX = $(D_INC)minilibx_linux/
+ D_MLX = $(D_INC)/mlx/minilibx_linux/
 else ifeq ($(shell uname), Darwin)
- D_MLX = $(D_INC)minilibx_opengl_20191021/
+ D_MLX = $(D_INC)/mlx/minilibx_opengl_20191021/
 else
  $(error Unsupported operating system: $(shell uname))
 endif
