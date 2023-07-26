@@ -6,9 +6,12 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:48:03 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/26 23:54:51 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/07/27 00:59:40 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef CUB3D_H
+# define CUB3D_H
 
 // System Headers
 #include <math.h>
@@ -17,8 +20,6 @@
 // Project specific headers
 #include "colors.h"
 #include "./libft/libft.h"
-#include "./mlx/minilibx-linux/mlx.h"
-#include "./mlx/minilibx-linux/mlx_int.h"
 
 // OS specific Headers
 #ifdef __linux__
@@ -31,3 +32,4 @@
 # error "Unsupported operating system"
 # endif
 
+#endif

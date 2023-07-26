@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/07/27 00:55:48 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/07/27 01:08:40 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CCFLAG = -Wall -Werror -Wextra
 
 NAME = cub3D
 
-SRC_NO_DIR = test.c
+SRC_NO_DIR = main.c
 
 D_SRC = ./src/
 D_OBJ = ./obj/
@@ -38,7 +38,12 @@ MLX = $(D_MLX)libmlx.a
 LIBFT = $(D_INC)libft/libft.a
 
 SRC = $(addprefix $(D_SRC), $(SRC_NO_DIR))
-OBJ = $(SRC:%.c=%.o)
+OBJ = $(subst $(D_SRC), $(D_OBJ), $(SRC:.c=.o))
+
+$(D_OBJ)%.o: $(D_SRC)%.c
+	@$(CC) $(CCFLAG) -o $@ -c $<
+	@echo "$(BLU)$@ built successfully!$(RES)"
+
 
 all: $(D_OBJ) $(NAME)
 
