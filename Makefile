@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/07/26 21:53:41 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/07/26 21:53:54 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,6 @@ git:
 	read tmp; \
 	git commit -m "$$tmp"
 	git push
-	@echo "$(BLU)$git add ., commit, and push executed.$(RES)"
+	@echo "$(BLU)git add ., commit, and push executed.$(RES)"
 
 .PHONY: all clean fclean re git
