@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/07/26 16:38:08 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/07/26 21:42:53 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,5 +69,12 @@ fclean:
 	@make clean -C $(D_MLX)
 
 re : fclean all
+
+mgit:
+	git add .
+	@read -p "Enter the commit message: " halp; \
+	git commit -m "$$halp"
+	git push
+	@echo "$(COLOR)git auto add & push with message performed.$(RESET)"
 
 .PHONY: all clean fclean re
