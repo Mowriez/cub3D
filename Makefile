@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/07/27 16:19:14 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/07/28 00:50:47 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,17 +14,18 @@ BLU = \033[34m
 RES = \033[0m
 
 CC = gcc
-CCFLAG = -Wall -Werror -Wextra -g -O3
+CCFLAG = -Wall -Werror -Wextra -O3 #-g
 
 NAME = cub3D
 
-SRC_NO_DIR =	main.c \
-				init.c \
+SRC_NO_DIR =	error.c \
+				init_init.c \
+				init_utils.c \
+				main.c \
 				par_parser.c \
 				par_utils.c \
 				\
-				vis_visualizer.c \
-				error.c
+				vis_visualizer.c
 
 D_SRC = ./src/
 D_OBJ = ./obj/

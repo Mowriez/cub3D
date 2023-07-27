@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:26:12 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/27 16:40:17 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/07/28 00:52:14 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int		err_msg(char *msg);
 //not sorted yet;
 int		init_struct(int argc, char**argv, t_vars **vrs);
 void	ft_free(t_vars *vrs);
+int		mapfile_to_arr(t_vars *vrs);
 
 #endif

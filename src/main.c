@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:48 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/27 16:42:11 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/07/27 20:27:18 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (init_struct(argc, argv, &vrs))
 		return (1);
-	if ()
+	// if ()
 	mlx_loop(vrs->mlx_ptr);
 	ft_free(vrs);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:34:05 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/27 14:59:12 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/07/27 23:43:44 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@
 int	err_msg(char *msg)
 {
 	int	len;
+	int res;
+
 	len = 0;
 	while (msg[len])
 		len++;
-	write(2, RED "error: ", sizeof(RED) + 7);
-	write(2, msg, len);
-	write(2, RES "\n" , sizeof(RES) + 1);
-	return (1);
+	res = write(2, RED "error: ", sizeof(RED) + 7);
+	res = write(2, msg, len);
+	res = write(2, RES "\n" , sizeof(RES) + 1);
+	res = 1;
+	return (res);
 }

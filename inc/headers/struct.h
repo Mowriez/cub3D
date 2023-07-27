@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/27 18:07:25 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/07/28 00:48:15 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ typedef struct s_vars {
 	int		endian;
 	// source file adresses
 	char	*map_path;
+	int		mapfile_fd; //close on return
+	char	map_str[2048];
 	int		map_width;
 	int		map_height;
-	int		**map;
+	int		**map; //free on return
 	char	*tx_n;
 	char	*tx_s;
 	char	*tx_e;
