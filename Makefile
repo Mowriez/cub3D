@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/07/27 01:08:40 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/07/27 16:19:14 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,17 @@ BLU = \033[34m
 RES = \033[0m
 
 CC = gcc
-CCFLAG = -Wall -Werror -Wextra 
+CCFLAG = -Wall -Werror -Wextra -g -O3
 
 NAME = cub3D
 
-SRC_NO_DIR = main.c
+SRC_NO_DIR =	main.c \
+				init.c \
+				par_parser.c \
+				par_utils.c \
+				\
+				vis_visualizer.c \
+				error.c
 
 D_SRC = ./src/
 D_OBJ = ./obj/
@@ -26,7 +32,7 @@ D_INC = ./inc/
 
 ifeq ($(shell uname), Darwin)
  D_MLX = $(D_INC)mlx/minilibx_opengl_20191021/
- LFLAGS = -L$(D_INC)libft -lft -L$(D_MLX) -framework OpenGL -framework AppKit
+ LFLAGS = -L$(D_INC)libft -lft -L$(D_MLX) -lmlx -framework OpenGL -framework AppKit -lm
 else ifeq ($(shell uname), Linux)
 D_MLX = $(D_INC)mlx/minilibx-linux/
 LFLAGS = -L$(D_INC)libft -lft -L$(D_MLX) -lmlx -L/usr/lib -lXext -lX11 -lm -lbsd

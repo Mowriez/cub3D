@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   fct_declarations.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/26 16:48:03 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/27 00:59:40 by mtrautne         ###   ########.fr       */
+/*   Created: 2023/07/27 14:26:12 by mtrautne          #+#    #+#             */
+/*   Updated: 2023/07/27 16:40:17 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef FCT_DECLARATIONS_H
+# define FCT_DECLARATIONS_H
 
-// System Headers
-#include <math.h>
-#include <stdio.h>
 
-// Project specific headers
-#include "colors.h"
-#include "./libft/libft.h"
+// par_parser.c
+int		parse_input(int argc, char**argv);
 
-// OS specific Headers
-#ifdef __linux__
-# include "./mlx/minilibx-linux/mlx.h"
+// par_utils.c
 
-#elif defined(__APPLE__)
-# include "./mlx/minilibx_opengl_20191021/mlx.h"
+// error.c
+int		err_msg(char *msg);
 
-#else
-# error "Unsupported operating system"
-# endif
+//not sorted yet;
+int		init_struct(int argc, char**argv, t_vars **vrs);
+void	ft_free(t_vars *vrs);
 
 #endif
