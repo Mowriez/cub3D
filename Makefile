@@ -6,10 +6,11 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/07/28 00:50:47 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/07/28 10:30:07 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+GRE = \033[32m
 BLU = \033[34m
 RES = \033[0m
 
@@ -87,6 +88,6 @@ git:
 	read tmp; \
 	git commit -m "$$tmp"
 	git push
-	@echo "$(BLU)'git add .', 'git commit', and 'git push' executed.$(RES)"
+	@echo "$(GRE)'git add .', 'git commit', and 'git push' executed.$(RES)"
 
 .PHONY: all clean fclean re git
