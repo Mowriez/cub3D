@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/07/28 10:30:40 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/07/30 00:58:56 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ BLU = \033[34m
 RES = \033[0m
 
 CC = gcc
-CCFLAG = -Wall -Werror -Wextra -O3 #-g
+CCFLAG = -Wall -Werror -Wextra -O3 -g
 
 NAME = cub3D
 
@@ -32,6 +32,7 @@ D_SRC = ./src/
 D_OBJ = ./obj/
 D_INC = ./inc/
 
+# choose correct MLX directory depending on the environment OS
 ifeq ($(shell uname), Darwin)
  D_MLX = $(D_INC)mlx/minilibx_opengl_20191021/
  LFLAGS = -L$(D_INC)libft -lft -L$(D_MLX) -lmlx -framework OpenGL -framework AppKit -lm
@@ -51,7 +52,6 @@ OBJ = $(subst $(D_SRC), $(D_OBJ), $(SRC:.c=.o))
 $(D_OBJ)%.o: $(D_SRC)%.c
 	@$(CC) $(CCFLAG) -o $@ -c $<
 	@echo "$(BLU)$@ built successfully!$(RES)"
-
 
 all: $(D_OBJ) $(NAME)
 
@@ -80,8 +80,17 @@ fclean:
 	@rm -f $(NAME)
 	@make clean -C $(D_MLX)
 
-re: fclean all
+# !doesnt recompile MLX/LIBFT, for faster compilation during project development.
+re:
+	@rm -f $(OBJ)
+	@rm -rf $(D_OBJ)
+	@rm -f $(NAME)
+	make all
 
+# !actual rule for re, replace before handing in project
+re_deep: fclean all
+
+# !prompts for a commit message, then pushes to remote repository. remove before handing in project
 git:
 	git add .
 	@echo -n "Enter the commit message: "; \
@@ -90,4 +99,4 @@ git:
 	git push
 	@echo "$(GRE)'git add .', 'git commit', and 'git push' executed.$(RES)\n"
 
-.PHONY: all clean fclean re git
+.PHONY: all clean fclean re re_deep git

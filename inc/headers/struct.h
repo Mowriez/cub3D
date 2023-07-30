@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/28 00:48:15 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/07/30 02:11:21 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ typedef struct s_vars {
 	int		ln_len;
 	int		endian;
 	// source file adresses
-	char	*map_path;
+	char	*map_filename;
 	int		mapfile_fd; //close on return
 	char	map_str[2048];
 	int		map_width;
 	int		map_height;
-	int		**map; //free on return
+	char	**map; //free on return
 	char	*tx_n;
 	char	*tx_s;
 	char	*tx_e;
@@ -50,8 +50,8 @@ typedef struct s_vars {
 	double	dir_x;
 	double	dir_y;
 	// field of view vector
-	double	fov_x;
-	double	fov_y;
+	double	cam_x;
+	double	cam_y;
 
 	// !delete later
 	char	**av;

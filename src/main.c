@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:48 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/27 20:27:18 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/07/30 02:17:34 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,21 @@ int	main(int argc, char **argv)
 		return (1);
 	if (init_struct(argc, argv, &vrs))
 		return (1);
-	// if ()
+	mlx_hook(vrs->win_ptr, 17, 0L, ft_free, vrs);
+	visualize(vrs);
 	mlx_loop(vrs->mlx_ptr);
 	ft_free(vrs);
 	return (0);
 }
 
-void	ft_free(t_vars *vrs)
+int	ft_free(t_vars *vrs)
 {
+	int i = 0;
 	mlx_destroy_image(vrs->mlx_ptr, vrs->img_ptr);
 	mlx_destroy_window(vrs->mlx_ptr, vrs->win_ptr);
+	while(i <= vrs->map_height)
+		free(vrs->map[i++]);
+	free(vrs->map);
 	free(vrs);
+	exit(1);
 }

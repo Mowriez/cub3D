@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/28 00:52:01 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/07/30 02:15:00 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,53 @@ static void	init_game_vars(t_vars *vrs)
 	vrs->sky_clr = 0x00666666;
 }
 
+static void	set_player_param(t_vars *vrs, int x, int y)
+{
+	vrs->pos_x = x;
+	vrs->pos_y = y;
+	if (vrs->map[y][x] == 'N' || vrs->map[y][x] == 'S')
+	{
+		vrs->dir_x = 0;
+		vrs->dir_y = 1;
+		vrs->cam_x = 0.66;
+		vrs->cam_y = 0;
+		if (vrs->map[y][x] == 'S')
+			vrs->dir_y = -1;
+	}
+	if (vrs->map[y][x] == 'E' || vrs->map[y][x] == 'W')
+	{
+		vrs->dir_x = 1;
+		vrs->dir_y = 0;
+		vrs->cam_x = 0;
+		vrs->cam_y = 0.66;
+		if (vrs->map[y][x] == 'W')
+			vrs->dir_x = -1;
+
+	}
+}
+
+static void find_player_pos(t_vars *vrs)
+{
+	int x;
+	int y;
+
+	y = 0;
+	while (vrs->map[y])
+	{
+		x = 0;
+		while(vrs->map[y][x])
+		{
+			if (is_specific_char(vrs->map[y][x], "NSEW"))
+			{
+				set_player_param(vrs, x, y);
+				return ;
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
 static int	init_map(t_vars *vrs)
 {
 	vrs->mapfile_fd = open(vrs->av[1], O_RDONLY);
@@ -42,17 +89,11 @@ static int	init_map(t_vars *vrs)
 		return (err_msg("couldn't open mapfile."));
 	vrs->map_width = 24; //hardcoded
 	vrs->map_height = 24; //hardcoded
-	vrs->pos_x = 0; //hardcoded
-	vrs->pos_y = 0; //hardcoded
-	vrs->dir_x = 0; //hardcoded
-	vrs->dir_y = 0; //hardcoded
-	vrs->fov_x = 0; //hardcoded
-	vrs->fov_y = 0; //hardcoded
 	if (mapfile_to_arr(vrs))
 		return (1);
+	find_player_pos(vrs);
 	return (0);
 }
-
 
 int	init_struct(int argc, char**argv, t_vars **vrs)
 {
@@ -66,4 +107,18 @@ int	init_struct(int argc, char**argv, t_vars **vrs)
 	if (init_map(*vrs))
 		return (1);
 	return (0);
+}
+
+bool is_specific_char(const char c, const char *char_set)
+{
+	int i;
+	i = 0;
+	while (char_set[i])
+	{
+		if (c == char_set[i])
+			return (true);
+		else
+			i++;
+	}
+	return (false);
 }
