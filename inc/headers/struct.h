@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/30 02:11:21 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/07/30 21:05:52 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,37 @@ typedef struct s_vars {
 	// player position
 	double	pos_x;
 	double	pos_y;
+	int		grid_x;
+	int		grid_y;
+	// len of ray to next grid block border
+	double	side_dist_x;
+	double	side_dist_y;
+	// len of ray from one grid block border to the next
+	double	full_dist_x;
+	double	full_dist_y;
 	// view direction
-	double	dir_x;
-	double	dir_y;
-	// field of view vector
+	double	v_dir_x;
+	double	v_dir_y;
+	// real x translated into camera plane space
 	double	cam_x;
-	double	cam_y;
+	// camera plane vector
+	double	plane_x;
+	double	plane_y;
+	// ray direction
+	double	r_dir_x;
+	double	r_dir_y;
+	// perpendicular wall distance to camera plane (avoid fisheye effect)
+	double	p_w_dist;
+	// calculation steps and variables for ray propagation
+	double	step_x;
+	double	step_y;
+	// which side was hit (w for side facing to the west, n for side facing towards north)?
+	char	side;
+
+	//wall height
+	unsigned int		wall_height;
+	unsigned int		wall_color;
+	
 
 	// !delete later
 	char	**av;

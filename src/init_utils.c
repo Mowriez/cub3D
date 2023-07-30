@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 23:51:38 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/30 01:30:58 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/07/30 21:21:50 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	mapfile_to_arr(t_vars *vrs)
 			grid_x++;
 			i++;
 		}
-		printf("gx %i, wi %i\n", grid_x, vrs->map_width);
 		vrs->map[grid_y][grid_x] = '\0';
 		grid_x = 0;
 		grid_y++;

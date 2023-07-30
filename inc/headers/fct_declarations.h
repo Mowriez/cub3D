@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:26:12 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/30 01:45:26 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/07/30 21:56:32 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int		init_struct(int argc, char**argv, t_vars **vrs);
 int		ft_free(t_vars *vrs);
 int		mapfile_to_arr(t_vars *vrs);
 bool	is_specific_char(const char c, const char *char_set);
+void	visualize(t_vars *vrs);
+int		keyboard_input(int keycode, t_vars *vrs);
 
 #endif

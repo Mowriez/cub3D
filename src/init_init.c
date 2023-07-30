@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/30 02:15:00 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/07/30 21:10:40 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,21 @@ static void	set_player_param(t_vars *vrs, int x, int y)
 	vrs->pos_y = y;
 	if (vrs->map[y][x] == 'N' || vrs->map[y][x] == 'S')
 	{
-		vrs->dir_x = 0;
-		vrs->dir_y = 1;
-		vrs->cam_x = 0.66;
-		vrs->cam_y = 0;
+		vrs->v_dir_x = 0;
+		vrs->v_dir_y = 1;
+		vrs->plane_x = 0.66;
+		vrs->plane_y = 0;
 		if (vrs->map[y][x] == 'S')
-			vrs->dir_y = -1;
+			vrs->v_dir_y = -1;
 	}
 	if (vrs->map[y][x] == 'E' || vrs->map[y][x] == 'W')
 	{
-		vrs->dir_x = 1;
-		vrs->dir_y = 0;
-		vrs->cam_x = 0;
-		vrs->cam_y = 0.66;
+		vrs->v_dir_x = 1;
+		vrs->v_dir_y = 0;
+		vrs->plane_x = 0;
+		vrs->plane_y = 0.66;
 		if (vrs->map[y][x] == 'W')
-			vrs->dir_x = -1;
+			vrs->v_dir_x = -1;
 
 	}
 }
