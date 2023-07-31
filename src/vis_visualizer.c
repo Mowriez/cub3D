@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 02:17:40 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/30 22:09:04 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/07/31 14:20:18 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,9 +129,9 @@ void	visualize(t_vars *vrs)
 		}
 		// printf(RED"here2\n"RES);
 		if (vrs->side == 'w' || vrs->side == 'e') 
-			vrs->p_w_dist = (vrs->side_dist_x);
+			vrs->p_w_dist = (vrs->side_dist_x - vrs->full_dist_x);
 		else
-			vrs->p_w_dist = (vrs->side_dist_y);
+			vrs->p_w_dist = (vrs->side_dist_y - vrs->full_dist_y);
 		// calculate wall height and paint function
 		vrs->wall_height = (int)((vrs->img_height / vrs->p_w_dist) / 2);
 		draw_vert_line(img_x, vrs);
