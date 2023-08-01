@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 02:17:40 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/01 19:18:13 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:21:38 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	draw_vert_line(int x, t_vars *vrs)
 void	visualize(t_vars *vrs)
 {
 	int	img_x = 0; // x-value of image, for that distance to wall is calculated;
-	vrs->ray_precision = 100;
+	vrs->ray_precision = 1000;
 	
 	while (img_x < vrs->img_width)
 	{
@@ -70,7 +70,7 @@ void	visualize(t_vars *vrs)
 		}
 		vrs->ray_distance = sqrt(pow(vrs->ray_pos_x - vrs->pos_x, 2) + pow(vrs->ray_pos_y - vrs->pos_y, 2));
 		//reduce fisheye
-		vrs->ray_distance = 
+		// vrs->ray_distance *= cos(vrs->ray_angle - vrs->view_angle);
 		vrs->wall_height = (int)((vrs->img_height / vrs->ray_distance) / 2);
 		draw_vert_line(img_x, vrs);
 		img_x++;
