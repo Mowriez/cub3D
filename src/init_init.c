@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/30 21:10:40 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:48:20 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,18 @@ static void	init_game_vars(t_vars *vrs)
 
 static void	set_player_param(t_vars *vrs, int x, int y)
 {
-	vrs->pos_x = x;
-	vrs->pos_y = y;
-	if (vrs->map[y][x] == 'N' || vrs->map[y][x] == 'S')
-	{
-		vrs->v_dir_x = 0;
-		vrs->v_dir_y = 1;
-		vrs->plane_x = 0.66;
-		vrs->plane_y = 0;
-		if (vrs->map[y][x] == 'S')
-			vrs->v_dir_y = -1;
-	}
-	if (vrs->map[y][x] == 'E' || vrs->map[y][x] == 'W')
-	{
-		vrs->v_dir_x = 1;
-		vrs->v_dir_y = 0;
-		vrs->plane_x = 0;
-		vrs->plane_y = 0.66;
-		if (vrs->map[y][x] == 'W')
-			vrs->v_dir_x = -1;
-
-	}
+	vrs->pos_x = x + 0.5;
+	vrs->pos_y = y + 0.5;
+	vrs->fov_angle = 60 * (M_PI / 180);
+	if (vrs->map[y][x] == 'N')
+		vrs->view_angle = 270 * (M_PI / 180);
+	else if (vrs->map[y][x] == 'S')
+		vrs->view_angle = 90 * (M_PI / 180);
+	else if (vrs->map[y][x] == 'W')
+		vrs->view_angle = 180 * (M_PI / 180);
+	else if (vrs->map[y][x] == 'E')
+		vrs->view_angle = 0 * (M_PI / 180);
+	vrs->angle_betw_rays = vrs->view_angle / vrs->img_width;
 }
 
 static void find_player_pos(t_vars *vrs)

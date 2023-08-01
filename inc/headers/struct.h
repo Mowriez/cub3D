@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/30 21:05:52 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:56:27 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,36 +42,56 @@ typedef struct s_vars {
 	int		floor_clr;
 	int		sky_clr;
 
-	// !player
+	// !visualization new calculation variables
 	// player position
 	double	pos_x;
 	double	pos_y;
-	int		grid_x;
-	int		grid_y;
-	// len of ray to next grid block border
-	double	side_dist_x;
-	double	side_dist_y;
-	// len of ray from one grid block border to the next
-	double	full_dist_x;
-	double	full_dist_y;
-	// view direction
-	double	v_dir_x;
-	double	v_dir_y;
-	// real x translated into camera plane space
-	double	cam_x;
-	// camera plane vector
-	double	plane_x;
-	double	plane_y;
-	// ray direction
-	double	r_dir_x;
-	double	r_dir_y;
-	// perpendicular wall distance to camera plane (avoid fisheye effect)
-	double	p_w_dist;
-	// calculation steps and variables for ray propagation
-	double	step_x;
-	double	step_y;
-	// which side was hit (w for side facing to the west, n for side facing towards north)?
-	char	side;
+
+	double	view_angle;
+	double	fov_angle;
+
+	double	angle_betw_rays;
+	double	ray_angle;
+	double	ray_pos_x;
+	double	ray_pos_y;
+	double	ray_step_x;
+	double	ray_step_y;
+	double	ray_precision;
+	double	ray_distance;
+
+	double	steps;
+	int		wall;
+
+	// !visualization old calculation variables
+	// player position
+	// double	pos_x;
+	// double	pos_y;
+	// int		grid_x;
+	// int		grid_y;
+	// // len of ray to next grid block border
+	// double	side_dist_x;
+	// double	side_dist_y;
+	// // len of ray from one grid block border to the next
+	// double	full_dist_x;
+	// double	full_dist_y;
+	// // view direction
+	// double	v_dir_x;
+	// double	v_dir_y;
+	// // real x translated into camera plane space
+	// double	cam_x;
+	// // camera plane vector
+	// double	plane_x;
+	// double	plane_y;
+	// // ray direction
+	// double	r_dir_x;
+	// double	r_dir_y;
+	// // perpendicular wall distance to camera plane (avoid fisheye effect)
+	// double	p_w_dist;
+	// // calculation steps and variables for ray propagation
+	// double	step_x;
+	// double	step_y;
+	// // which side was hit (w for side facing to the west, n for side facing towards north)?
+	// char	side;
 
 	//wall height
 	unsigned int		wall_height;
