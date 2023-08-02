@@ -37,18 +37,18 @@ static void move(t_vars *vrs, int keycode)
 	double	moveSpeed = .5;
 	if (keycode == KEY_W)
 	{
-		if (vrs->map[(int)(vrs->pos_y + sin(vrs->view_angle) * moveSpeed)][(int)(vrs->pos_x + cos(vrs->view_angle) * moveSpeed)] == '0')
+		if (vrs->map[(int)(vrs->player_pos_y + sin(vrs->view_angle) * moveSpeed)][(int)(vrs->player_pos_x + cos(vrs->view_angle) * moveSpeed)] == '0')
 		{
-			vrs->pos_x += cos(vrs->view_angle) * moveSpeed;
-			vrs->pos_y += sin(vrs->view_angle) * moveSpeed;
+			vrs->player_pos_x += cos(vrs->view_angle) * moveSpeed;
+			vrs->player_pos_y += sin(vrs->view_angle) * moveSpeed;
 		}
 	}
 	else if (keycode == KEY_S)
 	{
-		if (vrs->map[(int)(vrs->pos_y - sin(vrs->view_angle) * moveSpeed)][(int)(vrs->pos_x - cos(vrs->view_angle) * moveSpeed)] == '0')
+		if (vrs->map[(int)(vrs->player_pos_y - sin(vrs->view_angle) * moveSpeed)][(int)(vrs->player_pos_x - cos(vrs->view_angle) * moveSpeed)] == '0')
 		{
-			vrs->pos_x -= cos(vrs->view_angle) * moveSpeed;
-			vrs->pos_y -= sin(vrs->view_angle) * moveSpeed;
+			vrs->player_pos_x -= cos(vrs->view_angle) * moveSpeed;
+			vrs->player_pos_y -= sin(vrs->view_angle) * moveSpeed;
 		}
 	}
 	visualize(vrs);

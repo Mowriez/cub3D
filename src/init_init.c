@@ -37,8 +37,8 @@ static void	init_game_vars(t_vars *vrs)
 
 static void	set_player_param(t_vars *vrs, int x, int y)
 {
-	vrs->pos_x = x + 0.5;
-	vrs->pos_y = y + 0.5;
+	vrs->player_pos_x = x + 0.5;
+	vrs->player_pos_y = y + 0.5;
 	vrs->fov_angle = 60 * (M_PI / 180);
 	if (vrs->map[y][x] == 'N')
 		vrs->view_angle = 270 * (M_PI / 180);

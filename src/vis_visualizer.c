@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 02:17:40 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/01 19:21:38 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:32:31 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,68 @@ static void	draw_vert_line(int x, t_vars *vrs)
 	}
 }
 
+// void	visualize(t_vars *vrs)
+// {
+// 	int	img_x = 0;
+
+// 	while(img_x < vrs->img_width)
+// 	{
+// 		vrs->wall = 0;
+// 		vrs->ray_len = 0;
+// 		vrs->ray_angle = vrs->view_angle + (0.5 * vrs->fov_angle) - \
+// 						(img_x * vrs->angle_betw_rays);
+// 		vrs->ray_pos_x = vrs->player_pos_x;
+// 		vrs->ray_pos_y = vrs->player_pos_y;
+// 		// camera plae is distance 1 in view direction from player position
+// 		vrs->cam_plane_ray_int_x = vrs->player_pos_x + cos(vars->ray_angle);
+// 		vrs->cam_plane_ray_int_y = vrs->player_pos_y + sin(vars->ray_angle);
+// 		vrs->ray_pos_x = vrs->player_pos_x;
+// 		vrs->ray_pos_y = vrs->player_pos_y;
+// 		vrs->ray_grid_x = (int)floor(vrs->ray_pos_x);
+// 		vrs->ray_grid_y = (int)floor(vrs->ray_pos_y);
+// 		// direction of ray
+// 		if ((vrs->ray_angle >= 0 && vrs->ray_angle < (0.5 * M_PI))
+// 			vrs->ray_dir = 1;
+// 		else if	(vrs->ray_angle >= (0.5 * M_PI) && vrs->ray_angle <= M_PI)
+// 			vrs->ray_dir = 2;
+// 		else if	(vrs->ray_angle > (M_PI) && vrs->ray_angle <= (1.5 * M_PI))
+// 			vrs->ray_dir = 3;
+// 		else if	(vrs->ray_angle > (1.5 * M_PI) && vrs->ray_angle <= (2 * M_PI))
+// 			vrs->ray_dir = 4;
+
+// 		// calculate first step from player position to next ray-intersecting grid line
+// 		if (vrs->ray_dir == 1 || vrs->ray_dir == 4)
+// 			vrs->ray_dist_gridline_x = 1 - (vrs->ray_pos_x - floor(vrs->ray_pos_x));
+// 		else if (vrs->ray_dir == 2 || vrs->ray_dir == 3)
+// 			vrs->ray_dist_gridline_x = vrs->ray_pos_x - floor(vrs->ray_pos_x);
+// 		if (vrs->ray_dir == 1 || vrs->ray_dir == 2)
+// 			vrs->ray_dist_gridline_x =vrs->ray_pos_y - floor(vrs->ray_pos_y);
+// 		else if (vrs->ray_dir == 2 || vrs->ray_dir == 3)
+// 			vrs->ray_dist_gridline_x = 1 - (vrs->ray_pos_y - floor(vrs->ray_pos_y));
+		
+// 		// calculate distance to grid for both directions
+// 		vrs->ray_len_to_gridline_x = vrs->ray_dist_gridline_x / cos(vrs->ray_angle);
+// 		vrs->ray_len_to_gridline_y = vrs->ray_dist_gridline_y / sin(vrs->ray_angle);
+// 		if (vrs->ray_len_to_gridline_x > vrs->ray_len_to_gridline_y)
+// 		{
+// 			vrs->ray_len += vrs->ray_len_to_gridline_x;
+// 			if (vrs->ray_dir == 1 || vrs->ray_dir == 4)
+// 				vrs->ray_pos_x += vrs->ray_dist_gridline_x;
+// 			if (vrs->ray_dir == 2 || vrs->ray_dir == 3)
+// 				vrs->ray_pos_x -= vrs->ray_dist_gridline_x;
+// 			if ()
+// 				vrs->ray_pos_y += vrs->ray_len_to_gridline_x / sin (vrs->ray_angle);
+// 		}
+// 		else if (vrs->ray_len_to_gridline_y > vrs->ray_len_to_gridline_x)
+// 		{
+// 			vrs->ray_len += vrs->ray_len_to_gridline_y;
+// 			vrs->ray_pos_y += vrs->ray_dist_gridline_y;
+// 			vrs->ray_pos_x += vrs->ray_len_to_gridline_x / sin (vrs->ray_angle);
+// 		}
+// 	}
+// }
+
+// easy version without calculating the intersection directions
 void	visualize(t_vars *vrs)
 {
 	int	img_x = 0; // x-value of image, for that distance to wall is calculated;
@@ -59,8 +121,8 @@ void	visualize(t_vars *vrs)
 		vrs->wall = 0;
 		vrs->ray_angle = vrs->view_angle - (0.5 * vrs->fov_angle) + \
 						(img_x * vrs->angle_betw_rays);
-		vrs->ray_pos_x = vrs->pos_x;
-		vrs->ray_pos_y = vrs->pos_y;
+		vrs->ray_pos_x = vrs->player_pos_x;
+		vrs->ray_pos_y = vrs->player_pos_y;
 		while (!vrs->wall)
 		{
 			vrs->ray_pos_x += cos(vrs->ray_angle) / vrs->ray_precision;
@@ -68,10 +130,8 @@ void	visualize(t_vars *vrs)
 			if (vrs->map[(int)(vrs->ray_pos_y)][(int)(vrs->ray_pos_x)] == '1')
 				vrs->wall = 1;
 		}
-		vrs->ray_distance = sqrt(pow(vrs->ray_pos_x - vrs->pos_x, 2) + pow(vrs->ray_pos_y - vrs->pos_y, 2));
-		//reduce fisheye
-		// vrs->ray_distance *= cos(vrs->ray_angle - vrs->view_angle);
-		vrs->wall_height = (int)((vrs->img_height / vrs->ray_distance) / 2);
+		vrs->ray_dist = sqrt(pow(vrs->ray_pos_x - vrs->player_pos_x, 2) + pow(vrs->ray_pos_y - vrs->player_pos_y, 2));
+		vrs->wall_height = (int)((vrs->img_height / vrs->ray_dist) / 2);
 		draw_vert_line(img_x, vrs);
 		img_x++;
 	}

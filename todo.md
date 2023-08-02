@@ -1,6 +1,7 @@
-- fisheye effekt decalculate -> maurice aktuelles todo
-	> new approach max
-	> easier calc with stepped length calc, then upgrade to full dda
+- fisheye effekt decalculate    -> maurice current issue
+	> new approach max          --> implemented easier calc with stepped length --> done
+	> upgrade to full dda       -->
+
 - textures
 - parsing (false maps, paths to textures)
 - mirroring input keys with south-start

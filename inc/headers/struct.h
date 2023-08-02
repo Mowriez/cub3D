@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/01 18:56:27 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/02 12:06:02 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,29 @@ typedef struct s_vars {
 
 	// !visualization new calculation variables
 	// player position
-	double	pos_x;
-	double	pos_y;
-
+	double	player_pos_x;
+	double	player_pos_y;
 	double	view_angle;
 	double	fov_angle;
 
+	double	cam_plane_ray_int_x;
+	double	cam_plane_ray_int_y;
+	int		ray_grid_x;
+	int		ray_grid_y;
+	double	dist_gridline_x;
+	double	dist_gridline_y;
+	double	ray_len_to_gridline_x;
+	double	ray_len_to_gridline_y;
 	double	angle_betw_rays;
 	double	ray_angle;
 	double	ray_pos_x;
 	double	ray_pos_y;
+	double	ray_len;
 	double	ray_step_x;
 	double	ray_step_y;
 	double	ray_precision;
-	double	ray_distance;
+	double	ray_dist;
+	int		ray_dir;
 
 	double	steps;
 	int		wall;
