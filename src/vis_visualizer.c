@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 02:17:40 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/02 23:58:40 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 00:11:53 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static void	draw_vert_line(int x, t_vars *vrs)
 	int y_start = (0.5 * vrs->img_height) - (0.5 * vrs->wall_height);
 	int y_stop = (0.5 * vrs->img_height) + (0.5 * vrs->wall_height);
 
-	// if (vrs->wall_side == FACING_NORTH)
-	// 	vrs->wall_color = 0x00FF0000;
-	// else if (vrs->wall_side == FACING_SOUTH)
-	// 	vrs->wall_color = 0x0000FF00;
-	// else if (vrs->wall_side == FACING_EAST)
-	// 	vrs->wall_color = 0x000000FF;
-	// else if (vrs->wall_side == FACING_WEST)
-	vrs->wall_color = 0x0000FFFF;
+	if (vrs->wall_side == FACING_NORTH)
+		vrs->wall_color = 0x00FF0000;
+	else if (vrs->wall_side == FACING_SOUTH)
+		vrs->wall_color = 0x0000FF00;
+	else if (vrs->wall_side == FACING_EAST)
+		vrs->wall_color = 0x000000FF;
+	else if (vrs->wall_side == FACING_WEST)
+		vrs->wall_color = 0x0000FFFF;
 	while (y < y_start)
 	{
 		print_pixel(x, y, vrs, vrs->sky_clr);
@@ -163,6 +163,37 @@ static void	draw_vert_line(int x, t_vars *vrs)
 // 		img_x++;
 // 	}
 // }
+void	which_side(t_vars *vrs)
+{
+	if (sin(vrs->ray_angle) >= 0)
+		vrs->ray_dir_ns = DIR_NORTH;
+	else if	(sin(vrs->ray_angle) < 0)
+		vrs->ray_dir_ns = DIR_SOUTH;
+	if	(cos(vrs->ray_angle) >= 0)
+		vrs->ray_dir_ew = DIR_EAST;
+	else if	(cos(vrs->ray_angle) < 0)
+		vrs->ray_dir_ew = DIR_WEST;
+	if (vrs->ray_dir_ns == DIR_NORTH)
+	{
+		if (vrs->ray_dir_ew == DIR_EAST && fabs(vrs->ray_pos_x - round(vrs->ray_pos_x)) < fabs(vrs->ray_pos_y - round(vrs->ray_pos_y)))
+			vrs->wall_side = FACING_WEST;
+		if (vrs->ray_dir_ew == DIR_WEST && fabs(vrs->ray_pos_x - round(vrs->ray_pos_x)) < fabs(vrs->ray_pos_y - round(vrs->ray_pos_y)))
+			vrs->wall_side = FACING_EAST;
+		else
+			vrs->wall_side = FACING_SOUTH;
+	}
+	if (vrs->ray_dir_ns == DIR_SOUTH)
+	{
+		if (vrs->ray_dir_ew == DIR_EAST && fabs(vrs->ray_pos_x - round(vrs->ray_pos_x)) < fabs(vrs->ray_pos_y - round(vrs->ray_pos_y)))
+			vrs->wall_side = FACING_WEST;
+		if (vrs->ray_dir_ew == DIR_WEST && fabs(vrs->ray_pos_x - round(vrs->ray_pos_x)) < fabs(vrs->ray_pos_y - round(vrs->ray_pos_y)))
+			vrs->wall_side = FACING_EAST;
+		else
+			vrs->wall_side = FACING_NORTH;
+	}
+
+}
+
 // easy version without calculating the intersection directions
 void	visualize(t_vars *vrs)
 {
@@ -188,10 +219,13 @@ void	visualize(t_vars *vrs)
 		else if (vrs->view_angle < vrs->ray_angle)
 			vrs->ray_dist = vrs->ray_dist * cos(vrs->ray_angle - vrs->view_angle);
 		vrs->wall_height = (int)((vrs->img_height / vrs->ray_dist) / 2);
+		which_side(vrs);
 		draw_vert_line(img_x, vrs);
 		img_x++;
 	}
 }
+
+
 
 
 //! deprecated version, will maybe be revived later

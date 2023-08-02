@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/02 21:05:02 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 00:15:31 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static void	set_player_param(t_vars *vrs, int x, int y)
 	vrs->player_pos_y = y + 0.5;
 	vrs->fov_angle = 60 * (M_PI / 180);
 	if (vrs->map[y][x] == 'N')
-		vrs->view_angle = 0.5 * M_PI;
-	else if (vrs->map[y][x] == 'S')
 		vrs->view_angle = 1.5 * M_PI;
+	else if (vrs->map[y][x] == 'S')
+		vrs->view_angle = 0.5 * M_PI;
 	else if (vrs->map[y][x] == 'W')
 		vrs->view_angle = 1.0 * M_PI;
 	else if (vrs->map[y][x] == 'E')
