@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 02:17:40 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/02 14:32:31 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/02 23:28:17 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static void	print_pixel(int x, int y, t_vars *vrs, unsigned int color)
 {
 	char	*pixel;
 
-	pixel = vrs->img_data_addr + (x * vrs->bits_p_px / 8) \
-			+ (y * vrs->ln_len);
+	pixel = vrs->img_data_addr + (x * vrs->bits_p_px / 8) + (y * vrs->ln_len);
 	*(unsigned int *)pixel = color;
 }
 
@@ -28,10 +27,14 @@ static void	draw_vert_line(int x, t_vars *vrs)
 	int y_start = (0.5 * vrs->img_height) - (0.5 * vrs->wall_height);
 	int y_stop = (0.5 * vrs->img_height) + (0.5 * vrs->wall_height);
 
-	// if (vrs->side == 'n' || vrs->side == 's')
-	vrs->wall_color = 0x00FF0000;
-	// else if (vrs->side == 'w' || vrs->side == 'e')
-	// 	vrs->wall_color = 0x0000FF00;
+	if (vrs->wall_side == FACING_NORTH)
+		vrs->wall_color = 0x00FF0000;
+	else if (vrs->wall_side == FACING_SOUTH)
+		vrs->wall_color = 0x0000FF00;
+	else if (vrs->wall_side == FACING_EAST)
+		vrs->wall_color = 0x000000FF;
+	else if (vrs->wall_side == FACING_WEST)
+		vrs->wall_color = 0x0000FFFF;
 	while (y < y_start)
 	{
 		print_pixel(x, y, vrs, vrs->sky_clr);
@@ -55,9 +58,8 @@ void	visualize(t_vars *vrs)
 
 	while(img_x < vrs->img_width)
 	{
-		vrs->wall = 0;
+		vrs->wall_hit = 0;
 		vrs->ray_len = 0;
-		vrs->last_step = '0';
 		vrs->ray_angle = vrs->view_angle + (0.5 * vrs->fov_angle) - \
 			(img_x * vrs->angle_betw_rays);
 		// camera plane is distance 1 in view direction from player position
@@ -67,66 +69,98 @@ void	visualize(t_vars *vrs)
 		vrs->ray_pos_y = vrs->cam_plane_ray_int_y;
 		vrs->ray_grid_x = (int)floor(vrs->ray_pos_x);
 		vrs->ray_grid_y = (int)floor(vrs->ray_pos_y);
-		// direction of ray
-		if (vrs->ray_angle >= 0 && vrs->ray_angle < (0.5 * M_PI))
-			vrs->ray_dir = 1;
-		else if	(vrs->ray_angle >= (0.5 * M_PI) && vrs->ray_angle <= M_PI)
-			vrs->ray_dir = 2;
-		else if	(vrs->ray_angle > (M_PI) && vrs->ray_angle <= (1.5 * M_PI))
-			vrs->ray_dir = 3;
-		else if	(vrs->ray_angle > (1.5 * M_PI) && vrs->ray_angle <= (2 * M_PI))
-			vrs->ray_dir = 4;
-
-		// calculate first step from player position to next grid line that intersects ray
-		while (!vrs->wall)
+		// calculate fstep from current ray position to next intersecting gridline and check for wall in that grid block
+		// printf("player_x: %f | player_y: %f | vrs->wall_hit: %i | vrs->ray_len: %f | vrs->ray_angle %f\n"
+		// "vrs->cam_plane_ray_int_x: %f | vrs->cam_plane_ray_int_y: %f\n"
+		// "vrs->ray_pos_x %f | vrs->ray_pos_y: %f | vrs->ray_grid_x: %i | vrs->ray_grid_y: %i\n", vrs->player_pos_x, vrs->player_pos_y, vrs->wall_hit, vrs->ray_len, vrs->ray_angle, vrs->cam_plane_ray_int_x, vrs->cam_plane_ray_int_y,vrs->ray_pos_x, vrs->ray_pos_y, vrs->ray_grid_x, vrs->ray_grid_y);
+		while (!vrs->wall_hit)
 		{
-			if (vrs->first_step)
+			// direction of ray normed (angles over 2pi will be treated as fraction of angle < 2pi)
+			// and ray dist to gridline in y/x direction
+			if (sin(vrs->ray_angle) >= 0)
 			{
-				if (vrs->ray_dir == 1 || vrs->ray_dir == 4)
-					vrs->ray_dist_gridline_x = 1 - (vrs->ray_pos_x - floor(vrs->ray_pos_x));
-				else if (vrs->ray_dir == 2 || vrs->ray_dir == 3)
-					vrs->ray_dist_gridline_x = vrs->ray_pos_x - floor(vrs->ray_pos_x);
-				if (vrs->ray_dir == 1 || vrs->ray_dir == 2)
-					vrs->ray_dist_gridline_y = vrs->ray_pos_y - floor(vrs->ray_pos_y);
-				else if (vrs->ray_dir == 3 || vrs->ray_dir == 4)
-					vrs->ray_dist_gridline_y = 1 - (vrs->ray_pos_y - floor(vrs->ray_pos_y));
-
+				vrs->ray_dir_ns = DIR_NORTH;
+				vrs->ray_dist_gridline_y = vrs->ray_pos_y - floor(vrs->ray_pos_y);
+				if(vrs->ray_dist_gridline_y == 0)
+					vrs->ray_dist_gridline_y = 1;
 			}
-			// calculate distance to grid for both directions
-			vrs->ray_len_to_gridline_x = vrs->ray_dist_gridline_x / cos(vrs->ray_angle);
-			vrs->ray_len_to_gridline_y = vrs->ray_dist_gridline_y / sin(vrs->ray_angle);
-
+			else if	(sin(vrs->ray_angle) < 0)
+			{
+				vrs->ray_dir_ns = DIR_SOUTH;
+				vrs->ray_dist_gridline_y = 1 - (vrs->ray_pos_y - floor(vrs->ray_pos_y));
+				if(vrs->ray_dist_gridline_y == 0)
+					vrs->ray_dist_gridline_y = 1;
+			}
+			if	(cos(vrs->ray_angle) >= 0)
+			{
+				vrs->ray_dir_ew = DIR_EAST;
+				vrs->ray_dist_gridline_x = 1 - (vrs->ray_pos_x - floor(vrs->ray_pos_x));
+				if(vrs->ray_dist_gridline_x == 0)
+					vrs->ray_dist_gridline_x = 1;
+			}
+			else if	(cos(vrs->ray_angle) < 0)
+			{
+				vrs->ray_dir_ew = DIR_WEST;
+				vrs->ray_dist_gridline_x = vrs->ray_pos_x - floor(vrs->ray_pos_x);
+				if(vrs->ray_dist_gridline_x == 0)
+					vrs->ray_dist_gridline_x = 1;
+			}
+			// printf("floor ray_pos_x: %f\n", floor(vrs->ray_pos_x));
+			// printf("ray_angle: %f | ray_dir_ns: %i | ray_dir_ew: %i | ray_pos x | y: %f | %f   ray_dist x | y: %f | %f\n", vrs->ray_angle, vrs->ray_dir_ns, vrs->ray_dir_ew, vrs->ray_pos_x, vrs->ray_pos_y,vrs->ray_dist_gridline_x, vrs->ray_dist_gridline_y);
+			// calculate distance to grid for both directions (making sure not to divide by 0)
+			if (cos(vrs->ray_angle) == 0)
+				vrs->ray_len_to_gridline_x = 100000.0;
+			else
+				vrs->ray_len_to_gridline_x = fabs(vrs->ray_dist_gridline_x / cos(vrs->ray_angle));
+			if (sin(vrs->ray_angle) == 0)
+				vrs->ray_len_to_gridline_y = 100000.0;
+			else
+				vrs->ray_len_to_gridline_y = fabs(vrs->ray_dist_gridline_y / sin(vrs->ray_angle));
+			// printf("vrs->ray_len_to_gridline_x: %f | vrs->ray_len_to_gridline_y: %f\n", vrs->ray_len_to_gridline_x, vrs->ray_len_to_gridline_y);
 			// if length to intersection with vertical (x-) grid line is closer,
 			//calculate length and new position on x-grid line;
 			if (vrs->ray_len_to_gridline_x < vrs->ray_len_to_gridline_y)
 			{
-				vrs->last_step = 'x';
+				if (vrs->ray_dir_ew == DIR_EAST)
+					vrs->wall_side = FACING_WEST;
+				else
+					vrs->wall_side = FACING_EAST;
 				vrs->ray_len += vrs->ray_len_to_gridline_x;
 				vrs->ray_pos_y -= (sin(vrs->ray_angle) * vrs->ray_len_to_gridline_x);
 				vrs->ray_pos_x += (cos(vrs->ray_angle) * vrs->ray_len_to_gridline_x);
-				if (vrs->ray_dir == 1 || vrs->ray_dir == 4)
+				// printf("Ray len: %f\n", vrs->ray_len);
+				if (vrs->ray_dir_ew == DIR_EAST)
 					vrs->ray_grid_x += 1;
-				else if (vrs->ray_dir == 2 || vrs->ray_dir == 3)
+				else if (vrs->ray_dir_ew == DIR_WEST)
 					vrs->ray_grid_x -= 1;
 			}
 			// else if length to intersection with horizontal (y-) grid line is closer,
 			//calculate length and new position on y-grid line;
 			else if (vrs->ray_len_to_gridline_y < vrs->ray_len_to_gridline_x)
 			{
-				vrs->last_step = 'y';
+				if (vrs->ray_dir_ns == DIR_NORTH)
+					vrs->wall_side = FACING_SOUTH;
+				else
+					vrs->wall_side = FACING_NORTH;
 				vrs->ray_len += vrs->ray_len_to_gridline_y;
+				// printf("Ray len: %f\n", vrs->ray_len);
 				vrs->ray_pos_y -= (sin(vrs->ray_angle) * vrs->ray_len_to_gridline_y);
 				vrs->ray_pos_x += (cos(vrs->ray_angle) * vrs->ray_len_to_gridline_y);
-				if (vrs->ray_dir == 1 || vrs->ray_dir == 2)
+				if (vrs->ray_dir_ns == DIR_NORTH)
 					vrs->ray_grid_y -= 1;
-				else if (vrs->ray_dir == 3 || vrs->ray_dir == 4)
+				else if (vrs->ray_dir_ns == DIR_SOUTH)
 					vrs->ray_grid_y += 1;
 			}
 			if (vrs->map[vrs->ray_grid_y][vrs->ray_grid_x] == '1')
-				vrs->wall = 1;
+				vrs->wall_hit = 1;
 		}
-		len...
-		}
+		vrs->ray_len = sqrt(pow(vrs->ray_pos_x - vrs->cam_plane_ray_int_x, 2) + pow(vrs->ray_pos_y - vrs->cam_plane_ray_int_y, 2));
+		vrs->ray_len = cos(vrs->ray_angle - vrs->view_angle) * vrs->ray_len;
+		vrs->wall_height = (int)((vrs->img_height / vrs->ray_len) / 2);
+		if (vrs->wall_height > vrs->img_height)
+			vrs->wall_height = vrs->img_height;
+		draw_vert_line(img_x, vrs);
+		img_x++;
 	}
 }
 //// easy version without calculating the intersection directions

@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/01 18:48:20 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/02 21:05:02 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 static void	init_mlx_vars(t_vars *vrs)
 {
 	vrs->mlx_ptr = mlx_init();
-	vrs->img_width = 1400;
+	vrs->img_width = 800;
 	vrs->img_height = (double)round(vrs->img_width / 1.77);
 	vrs->img_ptr = mlx_new_image(vrs->mlx_ptr, vrs->img_width, \
 						vrs->img_height);
@@ -41,14 +41,14 @@ static void	set_player_param(t_vars *vrs, int x, int y)
 	vrs->player_pos_y = y + 0.5;
 	vrs->fov_angle = 60 * (M_PI / 180);
 	if (vrs->map[y][x] == 'N')
-		vrs->view_angle = 270 * (M_PI / 180);
+		vrs->view_angle = 0.5 * M_PI;
 	else if (vrs->map[y][x] == 'S')
-		vrs->view_angle = 90 * (M_PI / 180);
+		vrs->view_angle = 1.5 * M_PI;
 	else if (vrs->map[y][x] == 'W')
-		vrs->view_angle = 180 * (M_PI / 180);
+		vrs->view_angle = 1.0 * M_PI;
 	else if (vrs->map[y][x] == 'E')
-		vrs->view_angle = 0 * (M_PI / 180);
-	vrs->angle_betw_rays = vrs->view_angle / vrs->img_width;
+		vrs->view_angle = 0;
+	vrs->angle_betw_rays = vrs->fov_angle / vrs->img_width;
 }
 
 static void find_player_pos(t_vars *vrs)
