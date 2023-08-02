@@ -62,10 +62,6 @@ int	keyboard_input(int keycode, t_vars *vrs)
 		pan_view(vrs, keycode);
 	if (keycode > KEY_A && keycode <= KEY_W)
 		move(vrs, keycode);
-	// // if (keycode == KEY_PLUS || keycode == KEY_MINUS)
-	// // 	ft_change_max_it(vars, keycode);
-	// // if (keycode == KEY_R)
-	// // 	ft_reset_view(vars);
 	if (keycode == KEY_ESC)
 		ft_free(vrs);
 	return (0);

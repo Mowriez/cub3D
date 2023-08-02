@@ -49,93 +49,111 @@ static void	draw_vert_line(int x, t_vars *vrs)
 	}
 }
 
-// void	visualize(t_vars *vrs)
-// {
-// 	int	img_x = 0;
-
-// 	while(img_x < vrs->img_width)
-// 	{
-// 		vrs->wall = 0;
-// 		vrs->ray_len = 0;
-// 		vrs->ray_angle = vrs->view_angle + (0.5 * vrs->fov_angle) - \
-// 						(img_x * vrs->angle_betw_rays);
-// 		vrs->ray_pos_x = vrs->player_pos_x;
-// 		vrs->ray_pos_y = vrs->player_pos_y;
-// 		// camera plae is distance 1 in view direction from player position
-// 		vrs->cam_plane_ray_int_x = vrs->player_pos_x + cos(vars->ray_angle);
-// 		vrs->cam_plane_ray_int_y = vrs->player_pos_y + sin(vars->ray_angle);
-// 		vrs->ray_pos_x = vrs->player_pos_x;
-// 		vrs->ray_pos_y = vrs->player_pos_y;
-// 		vrs->ray_grid_x = (int)floor(vrs->ray_pos_x);
-// 		vrs->ray_grid_y = (int)floor(vrs->ray_pos_y);
-// 		// direction of ray
-// 		if ((vrs->ray_angle >= 0 && vrs->ray_angle < (0.5 * M_PI))
-// 			vrs->ray_dir = 1;
-// 		else if	(vrs->ray_angle >= (0.5 * M_PI) && vrs->ray_angle <= M_PI)
-// 			vrs->ray_dir = 2;
-// 		else if	(vrs->ray_angle > (M_PI) && vrs->ray_angle <= (1.5 * M_PI))
-// 			vrs->ray_dir = 3;
-// 		else if	(vrs->ray_angle > (1.5 * M_PI) && vrs->ray_angle <= (2 * M_PI))
-// 			vrs->ray_dir = 4;
-
-// 		// calculate first step from player position to next ray-intersecting grid line
-// 		if (vrs->ray_dir == 1 || vrs->ray_dir == 4)
-// 			vrs->ray_dist_gridline_x = 1 - (vrs->ray_pos_x - floor(vrs->ray_pos_x));
-// 		else if (vrs->ray_dir == 2 || vrs->ray_dir == 3)
-// 			vrs->ray_dist_gridline_x = vrs->ray_pos_x - floor(vrs->ray_pos_x);
-// 		if (vrs->ray_dir == 1 || vrs->ray_dir == 2)
-// 			vrs->ray_dist_gridline_x =vrs->ray_pos_y - floor(vrs->ray_pos_y);
-// 		else if (vrs->ray_dir == 2 || vrs->ray_dir == 3)
-// 			vrs->ray_dist_gridline_x = 1 - (vrs->ray_pos_y - floor(vrs->ray_pos_y));
-		
-// 		// calculate distance to grid for both directions
-// 		vrs->ray_len_to_gridline_x = vrs->ray_dist_gridline_x / cos(vrs->ray_angle);
-// 		vrs->ray_len_to_gridline_y = vrs->ray_dist_gridline_y / sin(vrs->ray_angle);
-// 		if (vrs->ray_len_to_gridline_x > vrs->ray_len_to_gridline_y)
-// 		{
-// 			vrs->ray_len += vrs->ray_len_to_gridline_x;
-// 			if (vrs->ray_dir == 1 || vrs->ray_dir == 4)
-// 				vrs->ray_pos_x += vrs->ray_dist_gridline_x;
-// 			if (vrs->ray_dir == 2 || vrs->ray_dir == 3)
-// 				vrs->ray_pos_x -= vrs->ray_dist_gridline_x;
-// 			if ()
-// 				vrs->ray_pos_y += vrs->ray_len_to_gridline_x / sin (vrs->ray_angle);
-// 		}
-// 		else if (vrs->ray_len_to_gridline_y > vrs->ray_len_to_gridline_x)
-// 		{
-// 			vrs->ray_len += vrs->ray_len_to_gridline_y;
-// 			vrs->ray_pos_y += vrs->ray_dist_gridline_y;
-// 			vrs->ray_pos_x += vrs->ray_len_to_gridline_x / sin (vrs->ray_angle);
-// 		}
-// 	}
-// }
-
-// easy version without calculating the intersection directions
 void	visualize(t_vars *vrs)
 {
-	int	img_x = 0; // x-value of image, for that distance to wall is calculated;
-	vrs->ray_precision = 1000;
-	
-	while (img_x < vrs->img_width)
+	int	img_x = 0;
+
+	while(img_x < vrs->img_width)
 	{
 		vrs->wall = 0;
-		vrs->ray_angle = vrs->view_angle - (0.5 * vrs->fov_angle) + \
-						(img_x * vrs->angle_betw_rays);
-		vrs->ray_pos_x = vrs->player_pos_x;
-		vrs->ray_pos_y = vrs->player_pos_y;
+		vrs->ray_len = 0;
+		vrs->last_step = '0';
+		vrs->ray_angle = vrs->view_angle + (0.5 * vrs->fov_angle) - \
+			(img_x * vrs->angle_betw_rays);
+		// camera plane is distance 1 in view direction from player position
+		vrs->cam_plane_ray_int_x = vrs->player_pos_x + cos(vrs->ray_angle);
+		vrs->cam_plane_ray_int_y = vrs->player_pos_y + sin(vrs->ray_angle);
+		vrs->ray_pos_x = vrs->cam_plane_ray_int_x;
+		vrs->ray_pos_y = vrs->cam_plane_ray_int_y;
+		vrs->ray_grid_x = (int)floor(vrs->ray_pos_x);
+		vrs->ray_grid_y = (int)floor(vrs->ray_pos_y);
+		// direction of ray
+		if (vrs->ray_angle >= 0 && vrs->ray_angle < (0.5 * M_PI))
+			vrs->ray_dir = 1;
+		else if	(vrs->ray_angle >= (0.5 * M_PI) && vrs->ray_angle <= M_PI)
+			vrs->ray_dir = 2;
+		else if	(vrs->ray_angle > (M_PI) && vrs->ray_angle <= (1.5 * M_PI))
+			vrs->ray_dir = 3;
+		else if	(vrs->ray_angle > (1.5 * M_PI) && vrs->ray_angle <= (2 * M_PI))
+			vrs->ray_dir = 4;
+
+		// calculate first step from player position to next grid line that intersects ray
 		while (!vrs->wall)
 		{
-			vrs->ray_pos_x += cos(vrs->ray_angle) / vrs->ray_precision;
-			vrs->ray_pos_y += sin(vrs->ray_angle) / vrs->ray_precision;
-			if (vrs->map[(int)(vrs->ray_pos_y)][(int)(vrs->ray_pos_x)] == '1')
+			if (vrs->first_step)
+			{
+				if (vrs->ray_dir == 1 || vrs->ray_dir == 4)
+					vrs->ray_dist_gridline_x = 1 - (vrs->ray_pos_x - floor(vrs->ray_pos_x));
+				else if (vrs->ray_dir == 2 || vrs->ray_dir == 3)
+					vrs->ray_dist_gridline_x = vrs->ray_pos_x - floor(vrs->ray_pos_x);
+				if (vrs->ray_dir == 1 || vrs->ray_dir == 2)
+					vrs->ray_dist_gridline_y = vrs->ray_pos_y - floor(vrs->ray_pos_y);
+				else if (vrs->ray_dir == 3 || vrs->ray_dir == 4)
+					vrs->ray_dist_gridline_y = 1 - (vrs->ray_pos_y - floor(vrs->ray_pos_y));
+
+			}
+			// calculate distance to grid for both directions
+			vrs->ray_len_to_gridline_x = vrs->ray_dist_gridline_x / cos(vrs->ray_angle);
+			vrs->ray_len_to_gridline_y = vrs->ray_dist_gridline_y / sin(vrs->ray_angle);
+
+			// if length to intersection with vertical (x-) grid line is closer,
+			//calculate length and new position on x-grid line;
+			if (vrs->ray_len_to_gridline_x < vrs->ray_len_to_gridline_y)
+			{
+				vrs->last_step = 'x';
+				vrs->ray_len += vrs->ray_len_to_gridline_x;
+				vrs->ray_pos_y -= (sin(vrs->ray_angle) * vrs->ray_len_to_gridline_x);
+				vrs->ray_pos_x += (cos(vrs->ray_angle) * vrs->ray_len_to_gridline_x);
+				if (vrs->ray_dir == 1 || vrs->ray_dir == 4)
+					vrs->ray_grid_x += 1;
+				else if (vrs->ray_dir == 2 || vrs->ray_dir == 3)
+					vrs->ray_grid_x -= 1;
+			}
+			// else if length to intersection with horizontal (y-) grid line is closer,
+			//calculate length and new position on y-grid line;
+			else if (vrs->ray_len_to_gridline_y < vrs->ray_len_to_gridline_x)
+			{
+				vrs->last_step = 'y';
+				vrs->ray_len += vrs->ray_len_to_gridline_y;
+				vrs->ray_pos_y -= (sin(vrs->ray_angle) * vrs->ray_len_to_gridline_y);
+				vrs->ray_pos_x += (cos(vrs->ray_angle) * vrs->ray_len_to_gridline_y);
+				if (vrs->ray_dir == 1 || vrs->ray_dir == 2)
+					vrs->ray_grid_y -= 1;
+				else if (vrs->ray_dir == 3 || vrs->ray_dir == 4)
+					vrs->ray_grid_y += 1;
+			}
+			if (vrs->map[vrs->ray_grid_y][vrs->ray_grid_x] == '1')
 				vrs->wall = 1;
 		}
-		vrs->ray_dist = sqrt(pow(vrs->ray_pos_x - vrs->player_pos_x, 2) + pow(vrs->ray_pos_y - vrs->player_pos_y, 2));
-		vrs->wall_height = (int)((vrs->img_height / vrs->ray_dist) / 2);
-		draw_vert_line(img_x, vrs);
-		img_x++;
+		len...
+		}
 	}
 }
+//// easy version without calculating the intersection directions
+//void	visualize(t_vars *vrs)
+//{
+//	int	img_x = 0; // x-value of image, for that distance to wall is calculated;
+//	vrs->ray_precision = 1000;
+//	while (img_x < vrs->img_width)
+//	{
+//		vrs->wall = 0;
+//		vrs->ray_angle = vrs->view_angle - (0.5 * vrs->fov_angle) +
+//						(img_x * vrs->angle_betw_rays);
+//		vrs->ray_pos_x = vrs->player_pos_x;
+//		vrs->ray_pos_y = vrs->player_pos_y;
+//		while (!vrs->wall)
+//		{
+//			vrs->ray_pos_x += cos(vrs->ray_angle) / vrs->ray_precision;
+//			vrs->ray_pos_y += sin(vrs->ray_angle) / vrs->ray_precision;
+//			if (vrs->map[(int)(vrs->ray_pos_y)][(int)(vrs->ray_pos_x)] == '1')
+//				vrs->wall = 1;
+//		}
+//		vrs->ray_dist = sqrt(pow(vrs->ray_pos_x - vrs->player_pos_x, 2) + pow(vrs->ray_pos_y - vrs->player_pos_y, 2));
+//		vrs->wall_height = (int)((vrs->img_height / vrs->ray_dist) / 2);
+//		draw_vert_line(img_x, vrs);
+//		img_x++;
+//	}
+//}
 
 
 //! deprecated version, will maybe be revived later

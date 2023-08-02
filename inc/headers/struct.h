@@ -34,10 +34,10 @@ typedef struct s_vars {
 	int		map_width;
 	int		map_height;
 	char	**map; //free on return
-	char	*tx_n;
-	char	*tx_s;
-	char	*tx_e;
-	char	*tx_w;
+//	char	*tx_n;
+//	char	*tx_s;
+//	char	*tx_e;
+//	char	*tx_w;
 	// floor and sky color;
 	int		floor_clr;
 	int		sky_clr;
@@ -53,8 +53,10 @@ typedef struct s_vars {
 	double	cam_plane_ray_int_y;
 	int		ray_grid_x;
 	int		ray_grid_y;
-	double	dist_gridline_x;
-	double	dist_gridline_y;
+	bool	first_step;
+	char	last_step;
+	double	ray_dist_gridline_x;
+	double	ray_dist_gridline_y;
 	double	ray_len_to_gridline_x;
 	double	ray_len_to_gridline_y;
 	double	angle_betw_rays;
@@ -62,8 +64,7 @@ typedef struct s_vars {
 	double	ray_pos_x;
 	double	ray_pos_y;
 	double	ray_len;
-	double	ray_step_x;
-	double	ray_step_y;
+
 	double	ray_precision;
 	double	ray_dist;
 	int		ray_dir;
