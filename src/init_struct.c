@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 23:01:09 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 23:15:57 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	init_struct(int argc, char**argv, t_vars **vrs)
 	(*vrs)->ac = argc;
 	init_mlx_vars(*vrs);
 	set_game_vars(*vrs);
-	init_textures(*vrs);
+	// init_textures(*vrs);
 	if (init_map(*vrs))
 		return (1);
 	return (0);

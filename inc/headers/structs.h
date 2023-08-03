@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 23:00:20 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 23:16:22 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ typedef struct s_overlay {
 	char	*debug_wall_hit_x;
 	char	*debug_wall_hit_y;
 }	t_overlay;
-#endif
 
 typedef struct s_text {
 	char	*path_to_file;
