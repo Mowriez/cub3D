@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 15:57:52 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:23:57 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ static void	init_mlx_vars(t_vars *vrs)
 					vrs->img_height, "cub3d");
 }
 
+static void	init_key_state(t_vars *vrs)
+{
+	int	i;
+
+	i = 0;
+	vrs->key_state = malloc(10 * sizeof(bool));
+	while(i < 9)
+	{
+		vrs->key_state[i] = 0;
+	}
+}
+
 static void	init_game_vars(t_vars *vrs)
 {
 	vrs->floor_clr = 0x00000000;
@@ -37,6 +49,7 @@ static void	init_game_vars(t_vars *vrs)
 	vrs->last_sec_change = 0;
 	vrs->fps = 60;
 	vrs->frames = 0;
+	init_key_state(vrs);
 }
 
 static void	set_player_param(t_vars *vrs, int x, int y)
