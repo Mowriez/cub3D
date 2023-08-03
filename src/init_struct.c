@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_init.c                                        :+:      :+:    :+:   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 19:05:44 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 21:01:58 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	init_mlx_vars(t_vars *vrs)
 // 	}
 // }
 
-static void	init_game_vars(t_vars *vrs)
+static void	set_game_vars(t_vars *vrs)
 {
 	vrs->floor_clr = 0x00000000;
 	vrs->sky_clr = 0x00666666;
@@ -53,83 +53,16 @@ static void	init_game_vars(t_vars *vrs)
 	// init_key_state(vrs);
 }
 
-static void	set_player_param(t_vars *vrs, int x, int y)
-{
-	vrs->player_pos_x = x + 0.5;
-	vrs->player_pos_y = y + 0.5;
-	vrs->fov_angle = 60 * (M_PI / 180);
-	if (vrs->map[y][x] == 'N')
-		vrs->view_angle = 1.5 * M_PI;
-	else if (vrs->map[y][x] == 'S')
-		vrs->view_angle = 0.5 * M_PI;
-	else if (vrs->map[y][x] == 'W')
-		vrs->view_angle = 1.0 * M_PI;
-	else if (vrs->map[y][x] == 'E')
-		vrs->view_angle = 0;
-	vrs->angle_betw_rays = vrs->fov_angle / vrs->img_width;
-}
-
-static void find_player_pos(t_vars *vrs)
-{
-	int x;
-	int y;
-
-	y = 0;
-	while (vrs->map[y])
-	{
-		x = 0;
-		while(x < vrs->map_width)
-		{
-			if (is_specific_char(vrs->map[y][x], "NSEW"))
-			{
-				set_player_param(vrs, x, y);
-				vrs->map[y][x] = '0';
-				return ;
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
-static int	init_map(t_vars *vrs)
-{
-	vrs->mapfile_fd = open(vrs->av[1], O_RDONLY);
-	if (vrs->mapfile_fd == -1)
-		return (err_msg("couldn't open mapfile."));
-	vrs->map_width = 24; //hardcoded
-	vrs->map_height = 24; //hardcoded
-	vrs->ray_precision = 400;
-	if (mapfile_to_arr(vrs))
-		return (err_msg("this mapfile is garbage"));
-	find_player_pos(vrs);
-	return (0);
-}
-
 int	init_struct(int argc, char**argv, t_vars **vrs)
 {
 	*vrs = malloc(sizeof(t_vars));
 	if (!(*vrs))
-		return(err_msg("fatal: malloc failed in struct vrs init."));
+		return (err_msg("fatal: malloc failed in struct vrs init."));
 	(*vrs)->av = argv;
 	(*vrs)->ac = argc;
 	init_mlx_vars(*vrs);
-	init_game_vars(*vrs);
+	set_game_vars(*vrs);
 	if (init_map(*vrs))
 		return (1);
 	return (0);
-}
-
-bool is_specific_char(const char c, const char *char_set)
-{
-	int i;
-	i = 0;
-	while (char_set[i])
-	{
-		if (c == char_set[i])
-			return (true);
-		else
-			i++;
-	}
-	return (false);
 }

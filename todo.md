@@ -1,4 +1,4 @@
-- fisheye effekt decalculate    -> doe
+- fisheye effekt decalculate    -> done
 	> new approach max          --> implemented easier calc with stepped length --> done
 	> upgrade to full dda       --> nevermind, not doing it.
 - debugging tools
@@ -8,5 +8,5 @@
 - textures
 - parsing (false maps, paths to textures)
 - mirroring input keys with south-start ->done
-- documentation
+- documentation // refactoring -> current todo mt
 - 

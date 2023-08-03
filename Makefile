@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/08/03 18:45:20 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/08/03 20:23:04 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,16 +19,19 @@ CCFLAG = -Wall -Werror -Wextra -O3
 
 NAME = cub3D
 
-SRC_NO_DIR =	error.c \
-				init_init.c \
-				init_utils.c \
+SRC_NO_DIR =	cast_drawer.c \
+				cast_raycaster.c \
+				deb_dtoa.c \
+				deb_helpers.c \
+				deb_overlay.c \
+				error.c \
+				init_helpers.c \
+				init_map.c \
+				init_struct.c \
+				key_input.c \
 				main.c \
 				par_parser.c \
-				overlay.c \
-				par_utils.c \
-				\
-				vis_visualizer.c \
-				key_input.c
+				par_utils.c 
 
 D_SRC = ./src/
 D_OBJ = ./obj/

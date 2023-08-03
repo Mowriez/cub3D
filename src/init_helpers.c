@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   init_helpers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/27 14:34:05 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 20:58:21 by mtrautne         ###   ########.fr       */
+/*   Created: 2023/08/03 20:01:15 by mtrautne          #+#    #+#             */
+/*   Updated: 2023/08/03 20:14:11 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/headers/cub3d.h"
 
-/*	FCT:	prints "error: msg\n" to stderror. (automatic newline at the end)
-	ARG:	string msg that contains the error message.
-	RET:	true (=error) in all cases.
-*/
-int	err_msg(char *msg)
+bool	is_specific_char(const char c, const char *char_set)
 {
-	int	len;
-	int	res;
+	int	i;
 
-	len = 0;
-	while (msg[len])
-		len++;
-	res = write(2, RED "error: ", sizeof(RED) + 7);
-	res = write(2, msg, len);
-	res = write(2, RES "\n", sizeof(RES) + 1);
-	res = 1;
-	return (res);
+	i = 0;
+	while (char_set[i])
+	{
+		if (c == char_set[i])
+			return (true);
+		else
+			i++;
+	}
+	return (false);
 }
