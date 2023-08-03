@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/08/03 20:23:04 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/08/03 21:51:44 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC_NO_DIR =	cast_drawer.c \
 				init_helpers.c \
 				init_map.c \
 				init_struct.c \
+				key_input_helpers.c \
 				key_input.c \
 				main.c \
 				par_parser.c \

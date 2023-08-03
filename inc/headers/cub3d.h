@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:48:03 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 21:40:15 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 22:32:31 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,17 @@ int		init_map(t_vars *vrs);
 // init_struct.c
 int		init_struct(int argc, char**argv, t_vars **vrs);
 
+// key_input_helpers.c
+void	init_input_keys(t_vars *vrs);
+int		motion(t_vars *vrs);
+
 // key_input.c
 int		keyboard_input(int keycode, t_vars *vrs);
 
 // main.c
 int		ft_free(t_vars *vrs);
+int		set_key_status_pressed(int keycode, t_vars *vrs);
+int		set_key_status_free(int keycode, t_vars *vrs);
 
 // par_parser.c
 int		parse_input(int argc, char**argv);

@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 02:17:40 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 21:30:48 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 22:43:51 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ int	visualizer(t_vars *vrs)
 	mlx_put_image_to_window(vrs->mlx_ptr, vrs->win_ptr, vrs->img_ptr, 0, 0);
 	if (vrs->overlay)
 		draw_debugging_overlay(vrs);
+	motion(vrs);
 	return (0);
 }

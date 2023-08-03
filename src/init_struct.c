@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 21:33:39 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 22:19:03 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 static void	init_mlx_vars(t_vars *vrs)
 {
 	vrs->mlx_ptr = mlx_init();
-	vrs->img_width = 1920;
+	vrs->img_width = IMG_WIDTH;
 	vrs->img_height = (double)round(vrs->img_width / 1.77);
 	vrs->img_ptr = mlx_new_image(vrs->mlx_ptr, vrs->img_width, \
 						vrs->img_height);
@@ -29,19 +29,6 @@ static void	init_mlx_vars(t_vars *vrs)
 					vrs->img_height, "cub3d");
 }
 
-// static void	init_key_state(t_vars *vrs)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	vrs->key_state = malloc(10 * sizeof(bool));
-// 	while(i < 9)
-// 	{
-// 		vrs->key_state[i] = 0;
-// 		i++;
-// 	}
-// }
-
 static void	set_game_vars(t_vars *vrs)
 {
 	vrs->floor_clr = 0x00000000;
@@ -50,7 +37,7 @@ static void	set_game_vars(t_vars *vrs)
 	vrs->last_sec_change = 0;
 	vrs->fps = 60;
 	vrs->frames = 0;
-	// init_key_state(vrs);
+	init_input_keys(vrs);
 }
 
 int	init_struct(int argc, char**argv, t_vars **vrs)

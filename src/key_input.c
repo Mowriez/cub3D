@@ -6,30 +6,28 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 21:46:33 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 20:24:13 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 22:47:02 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/headers/cub3d.h"
 
-static void	pan_view(t_vars *vrs, int keycode)
+static void	pan_view(t_vars *vrs)
 {
-	if (keycode == KEY_RIGHT)
-	{
+	if (vrs->key_state[5] == KEY_PRESSED)
 		vrs->view_angle += ROT_SP * M_PI;
-	}
-	else if (keycode == KEY_LEFT)
-	{
+	if (vrs->key_state[4] == KEY_PRESSED)
 		vrs->view_angle -= ROT_SP * M_PI;
-	}
+	vrs->key_state[5] = KEY_FREE;
+	vrs->key_state[4] = KEY_FREE;
 }
 
-static void	move_up_or_back(t_vars *vrs, int keycode)
+static void	move_up_or_back(t_vars *vrs)
 {
 	double	new_x;
 	double	new_y;
 
-	if (keycode == KEY_W)
+	if (vrs->key_state[0] == KEY_PRESSED)
 	{
 		new_x = vrs->player_pos_x + cos(vrs->view_angle) * MV_SP;
 		new_y = vrs->player_pos_y + sin(vrs->view_angle) * MV_SP;
@@ -38,8 +36,9 @@ static void	move_up_or_back(t_vars *vrs, int keycode)
 			vrs->player_pos_x = new_x;
 			vrs->player_pos_y = new_y;
 		}
+		vrs->key_state[0] = KEY_FREE;
 	}
-	else if (keycode == KEY_S)
+	else if (vrs->key_state[1] == KEY_PRESSED)
 	{
 		new_x = vrs->player_pos_x - cos(vrs->view_angle) * MV_SP;
 		new_y = vrs->player_pos_y - sin(vrs->view_angle) * MV_SP;
@@ -48,15 +47,16 @@ static void	move_up_or_back(t_vars *vrs, int keycode)
 			vrs->player_pos_x = new_x;
 			vrs->player_pos_y = new_y;
 		}
+		vrs->key_state[1] = KEY_FREE;
 	}
 }
 
-static void	move_sideways(t_vars *vrs, int keycode)
+static void	move_sideways(t_vars *vrs)
 {
 	double	new_x;
 	double	new_y;
 
-	if (keycode == KEY_A)
+	if (vrs->key_state[2] == KEY_PRESSED)
 	{
 		new_x = vrs->player_pos_x + cos(vrs->view_angle - 0.5 * M_PI) * MV_SP;
 		new_y = vrs->player_pos_y + sin(vrs->view_angle - 0.5 * M_PI) * MV_SP;
@@ -65,8 +65,9 @@ static void	move_sideways(t_vars *vrs, int keycode)
 			vrs->player_pos_x = new_x;
 			vrs->player_pos_y = new_y;
 		}
+		vrs->key_state[2] = KEY_FREE;
 	}
-	else if (keycode == KEY_D)
+	else if (vrs->key_state[3] == KEY_PRESSED)
 	{
 		new_x = vrs->player_pos_x - cos(vrs->view_angle - 0.5 * M_PI) * MV_SP;
 		new_y = vrs->player_pos_y - sin(vrs->view_angle - 0.5 * M_PI) * MV_SP;
@@ -75,24 +76,31 @@ static void	move_sideways(t_vars *vrs, int keycode)
 			vrs->player_pos_x = new_x;
 			vrs->player_pos_y = new_y;
 		}
+		vrs->key_state[3] = KEY_FREE;
 	}
 }
 
-static void	move(t_vars *vrs, int keycode)
+static void	move(t_vars *vrs)
 {
-	move_up_or_back(vrs, keycode);
-	move_sideways(vrs, keycode);
+	move_up_or_back(vrs);
+	move_sideways(vrs);
 }
 
 int	keyboard_input(int keycode, t_vars *vrs)
 {
-	if ((keycode >= KEY_LEFT && keycode <= KEY_DOWN))
-		pan_view(vrs, keycode);
-	if (keycode >= KEY_A && keycode <= KEY_W)
-		move(vrs, keycode);
 	if (keycode == KEY_ESC)
 		ft_free(vrs);
 	if (keycode == KEY_O)
 		vrs->overlay = !(vrs->overlay);
+	return (0);
+}
+
+int	motion(t_vars *vrs)
+{
+	// printf("motion\n");
+	if (vrs->key_state[4] == KEY_PRESSED || vrs->key_state[5] == KEY_PRESSED)
+		pan_view(vrs);
+	if (vrs->key_state[0] == KEY_PRESSED || vrs->key_state[1] == KEY_PRESSED || vrs->key_state[2] == KEY_PRESSED || vrs->key_state[3] == KEY_PRESSED)
+		move(vrs);
 	return (0);
 }
