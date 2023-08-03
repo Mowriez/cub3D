@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 21:01:58 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 21:33:39 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 static void	init_mlx_vars(t_vars *vrs)
 {
 	vrs->mlx_ptr = mlx_init();
-	vrs->img_width = 1000;
+	vrs->img_width = 1920;
 	vrs->img_height = (double)round(vrs->img_width / 1.77);
 	vrs->img_ptr = mlx_new_image(vrs->mlx_ptr, vrs->img_width, \
 						vrs->img_height);

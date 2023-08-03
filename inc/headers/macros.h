@@ -6,22 +6,24 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:43 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 21:04:04 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 21:42:20 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
 
+// wall directions
 # define FACING_NORTH 1
 # define FACING_SOUTH 2
 # define FACING_EAST 3
 # define FACING_WEST 4
 
+// motion speeds
 # define MV_SP 0.5
 # define ROT_SP 0.1
 
-// mouse and keyboard key representations, possibly only valid for macOS?
+// key numbers for linux/macOS
 # ifdef __linux__
 #  define KEY_ESC 65307
 #  define KEY_UP 65362
@@ -45,9 +47,19 @@
 #  define KEY_S 1
 #  define KEY_D 2
 #  define KEY_O 31
-// # define KEY_R
 
 # else
 #  error "Unsupported operating system"
 # endif
+
+// ascii escape characters for text colors
+# define RED "\033[1;31m"
+# define GRE "\033[1;32m"
+# define YEL "\033[1;33m"
+# define BLU "\033[1;34m"
+# define PUR "\033[1;35m"
+# define CYA "\033[1;36m"
+# define WHI "\033[1;37m"
+# define RES "\033[0m"
+
 #endif

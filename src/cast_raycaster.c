@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 02:17:40 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 20:50:39 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 21:30:48 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,6 @@ static void	get_wall_side(t_vars *vrs)
 		vrs->wall_side = FACING_SOUTH;
 }
 
-int	visualizer(t_vars *vrs)
-{
-	int	img_x;
-
-	img_x = 0;
-	while (img_x < vrs->img_width)
-	{
-		cast_ray(vrs, img_x);
-		draw_vert_line(img_x, vrs);
-		if (img_x == vrs->img_width / 2)
-			get_debugging_values(vrs);
-		img_x++;
-	}
-	// draw_map(vrs);
-	mlx_put_image_to_window(vrs->mlx_ptr, vrs->win_ptr, vrs->img_ptr, 0, 0);
-	if (vrs->overlay)
-		draw_debugging_overlay(vrs);
-	return (0);
-}
-
 static void	calc_wall_height(t_vars *vrs)
 {
 	vrs->ray_len = sqrt(pow(vrs->ray_pos_x - vrs->player_pos_x, 2)
@@ -61,7 +41,7 @@ static void	calc_wall_height(t_vars *vrs)
 		vrs->wall_height = (int)((vrs->img_height / vrs->ray_len));
 }
 
-void	cast_ray(t_vars *vrs, int img_x)
+static void	cast_ray(t_vars *vrs, int img_x)
 {
 	vrs->wall_hit = 0;
 	vrs->ray_angle = vrs->view_angle - (0.5 * vrs->fov_angle)
@@ -80,4 +60,24 @@ void	cast_ray(t_vars *vrs, int img_x)
 	}
 	calc_wall_height(vrs);
 	get_wall_side(vrs);
+}
+
+int	visualizer(t_vars *vrs)
+{
+	int	img_x;
+
+	img_x = 0;
+	while (img_x < vrs->img_width)
+	{
+		cast_ray(vrs, img_x);
+		draw_vert_line(img_x, vrs);
+		if (img_x == vrs->img_width / 2)
+			get_debugging_values(vrs);
+		img_x++;
+	}
+	// draw_map(vrs);
+	mlx_put_image_to_window(vrs->mlx_ptr, vrs->win_ptr, vrs->img_ptr, 0, 0);
+	if (vrs->overlay)
+		draw_debugging_overlay(vrs);
+	return (0);
 }
