@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:43 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 22:52:55 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 23:59:33 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define KEY_FREE 0
 
 // motion speeds
-# define MV_SP 0.08
-# define ROT_SP 0.01
+# define MV_SP 0.045
+# define ROT_SP 0.007
 
 // key numbers for linux/macOS
 # ifdef __linux__

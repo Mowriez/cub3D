@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 21:46:33 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 22:47:02 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 23:57:31 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ static void	pan_view(t_vars *vrs)
 		vrs->view_angle += ROT_SP * M_PI;
 	if (vrs->key_state[4] == KEY_PRESSED)
 		vrs->view_angle -= ROT_SP * M_PI;
-	vrs->key_state[5] = KEY_FREE;
-	vrs->key_state[4] = KEY_FREE;
 }
 
 static void	move_up_or_back(t_vars *vrs)
@@ -36,7 +34,6 @@ static void	move_up_or_back(t_vars *vrs)
 			vrs->player_pos_x = new_x;
 			vrs->player_pos_y = new_y;
 		}
-		vrs->key_state[0] = KEY_FREE;
 	}
 	else if (vrs->key_state[1] == KEY_PRESSED)
 	{
@@ -47,7 +44,6 @@ static void	move_up_or_back(t_vars *vrs)
 			vrs->player_pos_x = new_x;
 			vrs->player_pos_y = new_y;
 		}
-		vrs->key_state[1] = KEY_FREE;
 	}
 }
 
@@ -65,7 +61,6 @@ static void	move_sideways(t_vars *vrs)
 			vrs->player_pos_x = new_x;
 			vrs->player_pos_y = new_y;
 		}
-		vrs->key_state[2] = KEY_FREE;
 	}
 	else if (vrs->key_state[3] == KEY_PRESSED)
 	{
@@ -76,7 +71,6 @@ static void	move_sideways(t_vars *vrs)
 			vrs->player_pos_x = new_x;
 			vrs->player_pos_y = new_y;
 		}
-		vrs->key_state[3] = KEY_FREE;
 	}
 }
 
@@ -84,15 +78,6 @@ static void	move(t_vars *vrs)
 {
 	move_up_or_back(vrs);
 	move_sideways(vrs);
-}
-
-int	keyboard_input(int keycode, t_vars *vrs)
-{
-	if (keycode == KEY_ESC)
-		ft_free(vrs);
-	if (keycode == KEY_O)
-		vrs->overlay = !(vrs->overlay);
-	return (0);
 }
 
 int	motion(t_vars *vrs)

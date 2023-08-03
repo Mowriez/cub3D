@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:48 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 22:52:34 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/04 00:01:57 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ int	main(int argc, char **argv)
 		return (1);
 	if (init_struct(argc, argv, &vrs))
 		return (1);
-	mlx_hook(vrs->win_ptr, 2, 1L<<0, set_key_status_pressed, vrs);
-	// mlx_hook(vrs->win_ptr, 3, 1L<<3, set_key_status_free, vrs);
+	mlx_hook(vrs->win_ptr, 2, 1L << 0, set_key_status_pressed, vrs);
 	mlx_hook(vrs->win_ptr, 17, 0L, ft_free, vrs);
-	mlx_key_hook(vrs->win_ptr, keyboard_input, vrs);
-	mlx_loop_hook(vrs->mlx_ptr, motion, vrs);
+	mlx_hook(vrs->win_ptr, 3, 1L << 1, set_key_status_free, vrs);
 	mlx_loop_hook(vrs->mlx_ptr, visualizer, vrs);
 	mlx_loop(vrs->mlx_ptr);
 	ft_free(vrs);
@@ -49,6 +47,7 @@ int	ft_free(t_vars *vrs)
 
 int	set_key_status_pressed(int keycode, t_vars *vrs)
 {
+	printf("%i pressed\n", keycode);
 	if (keycode == KEY_W)
 		vrs->key_state[0] = KEY_PRESSED;
 	else if (keycode == KEY_S)
@@ -61,23 +60,27 @@ int	set_key_status_pressed(int keycode, t_vars *vrs)
 		vrs->key_state[4] = KEY_PRESSED;
 	else if (keycode == KEY_RIGHT)
 		vrs->key_state[5] = KEY_PRESSED;
-	set_key_status_free(keycode, vrs);
 	return (0);
 }
 
 int	set_key_status_free(int keycode, t_vars *vrs)
 {
-	if (keycode != KEY_W)
+	printf("%i released\n", keycode);
+	if (keycode == KEY_W)
 		vrs->key_state[0] = KEY_FREE;
-	if (keycode != KEY_S)
+	if (keycode == KEY_S)
 		vrs->key_state[1] = KEY_FREE;
-	if (keycode != KEY_A)
+	if (keycode == KEY_A)
 		vrs->key_state[2] = KEY_FREE;
-	if (keycode != KEY_D)
+	if (keycode == KEY_D)
 		vrs->key_state[3] = KEY_FREE;
-	if (keycode != KEY_LEFT)
+	if (keycode == KEY_LEFT)
 		vrs->key_state[4] = KEY_FREE;
-	if (keycode != KEY_RIGHT)
+	if (keycode == KEY_RIGHT)
 		vrs->key_state[5] = KEY_FREE;
+	if (keycode == KEY_ESC)
+		ft_free(vrs);
+	if (keycode == KEY_O)
+		vrs->overlay = !(vrs->overlay);
 	return (0);
 }

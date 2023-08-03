@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:48:03 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 22:32:31 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/04 00:34:13 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@
 // function declarations -----------------------------------------------------
 // cast_drawer.c
 void	draw_vert_line(int x, t_vars *vrs);
+
+// cast_minimap.c
+void	init_minimap(t_vars *vrs);
+void	draw_minimap(t_vars *vrs);
 
 // cast_raycaster.c
 int		visualizer(t_vars *vrs);

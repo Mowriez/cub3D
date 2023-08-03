@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 23:16:22 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/04 00:14:24 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,14 @@ typedef struct s_vars {
 	double			last_sec_change;
 	int				fps;
 	int				frames;
+
+	void			*m_img_ptr;
+	void			*m_img_data_addr;
+	int				m_width;
+	int				m_height;
+	int				m_bits_p_px;
+	int				m_ln_len;
+	int				m_endian;
 
 	bool			*key_state;
 

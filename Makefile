@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/08/03 21:51:44 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/08/04 00:13:05 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ CCFLAG = -Wall -Werror -Wextra -O3
 NAME = cub3D
 
 SRC_NO_DIR =	cast_drawer.c \
+				cast_minimap.c \
 				cast_raycaster.c \
 				deb_dtoa.c \
 				deb_helpers.c \
