@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 00:15:31 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 02:24:54 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void find_player_pos(t_vars *vrs)
 	while (vrs->map[y])
 	{
 		x = 0;
-		while(vrs->map[y][x])
+		while(x < vrs->map_width)
 		{
 			if (is_specific_char(vrs->map[y][x], "NSEW"))
 			{
