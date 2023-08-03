@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:48 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/07/30 22:06:41 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 12:10:04 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ int	main(int argc, char **argv)
 		return (1);
 	mlx_hook(vrs->win_ptr, 17, 0L, ft_free, vrs);
 	mlx_key_hook(vrs->win_ptr, keyboard_input, vrs);
-	visualize(vrs);
-	mlx_put_image_to_window(vrs->mlx_ptr, vrs->win_ptr, vrs->img_ptr, 0, 0);
-	
+	mlx_loop_hook(vrs->mlx_ptr, visualizer, vrs);
 	mlx_loop(vrs->mlx_ptr);
 	ft_free(vrs);
 	return (0);

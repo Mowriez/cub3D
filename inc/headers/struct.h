@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 02:25:50 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:47:58 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,28 +45,30 @@ typedef struct s_vars {
 	double	view_angle;
 	double	fov_angle;
 
-	double	cam_plane_ray_int_x;
-	double	cam_plane_ray_int_y;
-
 	double	ray_angle;
 	double	ray_last_pos_x;
 	double	ray_last_pos_y;
 	double	ray_pos_x;
 	double	ray_pos_y;
 	double	ray_len;
-	
+	double	ray_len_temp;
 	double	angle_betw_rays;
 
 	double	ray_precision;
-	double	ray_dist;
-	int		ray_dir_ns;
-	int		ray_dir_ew;
 
 	int		wall_hit;
 	int		wall_side;
 
 	unsigned int	wall_height;
 	unsigned int	wall_color;
+	
+	bool	overlay;
+	double	debug_dist_to_wall;
+	double	debug_wall_hit_x;
+	double	debug_wall_hit_y;
+	double	last_sec_change;
+	int		fps;
+	int		frames;
 
 	char	**av;
 	int		ac;

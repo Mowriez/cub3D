@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/07/30 22:08:57 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/08/03 12:49:35 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC_NO_DIR =	error.c \
 				init_utils.c \
 				main.c \
 				par_parser.c \
+				overlay.c \
 				par_utils.c \
 				\
 				vis_visualizer.c \

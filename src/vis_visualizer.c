@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 02:17:40 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 02:21:49 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:50:22 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,39 @@ static void	set_wall_side(t_vars *vrs)
 		vrs->wall_side = FACING_SOUTH;
 }
 
-void	visualize(t_vars *vrs)
+static void vis_starting_values(t_vars *vrs, int *img_x)
 {
-	int	img_x = 0; // x-value of image, for that distance to wall is calculated;
-	vrs->ray_precision = 500;
-	while (img_x < vrs->img_width)
+	*img_x = 0;
+	vrs->ray_len_temp = 1000000;
+}
+
+static void get_debug_values(t_vars *vrs)
+{
+	vrs->debug_dist_to_wall = vrs->ray_len;
+	vrs->debug_wall_hit_x = vrs->ray_pos_x;
+	vrs->debug_wall_hit_y = vrs->ray_pos_y;
+}
+
+int	visualizer(t_vars *vrs)
+{
+	int img_x;
+	vis_starting_values(vrs, &img_x);
+	while(img_x < vrs->img_width)
 	{
+		cast_ray(vrs, img_x);
+		draw_vert_line(img_x, vrs);
+		if (img_x == vrs->img_width / 2)
+			get_debug_values(vrs);
+		img_x++;
+	}
+	mlx_put_image_to_window(vrs->mlx_ptr, vrs->win_ptr, vrs->img_ptr, 0, 0);
+	if (vrs->overlay)
+		draw_debugging_overlay(vrs);
+	return (0);
+}
+
+void	cast_ray(t_vars *vrs, int img_x)
+{
 		vrs->wall_hit = 0;
 		vrs->ray_angle = vrs->view_angle - (0.5 * vrs->fov_angle) +
 						(img_x * vrs->angle_betw_rays);
@@ -77,26 +104,23 @@ void	visualize(t_vars *vrs)
 		vrs->ray_pos_y = vrs->player_pos_y;
 		while (!vrs->wall_hit)
 		{
-			vrs->ray_last_pos_x = vrs->ray_pos_x; // needed for calculating wall side
-			vrs->ray_last_pos_y = vrs->ray_pos_y; // needed for calculating wall side
+			vrs->ray_last_pos_x = vrs->ray_pos_x;
+			vrs->ray_last_pos_y = vrs->ray_pos_y;
 			vrs->ray_pos_x += cos(vrs->ray_angle) / vrs->ray_precision;
 			vrs->ray_pos_y += sin(vrs->ray_angle) / vrs->ray_precision;
 			if (vrs->map[(int)floor(vrs->ray_pos_y)][(int)floor(vrs->ray_pos_x)] == '1')
 				vrs->wall_hit = 1;
 		}
-		vrs->ray_dist = sqrt(pow(vrs->ray_pos_x - vrs->player_pos_x, 2) + pow(vrs->ray_pos_y - vrs->player_pos_y, 2));
+		vrs->ray_len = sqrt(pow(vrs->ray_pos_x - vrs->player_pos_x, 2) + pow(vrs->ray_pos_y - vrs->player_pos_y, 2));
 		if (vrs->view_angle > vrs->ray_angle)
-			vrs->ray_dist = vrs->ray_dist * cos(vrs->view_angle - vrs->ray_angle);
+			vrs->ray_len = vrs->ray_len * cos(vrs->view_angle - vrs->ray_angle);
 		else if (vrs->view_angle < vrs->ray_angle)
-			vrs->ray_dist = vrs->ray_dist * cos(vrs->ray_angle - vrs->view_angle);
-		if (vrs->ray_dist <= 0)
+			vrs->ray_len = vrs->ray_len * cos(vrs->ray_angle - vrs->view_angle);
+		if (vrs->ray_len <= 1)
 			vrs->wall_height = (int)(vrs->img_height);
 		else
-			vrs->wall_height = (int)((vrs->img_height / vrs->ray_dist));
+			vrs->wall_height = (int)((vrs->img_height / vrs->ray_len));
 		set_wall_side(vrs);
-		draw_vert_line(img_x, vrs);
-		img_x++;
-	}
 }
 
 

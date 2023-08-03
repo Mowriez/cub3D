@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 02:24:54 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:57:52 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 static void	init_mlx_vars(t_vars *vrs)
 {
 	vrs->mlx_ptr = mlx_init();
-	vrs->img_width = 800;
+	vrs->img_width = 1920;
 	vrs->img_height = (double)round(vrs->img_width / 1.77);
 	vrs->img_ptr = mlx_new_image(vrs->mlx_ptr, vrs->img_width, \
 						vrs->img_height);
@@ -33,6 +33,10 @@ static void	init_game_vars(t_vars *vrs)
 {
 	vrs->floor_clr = 0x00000000;
 	vrs->sky_clr = 0x00666666;
+	vrs->overlay = false;
+	vrs->last_sec_change = 0;
+	vrs->fps = 60;
+	vrs->frames = 0;
 }
 
 static void	set_player_param(t_vars *vrs, int x, int y)
@@ -65,6 +69,7 @@ static void find_player_pos(t_vars *vrs)
 			if (is_specific_char(vrs->map[y][x], "NSEW"))
 			{
 				set_player_param(vrs, x, y);
+				vrs->map[y][x] = '0';
 				return ;
 			}
 			x++;
@@ -80,8 +85,9 @@ static int	init_map(t_vars *vrs)
 		return (err_msg("couldn't open mapfile."));
 	vrs->map_width = 24; //hardcoded
 	vrs->map_height = 24; //hardcoded
+	vrs->ray_precision = 1000;
 	if (mapfile_to_arr(vrs))
-		return (1);
+		return (err_msg("this mapfile is garbage"));
 	find_player_pos(vrs);
 	return (0);
 }
