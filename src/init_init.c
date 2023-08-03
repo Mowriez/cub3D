@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 17:23:57 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 19:05:44 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 static void	init_mlx_vars(t_vars *vrs)
 {
 	vrs->mlx_ptr = mlx_init();
-	vrs->img_width = 1920;
+	vrs->img_width = 1000;
 	vrs->img_height = (double)round(vrs->img_width / 1.77);
 	vrs->img_ptr = mlx_new_image(vrs->mlx_ptr, vrs->img_width, \
 						vrs->img_height);
@@ -29,17 +29,18 @@ static void	init_mlx_vars(t_vars *vrs)
 					vrs->img_height, "cub3d");
 }
 
-static void	init_key_state(t_vars *vrs)
-{
-	int	i;
+// static void	init_key_state(t_vars *vrs)
+// {
+// 	int	i;
 
-	i = 0;
-	vrs->key_state = malloc(10 * sizeof(bool));
-	while(i < 9)
-	{
-		vrs->key_state[i] = 0;
-	}
-}
+// 	i = 0;
+// 	vrs->key_state = malloc(10 * sizeof(bool));
+// 	while(i < 9)
+// 	{
+// 		vrs->key_state[i] = 0;
+// 		i++;
+// 	}
+// }
 
 static void	init_game_vars(t_vars *vrs)
 {
@@ -49,7 +50,7 @@ static void	init_game_vars(t_vars *vrs)
 	vrs->last_sec_change = 0;
 	vrs->fps = 60;
 	vrs->frames = 0;
-	init_key_state(vrs);
+	// init_key_state(vrs);
 }
 
 static void	set_player_param(t_vars *vrs, int x, int y)
@@ -98,7 +99,7 @@ static int	init_map(t_vars *vrs)
 		return (err_msg("couldn't open mapfile."));
 	vrs->map_width = 24; //hardcoded
 	vrs->map_height = 24; //hardcoded
-	vrs->ray_precision = 1000;
+	vrs->ray_precision = 400;
 	if (mapfile_to_arr(vrs))
 		return (err_msg("this mapfile is garbage"));
 	find_player_pos(vrs);

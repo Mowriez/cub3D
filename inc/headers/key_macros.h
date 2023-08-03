@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:43 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 12:48:24 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 18:49:34 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
-// # define KEY_R
+# define KEY_O 111
 
 
 #elif defined(__APPLE__)

@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 02:17:40 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 14:50:22 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 19:11:57 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,11 @@ static void	draw_vert_line(int x, t_vars *vrs)
 	}
 }
 
-static void	set_wall_side(t_vars *vrs)
+static void	get_wall_side(t_vars *vrs)
 {
+	if (floor(vrs->ray_last_pos_x) - floor(vrs->ray_pos_x) != 0 && 
+		floor(vrs->ray_last_pos_y) - floor(vrs->ray_pos_y) != 0)
+		return ;
 	if (floor(vrs->ray_last_pos_x) - floor(vrs->ray_pos_x) < 0)
 		vrs->wall_side = FACING_WEST;
 	else if (floor(vrs->ray_last_pos_x) - floor(vrs->ray_pos_x) > 0)
@@ -70,7 +73,7 @@ static void vis_starting_values(t_vars *vrs, int *img_x)
 	vrs->ray_len_temp = 1000000;
 }
 
-static void get_debug_values(t_vars *vrs)
+static void get_debugging_values(t_vars *vrs)
 {
 	vrs->debug_dist_to_wall = vrs->ray_len;
 	vrs->debug_wall_hit_x = vrs->ray_pos_x;
@@ -86,7 +89,7 @@ int	visualizer(t_vars *vrs)
 		cast_ray(vrs, img_x);
 		draw_vert_line(img_x, vrs);
 		if (img_x == vrs->img_width / 2)
-			get_debug_values(vrs);
+			get_debugging_values(vrs);
 		img_x++;
 	}
 	mlx_put_image_to_window(vrs->mlx_ptr, vrs->win_ptr, vrs->img_ptr, 0, 0);
@@ -120,7 +123,7 @@ void	cast_ray(t_vars *vrs, int img_x)
 			vrs->wall_height = (int)(vrs->img_height);
 		else
 			vrs->wall_height = (int)((vrs->img_height / vrs->ray_len));
-		set_wall_side(vrs);
+		get_wall_side(vrs);
 }
 
 

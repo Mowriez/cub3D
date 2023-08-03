@@ -3,9 +3,10 @@
 	> upgrade to full dda       --> nevermind, not doing it.
 - debugging tools
 	> minimap
-	> player_pos overlay
+	> player_pos overlay -> one
+- wrong color at intersection of walls ->done
 - textures
 - parsing (false maps, paths to textures)
-- mirroring input keys with south-start
+- mirroring input keys with south-start ->done
 - documentation
 - 
