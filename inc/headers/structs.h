@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 21:09:29 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 23:00:20 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ typedef struct s_vars {
 	int				map_width;
 	int				map_height;
 	char			**map;
-//	char			*tx_n;
-//	char			*tx_s;
-//	char			*tx_e;
-//	char			*tx_w;
+	struct s_text	*tx_n;
+	struct s_text	*tx_s;
+	struct s_text	*tx_e;
+	struct s_text	*tx_w;
 	int				floor_clr;
 	int				sky_clr;
 
@@ -87,4 +87,13 @@ typedef struct s_overlay {
 	char	*debug_wall_hit_x;
 	char	*debug_wall_hit_y;
 }	t_overlay;
+#endif
+
+typedef struct s_text {
+	char	*path_to_file;
+	void	*addr;
+	int		width;
+	int		height;
+}	t_text;
+
 #endif

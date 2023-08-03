@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 20:01:15 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 20:14:11 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/03 23:14:51 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,14 @@ bool	is_specific_char(const char c, const char *char_set)
 			i++;
 	}
 	return (false);
+}
+
+void	init_textures(t_vars *vrs)
+{
+	vrs->tx_n->path_to_file = "./tex/wall_tex.xmp";
+	vrs->tx_n->addr = mlx_xpm_file_to_image(vrs->mlx_ptr, 
+		vrs->tx_n->path_to_file, &vrs->tx_n->width, &vrs->tx_n->heigth);
+	
+	// vrs->tx_s->path_to_file = "./tex/texture_south.xmp";
+	// vrs->tx_s->path_to_file = "./tex/texture_south.xmp";
 }

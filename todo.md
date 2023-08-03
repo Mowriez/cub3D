@@ -8,7 +8,7 @@
 ⚙️ parsing (false maps, paths to textures)
 ⚙️ documentation
 ⚙️ reset key
-🔧 smooth movement
+🔧 smooth movement -> this can definitely be done better!
 ✅ fisheye effekt decalculate
 	✅> new approach max
 	❌> upgrade to full dda --> nevermind, not doing it, discrete caster works fantastic as well
