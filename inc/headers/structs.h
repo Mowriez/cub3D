@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/04 00:14:24 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/04 09:00:05 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ typedef struct s_vars {
 	int				m_bits_p_px;
 	int				m_ln_len;
 	int				m_endian;
+	unsigned int	m_color_wall;
+	unsigned int	m_color_floor;
+	unsigned int	m_color_player;
+	unsigned int	m_color_view_cone;
 
 	bool			*key_state;
 

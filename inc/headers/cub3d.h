@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:48:03 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/04 00:34:13 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/04 09:02:40 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@
 void	draw_vert_line(int x, t_vars *vrs);
 
 // cast_minimap.c
-void	init_minimap(t_vars *vrs);
 void	draw_minimap(t_vars *vrs);
 
 // cast_raycaster.c
@@ -66,6 +65,7 @@ int		err_msg(char *msg);
 
 // init_helpers.c
 bool	is_specific_char(const char c, const char *char_set);
+void	init_minimap(t_vars *vrs);
 
 // init_map.c
 int		init_map(t_vars *vrs);

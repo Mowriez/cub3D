@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cast_minimap.c                                     :+:      :+:    :+:   */
+/*   deb_minimap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:11:00 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/04 00:51:46 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/04 09:08:38 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,25 @@ static void	print_pixel_1(int x, int y, t_vars *vrs, unsigned int color)
 	*(unsigned int *)pixel = color;
 }
 
-void	init_minimap(t_vars *vrs)
+static void	draw_player(t_vars *vrs)
 {
-	vrs->m_width = vrs->img_width / 5;
-	vrs->m_height = vrs->img_height / 4;
-	vrs->m_img_ptr = mlx_new_image(vrs->mlx_ptr, vrs->m_width, vrs->m_height);
-	vrs->m_img_data_addr = mlx_get_data_addr(vrs->m_img_ptr, \
-		&vrs->m_bits_p_px, &vrs->m_ln_len, &vrs->m_endian);
+	int x_pos = (vrs->player_pos_x * vrs->m_width) / vrs->map_width;
+	int y_pos = (vrs->player_pos_y * vrs->m_height) / vrs->map_height;
+	int x;
+	int y = y_pos - 3;
+
+	while (y < y_pos + 3)
+	{
+		x = x_pos - 3;
+		while(x < x_pos + 3)
+		{
+			print_pixel_1(x, y, vrs, vrs->m_color_player * (x_pos * y_pos));
+			x++;
+		}
+		y++;
+	}
+	// draw_view_cone(x_pos, y_pos, vrs);
+
 }
 
 void	draw_minimap(t_vars *vrs)
@@ -39,14 +51,16 @@ void	draw_minimap(t_vars *vrs)
 		map_x = 0;
 		while (map_x < vrs->m_width)
 		{
-			if (vrs->map[(map_y / vrs->m_height) * vrs->map_height][(map_x / vrs->m_width) * vrs->map_width] == '0')
-				print_pixel_1(map_x, map_y, vrs, 0x00b88428);
-			else if (vrs->map[(map_y / vrs->m_height) * vrs->map_height][(map_x / vrs->m_width) * vrs->map_width] == '0')
-				print_pixel_1(map_x, map_y, vrs, 0x00bebebe);
+			int x = (map_x * vrs->map_width) / vrs->m_width;
+			int y = (map_y * vrs->map_height) /  vrs->m_height;
+			if (vrs->map[y][x] == '1')
+				print_pixel_1(map_x, map_y, vrs, vrs->m_color_wall);
+			else if (vrs->map[y][x] == '0')
+				print_pixel_1(map_x, map_y, vrs, vrs->m_color_floor);
 			map_x++;
 		}
 		map_y++;
 	}
-	print_pixel_1(((vrs->player_pos_x / vrs->map_width) * vrs->m_width), ((vrs->player_pos_y / vrs->map_height) \
-			* vrs->m_height), vrs, 0x00FF0000);
+	draw_player(vrs);
+	mlx_put_image_to_window(vrs->mlx_ptr, vrs->win_ptr, vrs->m_img_ptr, 940, 15);
 }

@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 02:17:40 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/04 00:38:15 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/04 09:08:33 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,9 @@ int	visualizer(t_vars *vrs)
 		img_x++;
 	}
 	mlx_put_image_to_window(vrs->mlx_ptr, vrs->win_ptr, vrs->img_ptr, 0, 0);
+	draw_minimap(vrs);
 	if (vrs->overlay)
-	{
-		draw_minimap(vrs);
-		mlx_put_image_to_window(vrs->mlx_ptr, vrs->win_ptr, vrs->m_img_ptr, 940, 15);
 		draw_debugging_overlay(vrs);
-	}
 	motion(vrs);
 	return (0);
 }

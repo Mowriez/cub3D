@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 23:51:38 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 20:43:35 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/04 08:43:20 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	set_player_param(t_vars *vrs, int x, int y)
 {
 	vrs->player_pos_x = x + 0.5;
 	vrs->player_pos_y = y + 0.5;
-	vrs->fov_angle = 60 * (M_PI / 180);
+	vrs->fov_angle = FOV_ANGLE_DEG * (M_PI / 180);
 	if (vrs->map[y][x] == 'N')
 		vrs->view_angle = 1.5 * M_PI;
 	else if (vrs->map[y][x] == 'S')
@@ -100,7 +100,7 @@ int	init_map(t_vars *vrs)
 		return (err_msg("couldn't open mapfile."));
 	vrs->map_width = 24;
 	vrs->map_height = 24;
-	vrs->ray_precision = 200;
+	vrs->ray_precision = RAY_CAST_PRECISION;
 	if (mapfile_to_arr(vrs))
 		return (err_msg("this mapfile is garbage"));
 	find_player_pos(vrs);

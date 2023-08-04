@@ -6,14 +6,20 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:43 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 23:59:33 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/04 08:40:44 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACROS_H
 # define MACROS_H
 
+# define RAY_CAST_PRECISION 200
+# define FOV_ANGLE_DEG 60
 # define IMG_WIDTH 1200
+
+// motion speeds
+# define MV_SP 0.045
+# define ROT_SP 0.007
 
 // wall directions
 # define FACING_NORTH 1
@@ -24,10 +30,6 @@
 //input key positions
 # define KEY_PRESSED 1
 # define KEY_FREE 0
-
-// motion speeds
-# define MV_SP 0.045
-# define ROT_SP 0.007
 
 // key numbers for linux/macOS
 # ifdef __linux__
