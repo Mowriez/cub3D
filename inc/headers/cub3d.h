@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:48:03 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/04 09:02:40 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:16:37 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <float.h>
-# include <sys/time.h>
 
 // Project specific headers --------------------------------------------------
 # include "../libft/libft.h"
