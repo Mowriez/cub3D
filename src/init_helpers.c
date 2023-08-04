@@ -42,10 +42,14 @@ void	init_minimap(t_vars *vrs)
 
 // void	init_textures(t_vars *vrs)
 // {
-// 	vrs->tx_n->path_to_file = "./tex/wall_tex.xmp";
-// 	vrs->tx_n->addr = mlx_xpm_file_to_image(vrs->mlx_ptr, 
-// 		vrs->tx_n->path_to_file, &vrs->tx_n->width, &vrs->tx_n->heigth);
-	
-	// vrs->tx_s->path_to_file = "./tex/texture_south.xmp";
-	// vrs->tx_s->path_to_file = "./tex/texture_south.xmp";
+//	t_text *tx_n;
+//
+//	tx_n = malloc(sizeof(t_text));
+//	vrs->tx_n = tx_n;
+//
+// 	tx_n->path_to_file = "../tex/wall_tex.xpm";
+// 	tx_n->img_ptr = mlx_xpm_file_to_image(vrs->mlx_ptr,
+// 		tx_n->path_to_file, &tx_n->width, &vrs->tx_n->height);
+//	tx_n->img_data_addr = mlx_get_data_addr(tx_n->img_ptr, \
+//		&tx_n->bits_p_px, &tx_n->ln_len, &tx_n->endian);
 // }

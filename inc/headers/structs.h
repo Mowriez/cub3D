@@ -32,9 +32,9 @@ typedef struct s_vars {
 	int				map_height;
 	char			**map;
 	struct s_text	*tx_n;
-	struct s_text	*tx_s;
-	struct s_text	*tx_e;
-	struct s_text	*tx_w;
+//	struct s_text	*tx_s;
+//	struct s_text	*tx_e;
+//	struct s_text	*tx_w;
 	int				floor_clr;
 	int				sky_clr;
 
@@ -60,7 +60,7 @@ typedef struct s_vars {
 	double			debug_dist_to_wall;
 	double			debug_wall_hit_x;
 	double			debug_wall_hit_y;
-	double			last_sec_change;
+	long long			last_sec_change;
 	int				fps;
 	int				frames;
 
@@ -77,6 +77,8 @@ typedef struct s_vars {
 	unsigned int	m_color_view_cone;
 
 	bool			*key_state;
+	long 			cur_time_ms;
+	long 			last_loop_time;
 
 	char			**av;
 	int				ac;
@@ -102,9 +104,13 @@ typedef struct s_overlay {
 
 typedef struct s_text {
 	char	*path_to_file;
-	void	*addr;
+	void	*img_ptr;
+	void	*img_data_addr;
 	int		width;
 	int		height;
+	int		bits_p_px;
+	int		ln_len;
+	int		endian;
 }	t_text;
 
 #endif

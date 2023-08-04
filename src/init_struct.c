@@ -36,6 +36,7 @@ static void	set_game_vars(t_vars *vrs)
 	vrs->overlay = false;
 	vrs->last_sec_change = 0;
 	vrs->fps = 60;
+	vrs->last_loop_time = 0;
 	vrs->frames = 0;
 	init_input_keys(vrs);
 }
@@ -50,7 +51,7 @@ int	init_struct(int argc, char**argv, t_vars **vrs)
 	init_mlx_vars(*vrs);
 	set_game_vars(*vrs);
 	init_minimap(*vrs);
-	// init_textures(*vrs);
+	init_textures(*vrs);
 	if (init_map(*vrs))
 		return (1);
 	return (0);

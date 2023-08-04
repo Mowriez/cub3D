@@ -39,8 +39,8 @@ static void	print_helper_1(t_overlay *ol, t_vars *vrs)
 		0x0039FF14, ol->dist_to_wall);
 }
 
-	// print_fps(ol, vrs);
 void	print_overlay_vars(t_overlay *ol, t_vars *vrs)
 {
+	print_fps(ol, vrs);
 	print_helper_1(ol, vrs);
 }

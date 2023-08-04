@@ -15,7 +15,7 @@ BLU = \033[34m
 RES = \033[0m
 
 CC = gcc
-CCFLAG = -Wall -Werror -Wextra -O3
+CCFLAG = -Wall -Werror -Wextra -O3 -g
 
 NAME = cub3D
 
@@ -33,7 +33,8 @@ SRC_NO_DIR =	cast_drawer.c \
 				key_input.c \
 				main.c \
 				par_parser.c \
-				par_utils.c 
+				par_utils.c \
+				00_timing.c
 
 D_SRC = ./src/
 D_OBJ = ./obj/

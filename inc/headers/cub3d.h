@@ -65,6 +65,7 @@ int		err_msg(char *msg);
 // init_helpers.c
 bool	is_specific_char(const char c, const char *char_set);
 void	init_minimap(t_vars *vrs);
+void	init_textures(t_vars *vrs);
 
 // init_map.c
 int		init_map(t_vars *vrs);
@@ -89,5 +90,7 @@ int		parse_input(int argc, char**argv);
 
 // par_utils.c
 //empty
+
+void	print_fps(t_overlay *ol, t_vars *vrs);
 
 #endif

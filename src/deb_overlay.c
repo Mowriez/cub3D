@@ -14,7 +14,7 @@
 
 static void	set_overlay_vars(t_overlay *ol, t_vars *vrs)
 {
-	// ol->fps = ft_itoa(vrs->fps);
+	ol->fps = ft_itoa(vrs->fps);
 	ol->player_pos_x = dtoa(vrs->player_pos_x, 3);
 	ol->player_pos_y = dtoa(vrs->player_pos_y, 3);
 	ol->dist_to_wall = dtoa(vrs->debug_dist_to_wall, 3);
@@ -24,7 +24,7 @@ static void	set_overlay_vars(t_overlay *ol, t_vars *vrs)
 
 static void	free_overlay_vars(t_overlay *ol)
 {
-	// free(ol->fps);
+	free(ol->fps);
 	free(ol->player_pos_x);
 	free(ol->player_pos_y);
 	free(ol->dist_to_wall);
