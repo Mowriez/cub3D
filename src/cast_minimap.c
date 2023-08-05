@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   deb_minimap.c                                      :+:      :+:    :+:   */
+/*   cast_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:11:00 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/05 21:06:58 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/05 22:12:23 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	print_pixel_minimap(int x, int y, t_vars *vrs, unsigned int color)
 	char	*pixel;
 
 	pixel = vrs->m_img_data_addr + (x * vrs->m_bits_p_px / 8)
-			+ (y * vrs->m_ln_len);
+		+ (y * vrs->m_ln_len);
 	*(unsigned int *)pixel = color;
 }
 
@@ -28,10 +28,10 @@ static void	draw_view_cone(int x_pos, int y_pos, t_vars *vrs)
 	double angle = 0;
 	double ray_x = 0;
 	double ray_y = 0;
-	while (i < 30)
+	while (i < 50)
 	{
 		wall_hit_temp = 0;
-		angle = vrs->view_angle - (0.5 * vrs->fov_angle) + (i * vrs->fov_angle / 30);
+		angle = vrs->view_angle - (0.5 * vrs->fov_angle) + (i * vrs->fov_angle / 50);
 		ray_x = x_pos;
 		ray_y = y_pos;
 		int j = 0;
@@ -55,14 +55,14 @@ static void	draw_player(t_vars *vrs)
 	int x_pos = (vrs->player_pos_x * vrs->m_width) / vrs->map_width;
 	int y_pos = (vrs->player_pos_y * vrs->m_height) / vrs->map_height;
 	int x;
-	int y = y_pos - 3;
+	int y = y_pos - 2;
 
-	while (y < y_pos + 3)
+	while (y < y_pos + 2)
 	{
-		x = x_pos - 3;
-		while(x < x_pos + 3)
+		x = x_pos - 2;
+		while(x < x_pos + 2)
 		{
-			print_pixel_minimap(x, y, vrs, vrs->m_color_player * (x_pos * y_pos));
+			print_pixel_minimap(x, y, vrs, 0x00FF0000);
 			x++;
 		}
 		y++;

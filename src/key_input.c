@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 21:46:33 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/05 20:01:06 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/05 21:39:31 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ int	set_key_status_free(int keycode, t_vars *vrs)
 		vrs->overlay = !(vrs->overlay);
 	return (0);
 }
-

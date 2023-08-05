@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:32:22 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 20:51:49 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/05 22:11:55 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 	RET:	true (=error) if any error occurs, else false;
 */
 
-static bool ft_valid_file_ending(const char *filename, char *expected_end)
+static bool	ft_valid_file_ending(const char *filename, char *expected_end)
 {
 	const char *file_end = filename + ft_strlen(filename) - ft_strlen(expected_end);
 	return (ft_strcmp(file_end, expected_end) == 0);

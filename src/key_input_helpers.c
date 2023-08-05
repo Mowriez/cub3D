@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 21:49:52 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 22:06:08 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/05 21:57:17 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_input_keys(t_vars *vrs)
 
 	i = 0;
 	vrs->key_state = malloc(7 * sizeof(bool));
-	while(i < 6)
+	while (i < 6)
 	{
 		vrs->key_state[i] = 0;
 		i++;
