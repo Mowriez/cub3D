@@ -6,19 +6,48 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:11:00 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/04 09:08:38 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/05 21:06:58 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/headers/cub3d.h"
 
-static void	print_pixel_1(int x, int y, t_vars *vrs, unsigned int color)
+static void	print_pixel_minimap(int x, int y, t_vars *vrs, unsigned int color)
 {
 	char	*pixel;
 
 	pixel = vrs->m_img_data_addr + (x * vrs->m_bits_p_px / 8)
 			+ (y * vrs->m_ln_len);
 	*(unsigned int *)pixel = color;
+}
+
+static void	draw_view_cone(int x_pos, int y_pos, t_vars *vrs)
+{
+	int i = 0;
+	int wall_hit_temp = 0;
+	double angle = 0;
+	double ray_x = 0;
+	double ray_y = 0;
+	while (i < 30)
+	{
+		wall_hit_temp = 0;
+		angle = vrs->view_angle - (0.5 * vrs->fov_angle) + (i * vrs->fov_angle / 30);
+		ray_x = x_pos;
+		ray_y = y_pos;
+		int j = 0;
+		while (!wall_hit_temp && j < 40)
+		{
+			ray_x += cos(angle);
+			ray_y += sin(angle);
+			double real_x = (ray_x / vrs->m_width) * vrs->map_width;
+			double real_y = (ray_y / vrs->m_width) * vrs->map_width;
+			if (vrs->map[(int)floor(real_y)][(int)floor(real_x)] == '1')
+				wall_hit_temp = 1;
+			print_pixel_minimap(ray_x, ray_y, vrs, 0x0039FF14);
+			j++;
+		}
+		i++;
+	}
 }
 
 static void	draw_player(t_vars *vrs)
@@ -33,13 +62,12 @@ static void	draw_player(t_vars *vrs)
 		x = x_pos - 3;
 		while(x < x_pos + 3)
 		{
-			print_pixel_1(x, y, vrs, vrs->m_color_player * (x_pos * y_pos));
+			print_pixel_minimap(x, y, vrs, vrs->m_color_player * (x_pos * y_pos));
 			x++;
 		}
 		y++;
 	}
-	// draw_view_cone(x_pos, y_pos, vrs);
-
+	draw_view_cone(x_pos, y_pos, vrs);
 }
 
 void	draw_minimap(t_vars *vrs)
@@ -54,9 +82,9 @@ void	draw_minimap(t_vars *vrs)
 			int x = (map_x * vrs->map_width) / vrs->m_width;
 			int y = (map_y * vrs->map_height) /  vrs->m_height;
 			if (vrs->map[y][x] == '1')
-				print_pixel_1(map_x, map_y, vrs, vrs->m_color_wall);
+				print_pixel_minimap(map_x, map_y, vrs, vrs->m_color_wall);
 			else if (vrs->map[y][x] == '0')
-				print_pixel_1(map_x, map_y, vrs, vrs->m_color_floor);
+				print_pixel_minimap(map_x, map_y, vrs, vrs->m_color_floor);
 			map_x++;
 		}
 		map_y++;

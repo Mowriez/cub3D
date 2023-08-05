@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 20:01:15 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/04 17:51:00 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/05 20:09:44 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_minimap(t_vars *vrs)
 	vrs->m_color_wall = 0x00b88428;
 	vrs->m_color_floor = 0x00bebebe;
 	vrs->m_color_player = 0x00223311;
-	vrs->m_color_view_cone = 0x0039FF14;
+	vrs->m_color_view_cone = 0x9939FF14;
 }
 
 void	init_textures(t_vars *vrs)
