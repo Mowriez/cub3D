@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:48 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/04 00:01:57 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/05 20:00:13 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,44 +43,4 @@ int	ft_free(t_vars *vrs)
 	free(vrs);
 	close(vrs->mapfile_fd);
 	exit(1);
-}
-
-int	set_key_status_pressed(int keycode, t_vars *vrs)
-{
-	printf("%i pressed\n", keycode);
-	if (keycode == KEY_W)
-		vrs->key_state[0] = KEY_PRESSED;
-	else if (keycode == KEY_S)
-		vrs->key_state[1] = KEY_PRESSED;
-	if (keycode == KEY_A)
-		vrs->key_state[2] = KEY_PRESSED;
-	else if (keycode == KEY_D)
-		vrs->key_state[3] = KEY_PRESSED;
-	if (keycode == KEY_LEFT)
-		vrs->key_state[4] = KEY_PRESSED;
-	else if (keycode == KEY_RIGHT)
-		vrs->key_state[5] = KEY_PRESSED;
-	return (0);
-}
-
-int	set_key_status_free(int keycode, t_vars *vrs)
-{
-	printf("%i released\n", keycode);
-	if (keycode == KEY_W)
-		vrs->key_state[0] = KEY_FREE;
-	if (keycode == KEY_S)
-		vrs->key_state[1] = KEY_FREE;
-	if (keycode == KEY_A)
-		vrs->key_state[2] = KEY_FREE;
-	if (keycode == KEY_D)
-		vrs->key_state[3] = KEY_FREE;
-	if (keycode == KEY_LEFT)
-		vrs->key_state[4] = KEY_FREE;
-	if (keycode == KEY_RIGHT)
-		vrs->key_state[5] = KEY_FREE;
-	if (keycode == KEY_ESC)
-		ft_free(vrs);
-	if (keycode == KEY_O)
-		vrs->overlay = !(vrs->overlay);
-	return (0);
 }
