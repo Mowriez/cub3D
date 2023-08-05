@@ -66,6 +66,10 @@ int		err_msg(char *msg);
 bool	is_specific_char(const char c, const char *char_set);
 void	init_minimap(t_vars *vrs);
 void	init_textures(t_vars *vrs);
+void	init_texture_n(t_vars *vrs);
+void	init_texture_s(t_vars *vrs);
+void	init_texture_w(t_vars *vrs);
+void	init_texture_e(t_vars *vrs);
 
 // init_map.c
 int		init_map(t_vars *vrs);
@@ -89,7 +93,8 @@ int		set_key_status_free(int keycode, t_vars *vrs);
 int		parse_input(int argc, char**argv);
 
 // par_utils.c
-//empty
+int		ft_strcmp(const char *s1, const char *s2);
+bool 	ft_valid_map_chars(const char *filename);
 
 void	print_fps(t_overlay *ol, t_vars *vrs);
 

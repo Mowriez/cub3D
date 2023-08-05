@@ -6,12 +6,23 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/04 09:00:05 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:30:38 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+typedef struct s_text {
+	char	*path_to_file;
+	void	*img_ptr;
+	void	*img_data_addr;
+	int		width;
+	int		height;
+	int		bits_p_px;
+	int		ln_len;
+	int		endian;
+}	t_text;
 
 // base variables
 typedef struct s_vars {
@@ -31,10 +42,10 @@ typedef struct s_vars {
 	int				map_width;
 	int				map_height;
 	char			**map;
-	struct s_text	*tx_n;
-//	struct s_text	*tx_s;
-//	struct s_text	*tx_e;
-//	struct s_text	*tx_w;
+	t_text			*tx_n;
+	t_text			*tx_s;
+	t_text			*tx_e;
+	t_text			*tx_w;
 	int				floor_clr;
 	int				sky_clr;
 
@@ -101,16 +112,5 @@ typedef struct s_overlay {
 	char	*debug_wall_hit_x;
 	char	*debug_wall_hit_y;
 }	t_overlay;
-
-typedef struct s_text {
-	char	*path_to_file;
-	void	*img_ptr;
-	void	*img_data_addr;
-	int		width;
-	int		height;
-	int		bits_p_px;
-	int		ln_len;
-	int		endian;
-}	t_text;
 
 #endif

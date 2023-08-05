@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:14:02 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/04 14:01:33 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/05 06:41:06 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	count_fps(t_vars *vrs)
 
 	gettimeofday(&s_cur_time, NULL);
 	vrs->cur_time_ms = (s_cur_time.tv_sec * 1000 + s_cur_time.tv_usec / 1000);
-	printf("cur_time %ld\n", vrs->cur_time_ms);
+	// printf("cur_time %ld\n", vrs->cur_time_ms);
 	while (vrs->cur_time_ms - vrs->last_loop_time < (1000 / 60))
 	{
 		gettimeofday(&s_cur_time, NULL);

@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:43 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/04 13:41:18 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/05 07:25:00 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 # define MACROS_H
 
 # define RAY_CAST_PRECISION 200
-# define FOV_ANGLE_DEG 60
+# define FOV_ANGLE_DEG 70
 # define IMG_WIDTH 1200
+# define WALL_SCALE_FACTOR 1.2
 
 // motion speeds
 # define MV_SP 0.045
-# define ROT_SP 0.007
+# define ROT_SP 0.0075
 
 // wall directions
 # define FACING_NORTH 1

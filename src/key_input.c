@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 21:46:33 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 23:57:31 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/05 07:06:07 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ static void	move_up_or_back(t_vars *vrs)
 	{
 		new_x = vrs->player_pos_x + cos(vrs->view_angle) * MV_SP;
 		new_y = vrs->player_pos_y + sin(vrs->view_angle) * MV_SP;
-		if (vrs->map[(int)floor(new_y)][(int)floor(new_x)] == '0')
+		double new_x_test = vrs->player_pos_x + (8 * cos(vrs->view_angle) * MV_SP);
+		double new_y_test = vrs->player_pos_y + (8 * sin(vrs->view_angle) * MV_SP);
+		if (vrs->map[(int)floor(new_y_test)][(int)floor(new_x_test)] == '0'
+			&& vrs->map[(int)floor(new_y)][(int)floor(new_x)] == '0')
 		{
 			vrs->player_pos_x = new_x;
 			vrs->player_pos_y = new_y;
@@ -39,7 +42,10 @@ static void	move_up_or_back(t_vars *vrs)
 	{
 		new_x = vrs->player_pos_x - cos(vrs->view_angle) * MV_SP;
 		new_y = vrs->player_pos_y - sin(vrs->view_angle) * MV_SP;
-		if (vrs->map[(int)floor(new_y)][(int)floor(new_x)] == '0')
+		double new_x_test = vrs->player_pos_x - (8 * cos(vrs->view_angle) * MV_SP);
+		double new_y_test = vrs->player_pos_y - (8 * sin(vrs->view_angle) * MV_SP);
+		if (vrs->map[(int)floor(new_y_test)][(int)floor(new_x_test)] == '0'
+				&& vrs->map[(int)floor(new_y)][(int)floor(new_x)] == '0')
 		{
 			vrs->player_pos_x = new_x;
 			vrs->player_pos_y = new_y;
@@ -56,7 +62,10 @@ static void	move_sideways(t_vars *vrs)
 	{
 		new_x = vrs->player_pos_x + cos(vrs->view_angle - 0.5 * M_PI) * MV_SP;
 		new_y = vrs->player_pos_y + sin(vrs->view_angle - 0.5 * M_PI) * MV_SP;
-		if (vrs->map[(int)floor(new_y)][(int)floor(new_x)] == '0')
+		double new_x_test = vrs->player_pos_x + (8 * cos(vrs->view_angle - 0.5 * M_PI) * MV_SP);
+		double new_y_test = vrs->player_pos_y + (8 * sin(vrs->view_angle - 0.5 * M_PI) * MV_SP);
+		if (vrs->map[(int)floor(new_y_test)][(int)floor(new_x_test)] == '0'
+				&& vrs->map[(int)floor(new_y)][(int)floor(new_x)] == '0')
 		{
 			vrs->player_pos_x = new_x;
 			vrs->player_pos_y = new_y;
@@ -66,7 +75,10 @@ static void	move_sideways(t_vars *vrs)
 	{
 		new_x = vrs->player_pos_x - cos(vrs->view_angle - 0.5 * M_PI) * MV_SP;
 		new_y = vrs->player_pos_y - sin(vrs->view_angle - 0.5 * M_PI) * MV_SP;
-		if (vrs->map[(int)floor(new_y)][(int)floor(new_x)] == '0')
+		double new_x_test = vrs->player_pos_x - (8 * cos(vrs->view_angle - 0.5 * M_PI) * MV_SP);
+		double new_y_test = vrs->player_pos_y - (8 * sin(vrs->view_angle - 0.5 * M_PI) * MV_SP);
+		if (vrs->map[(int)floor(new_y_test)][(int)floor(new_x_test)] == '0'
+				&& vrs->map[(int)floor(new_y)][(int)floor(new_x)] == '0')
 		{
 			vrs->player_pos_x = new_x;
 			vrs->player_pos_y = new_y;
