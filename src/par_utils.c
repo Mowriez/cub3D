@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   par_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mwagner <mwagner@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 21:34:36 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/05 22:10:25 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/06 11:21:28 by mwagner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (s1[i] - s2[i]);
 }
 
+int	ft_skip_spaces(const char *input)
+{
+	int	i;
+
+	i = 0;
+	while (input[i] == ' ')
+		i++;
+	return (i);
+}
+
+// not required atm, since new map parsing needed
 static bool	ft_valid_char(char c)
 {
 	return (c == '0' || c == '1' || c == 'N'

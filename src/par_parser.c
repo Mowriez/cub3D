@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   par_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mwagner <mwagner@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:32:22 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/05 22:11:55 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/06 11:21:12 by mwagner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	parse_input(int argc, char**argv)
 	const char *map_filename = argv[1];
 	if (!ft_valid_file_ending(map_filename, ".cub"))
 		return (err_msg("Invalid file ending. Please provide a .cub file.\n"));
-	only_valid_chars = ft_valid_map_chars(map_filename);
-	if (!only_valid_chars)
-		return (err_msg("Map contains invalid characters!\n"));
+//	only_valid_chars = ft_valid_map_chars(map_filename);
+//	if (!only_valid_chars)
+//		return (err_msg("Map contains invalid characters!\n"));
 	// if (eval_map())
 	// 	return (err_msg("map sucks"));
 	return (0);
