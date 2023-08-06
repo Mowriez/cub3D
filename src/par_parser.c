@@ -31,7 +31,7 @@ static bool	ft_valid_file_ending(const char *filename, char *expected_end)
 
 int	parse_input(int argc, char**argv)
 {
-	bool only_valid_chars = false;
+	// bool only_valid_chars = false;
 	if (argc != 2)
 		return (err_msg("incorrect number of arguments\n"));
 	if (argv [2] != NULL)

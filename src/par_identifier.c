@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "../inc/headers/cub3d.h"
 
 char	*ft_strdup(const char *s1)
@@ -234,20 +233,6 @@ bool	ft_filled_map_identifiers(t_map *level)
 
 
 static int	ft_get_rgb_color(char *s);
-
-static size_t	ft_strcpy(char *dst, const char *src)
-{
-	size_t	i;
-
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (i);
-}
 
 char	*ft_strdup_skip_white(const char *s)
 {
