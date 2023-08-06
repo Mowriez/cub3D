@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
 #include "../inc/headers/cub3d.h"
 
 char	*ft_strdup(const char *s1)
@@ -177,6 +178,22 @@ int	ft_atoi(const char *str)
 	return (k * j);
 }
 
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (s1[i] && s2[i] && (i + 1) < n)
+	{
+		if (s1[i] == s2[i])
+			i++;
+		else
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
 
 // REMOVE HELPER FUNCTIONS OF LIBFT
 
@@ -199,6 +216,8 @@ void	ft_init_map_identifiers(t_map *map)
 	map->texture_ea = NULL;
 	map->color_ceiling = -1;
 	map->color_floor = -1;
+	map->rows = -1;
+	map->columns = -1;
 }
 
 bool	ft_filled_map_identifiers(t_map *level)
@@ -216,8 +235,32 @@ bool	ft_filled_map_identifiers(t_map *level)
 
 static int	ft_get_rgb_color(char *s);
 
+static size_t	ft_strcpy(char *dst, const char *src)
+{
+	size_t	i;
 
-int	ft_assign_map_identifier(t_map *map, char *input, int i)
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (i);
+}
+
+char	*ft_strdup_skip_white(const char *s)
+{
+	char	*output;
+
+	while (*s == ' ')
+		s++;
+	(output = ft_strdup(s));
+	return (output);
+}
+
+
+int	ft_assign_map_identifiers(t_map *map, char *input, int i)
 {
 	if (ft_strncmp(&input[i], "C ", 2) == 0 && map->color_ceiling == -1)
 	{
@@ -231,6 +274,14 @@ int	ft_assign_map_identifier(t_map *map, char *input, int i)
 		if (map->color_floor == -1)
 			return (EXIT_FAILURE);
 	}
+	else if (ft_strncmp(&input[i], "NO ", 3) == 0 && !map->texture_no)
+		map->texture_no = ft_strdup_skip_white(&input[i + 3]);
+	else if (ft_strncmp(&input[i], "SO ", 3) == 0 && !map->texture_so)
+		map->texture_so = ft_strdup_skip_white(&input[i + 3]);
+	else if (ft_strncmp(&input[i], "WE ", 3) == 0 && !map->texture_we)
+		map->texture_we = ft_strdup_skip_white(&input[i + 3]);
+	else if (ft_strncmp(&input[i], "EA ", 3) == 0 && !map->texture_ea)
+		map->texture_ea = ft_strdup_skip_white(&input[i + 3]);
 	else
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
@@ -280,6 +331,7 @@ static int	ft_get_rgb_color(char *s)
 	rgb = ft_split(s, ',');
 	if (!rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
 		return (-1);
+	printf("Contents of rgb array: [%s] [%s] [%s]\n", rgb[0], rgb[1], rgb[2]);
 	red = ft_check_number_rgb(rgb[0]);
 	green = ft_check_number_rgb(rgb[1]);
 	blue = ft_check_number_rgb(rgb[2]);
@@ -289,43 +341,72 @@ static int	ft_get_rgb_color(char *s)
 	return ((red << 16) | (green << 8) | blue);
 }
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	if (n == 0)
-		return (0);
-	while (s1[i] && s2[i] && (i + 1) < n)
-	{
-		if (s1[i] == s2[i])
-			i++;
-		else
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-}
-
 void print_map(t_map *map) {
 	printf("Texture NO: %s\n", map->texture_no);
 	printf("Texture SO: %s\n", map->texture_so);
 	printf("Texture WE: %s\n", map->texture_we);
 	printf("Texture EA: %s\n", map->texture_ea);
-	printf("Color Ceiling: %d\n", map->color_ceiling);
-	printf("Color Floor: %d\n", map->color_floor);
+	printf("Color Ceiling usable int value: %d\n", map->color_ceiling);
+	printf("Color Floor usable int value: %d\n", map->color_floor);
 	printf("Rows: %d\n", map->rows);
 	printf("Columns: %d\n", map->columns);
+}
+
+void ft_free_map(t_map *map) {
+	free(map->texture_no);
+	free(map->texture_so);
+	free(map->texture_we);
+	free(map->texture_ea);
 }
 
 int main() {
 	t_map map;
 	ft_init_map_identifiers(&map);
 
+	char input[] = "F 220,100,0\nC 225,30,0\nNO     ./texture_north.png\nSO      ./texture_south.png\nWE ./texture_west.png\nEA ./texture_east.png";
+	char *token = strtok(input, "\n");
+
+	while (token != NULL) {
+		if (ft_assign_map_identifiers(&map, token, 0) == EXIT_FAILURE) {
+			printf("Failed to assign identifiers.\n");
+			return 1;
+		}
+		token = strtok(NULL, "\n");
+	}
+
+	printf("Assigned identifiers successfully.\n");
+
+	if (ft_filled_map_identifiers(&map)) {
+		printf("All map identifiers are filled.\n");
+	} else {
+		printf("Some map identifiers are missing.\n");
+	}
+
+	printf("Map Details:\n");
+	print_map(&map);
+	ft_free_map(&map);
+	return 0;
+}
+
+/*
+// usable test main function without the strtok function. Just wanted proof of concept.
+int main() {
+	t_map map;
+	ft_init_map_identifiers(&map);
+
 	char input1[] = "F 255,255,255";
 	char input2[] = "C 225,30,33";
+	char input3[] = "NO ./path_to_the_north_texture";
+	char input4[] = "SO ./path_to_the_south_texture";
+	char input5[] = "WE ./path_to_the_west_texture";
+	char input6[] = "EA ./path_to_the_east_text";
 
-	if (ft_assign_map_identifier(&map, input1, 0) == EXIT_SUCCESS &&
-		ft_assign_map_identifier(&map, input2, 0) == EXIT_SUCCESS) {
+	if (ft_assign_map_identifiers(&map, input1, 0) == EXIT_SUCCESS &&
+		ft_assign_map_identifiers(&map, input2, 0) == EXIT_SUCCESS &&
+		ft_assign_map_identifiers(&map, input3, 0) == EXIT_SUCCESS &&
+		ft_assign_map_identifiers(&map, input4, 0) == EXIT_SUCCESS &&
+		ft_assign_map_identifiers(&map, input5, 0) == EXIT_SUCCESS &&
+		ft_assign_map_identifiers(&map, input6, 0) == EXIT_SUCCESS) {
 		printf("Assigned identifiers successfully.\n");
 
 		if (ft_filled_map_identifiers(&map)) {
@@ -338,6 +419,7 @@ int main() {
 	}
 	printf("Map Details:\n");
 	print_map(&map);
+
 
 
 
@@ -355,6 +437,6 @@ int main() {
 
 	printf("RGB values ceiling: R=%d, G=%d, B=%d\n", redc, greenc, bluec);
 	printf("RGB values floor: R=%d, G=%d, B=%d\n", redf, greenf, bluef);
-
+ 	ft_free_map(&map);
 	return 0;
-}
+}*/
