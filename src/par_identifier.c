@@ -359,6 +359,7 @@ void ft_free_map(t_map *map) {
 	free(map->texture_ea);
 }
 
+/*
 int main() {
 	t_map map;
 	ft_init_map_identifiers(&map);
@@ -387,8 +388,8 @@ int main() {
 	ft_free_map(&map);
 	return 0;
 }
+*/
 
-/*
 // usable test main function without the strtok function. Just wanted proof of concept.
 int main() {
 	t_map map;
@@ -439,4 +440,4 @@ int main() {
 	printf("RGB values floor: R=%d, G=%d, B=%d\n", redf, greenf, bluef);
  	ft_free_map(&map);
 	return 0;
-}*/
+}
