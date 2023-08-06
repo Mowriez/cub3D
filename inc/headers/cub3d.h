@@ -95,6 +95,7 @@ int		parse_input(int argc, char**argv);
 // par_utils.c
 int		ft_strcmp(const char *s1, const char *s2);
 bool 	ft_valid_map_chars(const char *filename);
+int		ft_skip_spaces(const char *input);
 
 void	print_fps(t_overlay *ol, t_vars *vrs);
 void	move_forwards(t_vars *vrs);

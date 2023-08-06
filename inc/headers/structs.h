@@ -24,6 +24,20 @@ typedef struct s_text {
 	int		endian;
 }	t_text;
 
+/*
+// struct for parsing map
+typedef struct s_map {
+	char			*texture_no;
+	char			*texture_so;
+	char			*texture_we;
+	char			*texture_ea;
+	int				color_ceiling;
+	int				color_floor;
+	int				rows;
+	int				columns;
+} t_map;
+*/
+
 // base variables
 typedef struct s_vars {
 	double			img_width;
@@ -36,7 +50,7 @@ typedef struct s_vars {
 	int				ln_len;
 	int				endian;
 
-	char			*map_filename;
+	char			*map_filename; // x unused
 	int				mapfile_fd;
 	char			map_str[2048];
 	int				map_width;
@@ -84,15 +98,15 @@ typedef struct s_vars {
 	int				m_endian;
 	unsigned int	m_color_wall;
 	unsigned int	m_color_floor;
-	unsigned int	m_color_player;
-	unsigned int	m_color_view_cone;
+	unsigned int	m_color_player; // unused
+	unsigned int	m_color_view_cone; // unused
 
 	bool			*key_state;
 	long 			cur_time_ms;
 	long 			last_loop_time;
 
 	char			**av;
-	int				ac;
+	int				ac; // unused
 }	t_vars;
 
 typedef struct s_dtoa {
