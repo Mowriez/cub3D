@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_input_helpers.c                                :+:      :+:    :+:   */
+/*   cast_drawer_helper.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/03 21:49:52 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 18:16:56 by mtrautne         ###   ########.fr       */
+/*   Created: 2023/08/07 22:19:31 by mtrautne          #+#    #+#             */
+/*   Updated: 2023/08/07 23:20:58 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/headers/cub3d.h"
 
-void	init_input_keys(t_vars *vrs)
+void	draw_scope(t_vars *vrs)
 {
-	int	i;
+	int	x;
+	int	y;
 
-	i = 0;
-	vrs->key_state = malloc(7 * sizeof(bool));
-	while (i < 7)
+	x = (int)(vrs->win_width / 2);
+	y = (int)((vrs->win_height / 2) - 10);
+	while (y < ((vrs->win_height / 2) + 10))
 	{
-		vrs->key_state[i] = 0;
-		i++;
+		print_pixel(x, y, vrs, 0x0039FF14);
+		y++;
+	}
+	x = (int)((vrs->win_width / 2) - 10);
+	y = (int)(vrs->win_height / 2);
+	while (x < ((vrs->win_width / 2) + 10))
+	{
+		print_pixel(x, y, vrs, 0x0039FF14);
+		x++;
 	}
 }

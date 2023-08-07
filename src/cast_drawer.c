@@ -6,13 +6,13 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 20:21:04 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 15:48:37 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 23:05:30 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/headers/cub3d.h"
 
-static void	print_pixel(int x, int y, t_vars *vrs, unsigned int color)
+void	print_pixel(int x, int y, t_vars *vrs, unsigned int color)
 {
 	char	*pixel;
 

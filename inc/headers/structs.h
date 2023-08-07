@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 15:47:36 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 23:20:13 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,11 @@ typedef struct s_vars {
 	t_tex			*tx_e;
 	t_tex			*tx_w;
 
-	// keyboard input key state (pressed or unpressed)
+	// keyboard and mouse input key state (pressed or unpressed)
 	bool			*key_state;
+
+	// comparation variable for mouse movement
+	int				prev_x;
 
 	char			**av;
 	int				ac; // unused
