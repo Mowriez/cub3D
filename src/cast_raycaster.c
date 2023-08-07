@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 02:17:40 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 15:50:21 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:07:24 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ static void	calc_wall_height(double ray_angle, t_vars *vrs)
 		vrs->rc.ray_len = vrs->rc.ray_len * cos(vrs->rc.view_angle - ray_angle);
 	else if (vrs->rc.view_angle < ray_angle)
 		vrs->rc.ray_len = vrs->rc.ray_len * cos(ray_angle - vrs->rc.view_angle);
-	vrs->rc.wall_height = (int)(WALL_SCALE_FACTOR
-			* (vrs->main_img.height / vrs->rc.ray_len));
+	vrs->rc.wall_height = (int)(vrs->main_img.height / vrs->rc.ray_len);
 }
 
-static void	cast_ray(int img_x,t_vars *vrs)
+static void	cast_ray(int img_x, t_vars *vrs)
 {
 	bool	wall_hit;
 	double	ray_angle;

@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 15:48:02 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:12:42 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	init_rc_vars(t_vars *vrs)
 	vrs->rc.angle_betw_rays = 0;
 	vrs->rc.wall_side = 0;
 	vrs->rc.wall_height = 0;
+	vrs->key_state[6] = KEY_FREE; // for now
 }
 
 static void	set_game_vars(t_vars *vrs)
