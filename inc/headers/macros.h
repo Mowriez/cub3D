@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:43 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 18:04:58 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 23:17:10 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 //movement
 # define MV_SP 0.045
 # define ROT_SP 0.0085
+# define MOUSE_PAN_SP  0.045
 
 // wall directions
 # define FACING_NORTH 1
@@ -45,6 +46,7 @@
 #  define KEY_S 115
 #  define KEY_D 100
 #  define KEY_O 111
+#  define LEFT_MOUSE 1
 
 # elif defined(__APPLE__)
 #  define KEY_ESC 53
@@ -57,6 +59,7 @@
 #  define KEY_S 1
 #  define KEY_D 2
 #  define KEY_O 31
+#  define LEFT_MOUSE 1
 
 # else
 #  error "Unsupported operating system"

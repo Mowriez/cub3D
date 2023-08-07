@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:48:03 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 18:08:01 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 23:05:34 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,9 @@ void	move_backwards(t_vars *vrs);
 void	move_left(t_vars *vrs);
 void	move_right(t_vars *vrs);
 void	move(t_vars *vrs);
-int	set_mouse_key_status(int keycode, t_vars *vrs);
+int		set_mouse_key_status(int keycode, int x, int y, t_vars *vrs);
+int		mouse_actions(int x, int y, t_vars *vrs);
+void	draw_scope(t_vars *vrs);
+void	print_pixel(int x, int y, t_vars *vrs, unsigned int color);
 
 #endif

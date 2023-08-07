@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 18:12:42 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 23:23:53 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	init_main_img(t_vars *vrs)
 	vrs->main_img.width = vrs->win_width;
 	vrs->main_img.height = vrs->win_height;
 	vrs->main_img.img_ptr = mlx_new_image(vrs->mlx_ptr, vrs->main_img.width,
-						vrs->main_img.height);
+			vrs->main_img.height);
 	vrs->main_img.data_addr = mlx_get_data_addr(vrs->main_img.img_ptr,
 			&vrs->main_img.bpp, &vrs->main_img.ln_len,
 			&vrs->main_img.endian);
@@ -46,7 +46,7 @@ static void	init_rc_vars(t_vars *vrs)
 	vrs->rc.angle_betw_rays = 0;
 	vrs->rc.wall_side = 0;
 	vrs->rc.wall_height = 0;
-	vrs->key_state[6] = KEY_FREE; // for now
+	vrs->prev_x = 0;
 }
 
 static void	set_game_vars(t_vars *vrs)

@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:49:08 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 15:51:00 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 23:23:18 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	free_overlay_vars(t_vars *vrs)
 
 void	draw_debugging_overlay(t_vars *vrs)
 {
-
 	set_overlay_vars(vrs);
 	print_overlay_vars(vrs);
 	free_overlay_vars(vrs);
