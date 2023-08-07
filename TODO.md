@@ -33,6 +33,14 @@
 ⚙️ Parsing part
 ### needs initial discussing how to implement:
 - 🔧	basic error checking (partly implemented, will most likely need refactor)
-- ⚙️ 	map struct to fill with information from map file
-	- cast_drawer and cast_raycaster will need to get map information from map struct,
-    - textures, floor and ceiling colors as well.
+- 🔧 	map struct to fill with information from map file
+	- ⚙️ cast_drawer and cast_raycaster will need to get map information from map struct,
+    - ✅ textures, floor and ceiling colors as well.
+
+
+⚙️ Memory management errors:
+
+- Invalid read of size 4 ft_free (main.c:46) in main cub3d
+-  definitely lost: 192 bytes in 4 blocks
+- Invalid read of size 1   Address 0x4a346a8 is 0 bytes after a block of size 8 alloc'd -> most likely in process_line function.
+- no leak in parser though.
