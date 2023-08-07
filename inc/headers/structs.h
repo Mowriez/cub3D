@@ -6,14 +6,31 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/05 21:35:11 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:47:36 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef struct s_text {
+typedef struct s_overlay {
+	double		d_dist_to_wall;
+	double		d_wall_hit_x;
+	double		d_wall_hit_y;
+	long long	last_sec_change;
+	long 		cur_time_ms;
+	long 		last_loop_time;
+	int			fps_i;
+	int			frames;
+	char		*fps;
+	char		*player_pos_x;
+	char		*player_pos_y;
+	char		*dist_to_wall;
+	char		*wall_hit_x;
+	char		*wall_hit_y;
+}	t_overlay;
+
+typedef struct s_tex {
 	char	*path_to_file;
 	void	*img_ptr;
 	void	*img_data_addr;
@@ -22,92 +39,89 @@ typedef struct s_text {
 	int		bits_p_px;
 	int		ln_len;
 	int		endian;
-}	t_text;
+}	t_tex;
 
-/*
-// struct for parsing map
-typedef struct s_map {
-	char			*texture_no;
-	char			*texture_so;
-	char			*texture_we;
-	char			*texture_ea;
-	int				color_ceiling;
-	int				color_floor;
-	int				rows;
-	int				columns;
-} t_map;
-*/
+typedef struct s_mlx_img {
+	double		width;
+	double		height;
+	void		*win_ptr;
+	void		*img_ptr;
+	char		*data_addr;
+	int			bpp;
+	int			ln_len;
+	int			endian;
+}	t_mlx_img;
+
+typedef struct s_raycast {
+	double			pl_pos_x;
+	double			pl_pos_y;
+	double			view_angle;
+	double			fov_angle;
+	double			ray_pos_x;
+	double			ray_pos_y;
+	double			ray_last_pos_x;
+	double			ray_last_pos_y;
+	double			ray_len;
+	double			angle_betw_rays;
+	int				wall_side;
+	unsigned int	wall_height;
+	unsigned int	px_color;
+}	t_raycast;
+
+// typedef struct s_map {
+// 	char			*texture_no;
+// 	char			*texture_so;
+// 	char			*texture_we;
+// 	char			*texture_ea;
+// 	int				color_ceiling;
+// 	int				color_floor;
+// 	int				rows;
+// 	int				columns;
+// } t_map;
 
 // base variables
 typedef struct s_vars {
-	double			img_width;
-	double			img_height;
+	// mlx instance and window
 	void			*mlx_ptr;
 	void			*win_ptr;
-	void			*img_ptr;
-	char			*img_data_addr;
-	int				bits_p_px;
-	int				ln_len;
-	int				endian;
+	double			win_width;
+	double			win_height;
 
+	// mlx images (main and minimap)
+	t_mlx_img		main_img;
+	t_mlx_img		m_map;
+
+	// raycasting variables
+	t_raycast		rc;
+
+	// overlay
+	bool			show_overlay;
+	t_overlay		ol;
+
+	// textures
+	t_tex			*tx_n;
+	t_tex			*tx_s;
+	t_tex			*tx_e;
+	t_tex			*tx_w;
+
+	// keyboard input key state (pressed or unpressed)
+	bool			*key_state;
+
+	char			**av;
+	int				ac; // unused
+
+	//! change to map struct when parsing finished
 	char			*map_filename; // x unused
 	int				mapfile_fd;
 	char			map_str[2048];
 	int				map_width;
 	int				map_height;
 	char			**map;
-	t_text			*tx_n;
-	t_text			*tx_s;
-	t_text			*tx_e;
-	t_text			*tx_w;
 	int				floor_clr;
 	int				sky_clr;
 
-	double			player_pos_x;
-	double			player_pos_y;
-	double			view_angle;
-	double			fov_angle;
-	double			ray_angle;
-	double			ray_last_pos_x;
-	double			ray_last_pos_y;
-	double			ray_pos_x;
-	double			ray_pos_y;
-	double			ray_len;
-	double			angle_betw_rays;
-	double			ray_precision;
-
-	int				wall_hit;
-	int				wall_side;
-	unsigned int	wall_height;
-	unsigned int	wall_color;
-
-	bool			overlay;
-	double			debug_dist_to_wall;
-	double			debug_wall_hit_x;
-	double			debug_wall_hit_y;
-	long long		last_sec_change;
-	int				fps;
-	int				frames;
-
-	void			*m_img_ptr;
-	void			*m_img_data_addr;
-	int				m_width;
-	int				m_height;
-	int				m_bits_p_px;
-	int				m_ln_len;
-	int				m_endian;
-	unsigned int	m_color_wall;
-	unsigned int	m_color_floor;
-	unsigned int	m_color_player; // unused
-	unsigned int	m_color_view_cone; // unused
-
-	bool			*key_state;
-	long 			cur_time_ms;
-	long 			last_loop_time;
-
-	char			**av;
-	int				ac; // unused
 }	t_vars;
+
 
 typedef struct s_dtoa {
 	int			is_negative;
@@ -117,14 +131,5 @@ typedef struct s_dtoa {
 	int			j;
 	int			digit;
 }	t_dtoa;
-
-typedef struct s_overlay {
-	char	*fps;
-	char	*player_pos_x;
-	char	*player_pos_y;
-	char	*dist_to_wall;
-	char	*debug_wall_hit_x;
-	char	*debug_wall_hit_y;
-}	t_overlay;
 
 #endif
