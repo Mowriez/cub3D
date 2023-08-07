@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 23:51:38 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 12:04:50 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:51:22 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,18 @@ static int	mapfile_to_arr(t_vars *vrs)
 
 static void	set_player_param(t_vars *vrs, int x, int y)
 {
-	vrs->rc->pl_pos_x = x + 0.5;
-	vrs->rc->pl_pos_y = y + 0.5;
-	vrs->rc->fov_angle = FOV_ANGLE_DEG * (M_PI / 180);
+	vrs->rc.pl_pos_x = x + 0.5;
+	vrs->rc.pl_pos_y = y + 0.5;
+	vrs->rc.fov_angle = FOV_ANGLE_DEG * (M_PI / 180);
 	if (vrs->map[y][x] == 'N')
-		vrs->rc->view_angle = 1.5 * M_PI;
+		vrs->rc.view_angle = 1.5 * M_PI;
 	else if (vrs->map[y][x] == 'S')
-		vrs->rc->view_angle = 0.5 * M_PI;
+		vrs->rc.view_angle = 0.5 * M_PI;
 	else if (vrs->map[y][x] == 'W')
-		vrs->rc->view_angle = 1.0 * M_PI;
+		vrs->rc.view_angle = 1.0 * M_PI;
 	else if (vrs->map[y][x] == 'E')
-		vrs->rc->view_angle = 0;
-	vrs->rc->angle_betw_rays = vrs->rc->fov_angle / vrs->main_img->width;
+		vrs->rc.view_angle = 0;
+	vrs->rc.angle_betw_rays = vrs->rc.fov_angle / vrs->main_img.width;
 }
 
 static void	find_player_pos(t_vars *vrs)

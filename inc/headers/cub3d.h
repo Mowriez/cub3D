@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:48:03 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 14:32:35 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:15:19 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*dtoa(double num_double, int precision);
 
 // deb_helpers.c
 void	get_debugging_values(t_vars *vrs);
-void	print_overlay_vars(t_overlay *ol, t_vars *vrs);
+void	print_overlay_vars(t_vars *vrs);
 
 // deb_overlay.c
 void	draw_debugging_overlay(t_vars *vrs);

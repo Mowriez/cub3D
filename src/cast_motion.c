@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 20:00:56 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 12:00:20 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:49:12 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static void	pan_view(t_vars *vrs)
 {
 	if (vrs->key_state[5] == KEY_PRESSED)
-		vrs->rc->view_angle += ROT_SP * M_PI;
+		vrs->rc.view_angle += ROT_SP * M_PI;
 	if (vrs->key_state[4] == KEY_PRESSED)
-		vrs->rc->view_angle -= ROT_SP * M_PI;
+		vrs->rc.view_angle -= ROT_SP * M_PI;
 }
 
 int	motion(t_vars *vrs)

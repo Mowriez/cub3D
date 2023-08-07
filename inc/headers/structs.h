@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 14:23:33 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:47:36 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,14 @@ typedef struct s_vars {
 	double			win_height;
 
 	// mlx images (main and minimap)
-	t_mlx_img		*main_img;
-	t_mlx_img		*m_map;
+	t_mlx_img		main_img;
+	t_mlx_img		m_map;
 
 	// raycasting variables
-	t_raycast		*rc;
+	t_raycast		rc;
 
 	// overlay
+	bool			show_overlay;
 	t_overlay		ol;
 
 	// textures
@@ -103,7 +104,7 @@ typedef struct s_vars {
 	t_tex			*tx_e;
 	t_tex			*tx_w;
 
-	// keyboard input variables
+	// keyboard input key state (pressed or unpressed)
 	bool			*key_state;
 
 	char			**av;
@@ -119,7 +120,6 @@ typedef struct s_vars {
 	int				floor_clr;
 	int				sky_clr;
 
-	bool			show_overlay;
 }	t_vars;
 
 
