@@ -8,15 +8,15 @@
 ### todo - items:
 - ✅  textures
 - ⚙️ documentation
-- ⚙️ reset key
-- ✅ smooth movement -> works great on mac, needs limiter on linux
+- ❌ reset key -> not neccessary
+- ✅ smooth movement -> works great with limiter
 - ✅ fisheye effect calculated
 - ✅ > new approach max
 - ❌ > upgrade to full dda --> nevermind, not doing it, discrete caster works fantastic as well
 
 - ✅ debugging tools
 
-	- ⏸️ > minimap --> might need player view indicator
+	- ✅ > minimap
 	- ✅ > player_pos overlay
 - ✅ wrong color at intersection of walls
 - ✅ mirroring input keys with south-start
@@ -44,3 +44,4 @@
 -  definitely lost: 192 bytes in 4 blocks
 - Invalid read of size 1   Address 0x4a346a8 is 0 bytes after a block of size 8 alloc'd -> most likely in process_line function.
 - no leak in parser though.
+-> Should be repaired for now, closed fd after freeing its address.
