@@ -68,16 +68,18 @@ typedef struct s_raycast {
 	unsigned int	px_color;
 }	t_raycast;
 
-// typedef struct s_map {
-// 	char			*texture_no;
-// 	char			*texture_so;
-// 	char			*texture_we;
-// 	char			*texture_ea;
-// 	int				color_ceiling;
-// 	int				color_floor;
-// 	int				rows;
-// 	int				columns;
-// } t_map;
+typedef struct s_map {
+	char			*texture_no;
+	char			*texture_so;
+	char			*texture_we;
+	char			*texture_ea;
+	int				color_ceiling;
+	int				color_floor;
+	int				rows;
+	int				columns;
+	char 			**line_array;
+	int 			line_count;
+} t_map;
 
 // base variables
 typedef struct s_vars {

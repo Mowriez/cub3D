@@ -82,20 +82,45 @@ void	init_input_keys(t_vars *vrs);
 int		motion(t_vars *vrs);
 
 // key_input.c
-int		keyboard_input(int keycode, t_vars *vrs);
+int		keyboard_input(int keycode, t_vars *vrs); // never used!
 
 // main.c
 int		ft_free(t_vars *vrs);
 int		set_key_status_pressed(int keycode, t_vars *vrs);
 int		set_key_status_free(int keycode, t_vars *vrs);
 
+// par_error_check.c
+bool	ft_valid_file_ending(const char *filename, char *expected_end);
+
+// par_gnl.c
+char	*parse_next_line(int fd);
+
+// par_identifier.c
+int	ft_get_rgb_color(char *s);
+int	ft_assign_map_identifiers(t_map *map, char *input, int i);
+
+// par_identifier1.c
+bool is_identifier(const char *line, const char *identifier);
+void process_line(t_map *map, char *line);
+void parse_map_file(const char *filename, t_map *map);
+
+// par_map_init
+void	ft_init_map_identifiers(t_map *map);
+bool	ft_filled_map_identifiers(t_map *level);
+
 // par_parser.c
 int		parse_input(int argc, char**argv);
+
 
 // par_utils.c
 int		ft_strcmp(const char *s1, const char *s2);
 bool 	ft_valid_map_chars(const char *filename);
 int		ft_skip_spaces(const char *input);
+
+// par_utils1.c
+void	ft_free_map(t_map *map);
+void	ft_free_char_array(char **array);
+void	*ft_realloc(void *ptr, size_t size);
 
 void	print_fps(t_vars *vrs);
 void	move_forwards(t_vars *vrs);

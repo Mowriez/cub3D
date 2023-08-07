@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   par_parser.c                                       :+:      :+:    :+:   */
+/*   par_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mwagner <mwagner@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/27 14:32:22 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/06 11:21:12 by mwagner          ###   ########.fr       */
+/*   Created: 2023/08/07 18:04:41 by mwagner           #+#    #+#             */
+/*   Updated: 2023/08/07 18:05:21 by mwagner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/headers/cub3d.h"
 
-int	parse_input(int argc, char**argv)
+bool	ft_valid_file_ending(const char *filename, char *expected_end)
 {
-	const char	*map_filename = argv[1];
+	const char	*file_end = filename + ft_strlen(filename)
+		- ft_strlen(expected_end);
 
-	if (argc != 2)
-		return (err_msg("incorrect number of arguments\n"));
-	if (argv [2] != NULL)
-		return (err_msg("tbd"));
-	if (!ft_valid_file_ending(map_filename, ".cub"))
-		return (err_msg("Invalid file ending. Please provide a .cub file.\n"));
-	// ADD PARSER
-	return (0);
+	return (ft_strcmp(file_end, expected_end) == 0);
 }

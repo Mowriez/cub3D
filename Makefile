@@ -35,8 +35,14 @@ SRC_NO_DIR =	cast_drawer.c \
 				key_input_helpers.c \
 				key_input.c \
 				main.c \
+				par_error_check.c \
+				par_gnl.c	\
+				par_identifier.c \
+				par_identifier1.c \
+				par_map_init.c \
 				par_parser.c \
 				par_utils.c \
+				par_utils1.c \
 				00_timing.c
 
 D_SRC = ./src/
