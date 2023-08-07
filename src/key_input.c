@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 21:46:33 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/05 21:39:31 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 11:36:17 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ int	set_key_status_free(int keycode, t_vars *vrs)
 	if (keycode == KEY_ESC)
 		ft_free(vrs);
 	if (keycode == KEY_O)
-		vrs->overlay = !(vrs->overlay);
+		vrs->show_overlay = !(vrs->show_overlay);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 12:49:08 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/04 14:02:55 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 14:29:32 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static void	set_overlay_vars(t_overlay *ol, t_vars *vrs)
 {
-	ol->fps = ft_itoa(vrs->fps);
-	ol->player_pos_x = dtoa(vrs->player_pos_x, 3);
-	ol->player_pos_y = dtoa(vrs->player_pos_y, 3);
-	ol->dist_to_wall = dtoa(vrs->debug_dist_to_wall, 3);
-	ol->debug_wall_hit_x = dtoa(vrs->debug_wall_hit_x, 3);
-	ol->debug_wall_hit_y = dtoa(vrs->debug_wall_hit_y, 3);
+	ol->fps = ft_itoa(vrs->ol.fps_i);
+	ol->player_pos_x = dtoa(vrs->rc->pl_pos_x, 3);
+	ol->player_pos_y = dtoa(vrs->rc->pl_pos_y, 3);
+	ol->dist_to_wall = dtoa(vrs->ol.d_dist_to_wall, 3);
+	ol->wall_hit_x = dtoa(vrs->ol.d_wall_hit_x, 3);
+	ol->wall_hit_y = dtoa(vrs->ol.d_wall_hit_y, 3);
 }
 
 static void	free_overlay_vars(t_overlay *ol)
@@ -28,8 +28,8 @@ static void	free_overlay_vars(t_overlay *ol)
 	free(ol->player_pos_x);
 	free(ol->player_pos_y);
 	free(ol->dist_to_wall);
-	free(ol->debug_wall_hit_x);
-	free(ol->debug_wall_hit_y);
+	free(ol->wall_hit_x);
+	free(ol->wall_hit_y);
 }
 
 void	draw_debugging_overlay(t_vars *vrs)

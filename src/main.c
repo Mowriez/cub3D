@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:48 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/05 20:00:13 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 11:06:23 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	ft_free(t_vars *vrs)
 	int	i;
 
 	i = 0;
-	mlx_destroy_image(vrs->mlx_ptr, vrs->img_ptr);
+	mlx_destroy_image(vrs->mlx_ptr, vrs->main_img->img_ptr);
+	mlx_destroy_image(vrs->mlx_ptr, vrs->m_map->img_ptr);
 	mlx_destroy_window(vrs->mlx_ptr, vrs->win_ptr);
 	while (i <= vrs->map_height)
 		free(vrs->map[i++]);

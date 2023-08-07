@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:14:02 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/05 22:08:31 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/07 14:32:20 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,31 @@ static void	count_fps(t_vars *vrs)
 	long long		time_sec;
 
 	gettimeofday(&s_cur_time, NULL);
-	vrs->cur_time_ms = (s_cur_time.tv_sec * 1000 + s_cur_time.tv_usec / 1000);
-	while (vrs->cur_time_ms - vrs->last_loop_time < (1000 / 60))
+	vrs->ol.cur_time_ms = (s_cur_time.tv_sec * 1000 + s_cur_time.tv_usec / 1000);
+	while (vrs->ol.cur_time_ms - vrs->ol.last_loop_time < (1000 / 60))
 	{
 		gettimeofday(&s_cur_time, NULL);
-		vrs->cur_time_ms = (s_cur_time.tv_sec * 1000
+		vrs->ol.cur_time_ms = (s_cur_time.tv_sec * 1000
 				+ s_cur_time.tv_usec / 1000);
 		usleep (1000);
 	}
-	vrs->last_loop_time = vrs->cur_time_ms;
+	vrs->ol.last_loop_time = vrs->ol.cur_time_ms;
 	time_sec = s_cur_time.tv_sec;
-	if (time_sec - vrs->last_sec_change == 0)
-		vrs->frames++;
+	if (time_sec - vrs->ol.last_sec_change == 0)
+		vrs->ol.frames++;
 	else
 	{
-		vrs->fps = vrs->frames;
-		vrs->frames = 0;
-		vrs->last_sec_change = time_sec;
+		vrs->ol.fps_i = vrs->ol.frames;
+		vrs->ol.frames = 0;
+		vrs->ol.last_sec_change = time_sec;
 	}
 }
 
-void	print_fps(t_overlay *ol, t_vars *vrs)
+void	print_fps(t_vars *vrs)
 {
 	count_fps(vrs);
 	mlx_string_put(vrs->mlx_ptr, vrs->win_ptr, 15, 60,
 		0x0039FF14, "fps counter:");
 	mlx_string_put(vrs->mlx_ptr, vrs->win_ptr, 180, 60,
-		0x0039FF14, ol->fps);
+		0x0039FF14, vrs->ol.fps);
 }
