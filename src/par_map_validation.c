@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:17:51 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/08 14:56:15 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:33:41 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	valid_map(char **map, int map_width, int map_height)
 	{
 		x = 0;
 		while (x < map_width)
-		{	
+		{
 			if (!is_valid_character(map[y][x]))
 				return (err_msg("invalid character in map!"));
 			if (is_starting_pos(map[y][x]))
