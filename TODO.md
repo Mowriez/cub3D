@@ -37,7 +37,8 @@
 - ✅ 	map struct to fill with information from map file
 	- ✅ cast_drawer and cast_raycaster will need to get map information from map struct,
     - ✅ textures, floor and ceiling colors as well.
-	⚙️more checks: all 6 indicators set, correct file type, maybe check if can open files
+	⚙️more checks: all 6 indicators set, correct file type, maybe check if opening tex files works
+					additional number after colors
 
 
 

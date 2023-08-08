@@ -1,3 +1,11 @@
+NO ./tex/texture_from_hell.xpm
+SO ./tex/texture_from_hell.xpm
+WE ./tex/texture_from_hell.xpm
+EA ./tex/texture_from_hell.xpm
+
+F 192,192,192
+C 135,205,235
+
 111111111111111111111111
 100000000000000000000001
 100000000000001000000001

@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:43 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/08 13:58:09 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 00:20:25 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MACROS_H
 
 # define RAY_CAST_PRECISION 200
-# define FOV_ANGLE_DEG 60
+# define FOV_ANGLE_DEG 55
 # define WIN_WIDTH 1200
 # define WALL_SCALE_FACTOR 1
 # define HIT_BOX 12
