@@ -11,35 +11,35 @@ void print_map(t_map *map)
 	printf("Rows: %d\n", map->rows);
 	printf("Columns: %d\n", map->columns);
 }
-
-/*int main() {
-	t_map map;
-	ft_init_map_identifiers(&map);
-
-	char input[] = "F 220,100,0\nC 225,30,0\nNO     ./texture_north.png\nSO      ./texture_south.png\nWE ./texture_west.png\nEA ./texture_east.png";
-	char *token = strtok(input, "\n");
-
-	while (token != NULL) {
-		if (ft_assign_map_identifiers(&map, token, 0) == EXIT_FAILURE) {
-			printf("Failed to assign identifiers.\n");
-			return 1;
-		}
-		token = strtok(NULL, "\n");
-	}
-
-	printf("Assigned identifiers successfully.\n");
-
-	if (ft_filled_map_identifiers(&map)) {
-		printf("All map identifiers are filled.\n");
-	} else {
-		printf("Some map identifiers are missing.\n");
-	}
-
-	printf("Map Details:\n");
-	print_map(&map);
-	ft_free_map(&map);
-	return 0;
-}*/
+//
+///*int main() {
+//	t_map map;
+//	ft_init_map_identifiers(&map);
+//
+//	char input[] = "F 220,100,0\nC 225,30,0\nNO     ./texture_north.png\nSO      ./texture_south.png\nWE ./texture_west.png\nEA ./texture_east.png";
+//	char *token = strtok(input, "\n");
+//
+//	while (token != NULL) {
+//		if (ft_assign_map_identifiers(&map, token, 0) == EXIT_FAILURE) {
+//			printf("Failed to assign identifiers.\n");
+//			return 1;
+//		}
+//		token = strtok(NULL, "\n");
+//	}
+//
+//	printf("Assigned identifiers successfully.\n");
+//
+//	if (ft_filled_map_identifiers(&map)) {
+//		printf("All map identifiers are filled.\n");
+//	} else {
+//		printf("Some map identifiers are missing.\n");
+//	}
+//
+//	printf("Map Details:\n");
+//	print_map(&map);
+//	ft_free_map(&map);
+//	return 0;
+//}*/
 
 int	main(int argc, char *argv[])
 {

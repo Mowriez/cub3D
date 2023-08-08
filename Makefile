@@ -102,14 +102,7 @@ fclean:
 	@make fclean -C $(D_INC)libft
 
 # !doesnt recompile MLX/LIBFT, for faster compilation during project development.
-re:
-	@rm -f $(OBJ)
-	@rm -rf $(D_OBJ)
-	@rm -f $(NAME)
-	make all
-
-# !actual rule for re, replace before handing in project
-re_deep: fclean all
+re: fclean all
 
 # !prompts for a commit message, then pushes to remote repository. remove before handing in project
 git:
@@ -120,4 +113,4 @@ git:
 	git push
 	@echo "$(GRE)'git add .', 'git commit', and 'git push' executed.$(RES)\n"
 
-.PHONY: all clean fclean re re_deep git
+.PHONY: all clean fclean re git
