@@ -38,10 +38,11 @@
     - ✅ textures, floor and ceiling colors as well.
 
 
-⚙️ Memory management errors:
+🔧 Memory management errors:
 
 - Invalid read of size 4 ft_free (main.c:46) in main cub3d
 -  definitely lost: 192 bytes in 4 blocks
-- Invalid read of size 1   Address 0x4a346a8 is 0 bytes after a block of size 8 alloc'd -> most likely in process_line function.
-- no leak in parser though.
+-  ✅ Invalid read of size 1  -> error was in realloc, refactored function.
+
+
 -> Should be repaired for now, closed fd after freeing its address.
