@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:48 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/08 00:08:49 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:51:00 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	main(int argc, char **argv)
 		return (1);
 	if (init_struct(argc, argv, &vrs))
 		return (1);
-	// if (validate_map(&vrs))
-	// 	return (1);
 	mlx_hook(vrs->win_ptr, 2, 1L << 0, set_key_status_pressed, vrs);
 	mlx_hook(vrs->win_ptr, 3, 1L << 1, set_key_status_free, vrs);
 	mlx_hook(vrs->win_ptr, 4, 1L << 2, set_mouse_key_status, vrs);

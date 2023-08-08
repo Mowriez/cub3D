@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 23:51:38 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 15:51:22 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:50:55 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ static void	find_player_pos(t_vars *vrs)
 			if (is_specific_char(vrs->map[y][x], "NSEW"))
 			{
 				set_player_param(vrs, x, y);
-				vrs->map[y][x] = '0';
 				return ;
 			}
 			x++;
@@ -102,6 +101,8 @@ int	init_map(t_vars *vrs)
 	vrs->map_height = 24;
 	if (mapfile_to_arr(vrs))
 		return (err_msg("this mapfile is garbage"));
+	if (valid_map(vrs->map, vrs->map_width, vrs->map_height) != 0)
+		return (1);
 	find_player_pos(vrs);
 	return (0);
 }

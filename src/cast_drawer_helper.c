@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 22:19:31 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/08 10:31:24 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/08 12:29:22 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	draw_scope(t_vars *vrs)
 
 	x = 0;
 	y = 0;
-	printf("here\n");
 	draw_vertical(x, y, vrs);
 	draw_horizontal(x, y, vrs);
 }
