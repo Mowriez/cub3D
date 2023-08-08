@@ -69,9 +69,9 @@ int	parse_init_struct(char**argv, t_vars **vrs)
 	init_main_img(*vrs);
 	set_game_vars(*vrs);
 	init_minimap(*vrs);
-	init_textures(*vrs);
 	if (init_map(*vrs, argv))
 		return (1);
+	init_textures(*vrs);
 	(*vrs)->map.map[(int)(*vrs)->rc.pl_pos_y][(int)(*vrs)->rc.pl_pos_x] = '0';
 	return (0);
 }

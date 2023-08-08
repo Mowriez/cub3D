@@ -23,7 +23,7 @@ void	init_textures(t_vars *vrs)
 void	init_texture_n(t_vars *vrs)
 {
 	vrs->tx_n = malloc(sizeof(t_tex));
-	vrs->tx_n->path_to_file = "./tex/texture_from_hell.xpm";
+	vrs->tx_n->path_to_file = vrs->map.texture_no;
 	vrs->tx_n->img_ptr = mlx_xpm_file_to_image(vrs->mlx_ptr,
 			vrs->tx_n->path_to_file, &vrs->tx_n->width, &vrs->tx_n->height);
 	vrs->tx_n->img_data_addr = mlx_get_data_addr(vrs->tx_n->img_ptr,
