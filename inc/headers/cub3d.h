@@ -61,6 +61,7 @@ void	draw_debugging_overlay(t_vars *vrs);
 
 // error.c
 int		err_msg(char *msg);
+void	ft_custom_exit(const char *message);
 
 // init_helpers.c
 bool	is_specific_char(const char c, const char *char_set);
@@ -120,7 +121,7 @@ int		ft_skip_spaces(const char *input);
 // par_utils1.c
 void	ft_free_map(t_map *map);
 void	ft_free_char_array(char **array);
-void	*ft_realloc(void *ptr, size_t size);
+void *ft_realloc(void *ptr, size_t originalLength, size_t newLength);
 
 void	print_fps(t_vars *vrs);
 void	move_forwards(t_vars *vrs);
