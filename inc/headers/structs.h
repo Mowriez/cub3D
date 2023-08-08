@@ -73,10 +73,11 @@ typedef struct s_map {
 	char			*texture_so;
 	char			*texture_we;
 	char			*texture_ea;
+	char 			**map;
 	int				color_ceiling;
 	int				color_floor;
-	int				rows;
-	int				columns;
+	int				height;
+	int				width;
 	char 			**line_array;
 	int 			line_count;
 } t_map;
@@ -92,6 +93,9 @@ typedef struct s_vars {
 	// mlx images (main and minimap)
 	t_mlx_img		main_img;
 	t_mlx_img		m_map;
+
+	// map struct
+	t_map			map;
 
 	// raycasting variables
 	t_raycast		rc;
@@ -111,20 +115,6 @@ typedef struct s_vars {
 
 	// comparation variable for mouse movement
 	int				prev_x;
-
-	char			**av;
-	int				ac; // unused
-
-	//! change to map struct when parsing finished
-	char			*map_filename; // x unused
-	int				mapfile_fd;
-	char			map_str[2048];
-	int				map_width;
-	int				map_height;
-	char			**map;
-	int				floor_clr;
-	int				sky_clr;
-
 }	t_vars;
 
 

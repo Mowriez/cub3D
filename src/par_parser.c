@@ -12,7 +12,7 @@
 
 #include "../inc/headers/cub3d.h"
 
-int	parse_input(int argc, char**argv)
+int	check_input(int argc, char**argv)
 {
 	const char	*map_filename = argv[1];
 
@@ -22,6 +22,5 @@ int	parse_input(int argc, char**argv)
 		return (err_msg("tbd"));
 	if (!ft_valid_file_ending(map_filename, ".cub"))
 		return (err_msg("Invalid file ending. Please provide a .cub file.\n"));
-	// ADD PARSER
 	return (0);
 }

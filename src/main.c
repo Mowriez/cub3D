@@ -17,9 +17,9 @@ int	main(int argc, char **argv)
 	t_vars	*vrs;
 
 	vrs = NULL;
-	if (parse_input(argc, argv))
+	if (check_input(argc, argv))
 		return (1);
-	if (init_struct(argc, argv, &vrs))
+	if (parse_init_struct(argv, &vrs))
 		return (1);
 	mlx_hook(vrs->win_ptr, 2, 1L << 0, set_key_status_pressed, vrs);
 	mlx_hook(vrs->win_ptr, 3, 1L << 1, set_key_status_free, vrs);
@@ -37,9 +37,7 @@ int	ft_free(t_vars *vrs)
 	int	i;
 
 	i = 0;
-	while (i <= vrs->map_height)
-		free(vrs->map[i++]);
-	free(vrs->map);
+	ft_free_map(&vrs->map);
 	mlx_destroy_image(vrs->mlx_ptr, vrs->main_img.img_ptr);
 	mlx_destroy_image(vrs->mlx_ptr, vrs->m_map.img_ptr);
 	mlx_destroy_image(vrs->mlx_ptr, vrs->tx_n->img_ptr);
@@ -52,7 +50,6 @@ int	ft_free(t_vars *vrs)
 	free(vrs->tx_n);
 	free(vrs->tx_s);
 	free(vrs->tx_w);
-	close(vrs->mapfile_fd);
 	free(vrs);
 	exit(1);
 }

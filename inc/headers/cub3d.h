@@ -73,10 +73,10 @@ void	init_texture_w(t_vars *vrs);
 void	init_texture_e(t_vars *vrs);
 
 // init_map.c
-int		init_map(t_vars *vrs);
+int		init_map(t_vars *vrs, char **argv);
 
 // init_struct.c
-int		init_struct(int argc, char**argv, t_vars **vrs);
+int		parse_init_struct(char**argv, t_vars **vrs);
 
 // key_input_helpers.c
 void	init_input_keys(t_vars *vrs);
@@ -110,7 +110,7 @@ void	ft_init_map_identifiers(t_map *map);
 bool	ft_filled_map_identifiers(t_map *level);
 
 // par_parser.c
-int		parse_input(int argc, char**argv);
+int		check_input(int argc, char**argv);
 
 
 // par_utils.c

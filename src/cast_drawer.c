@@ -88,7 +88,7 @@ void	draw_vert_line(int x, t_vars *vrs)
 	y_stop = (0.5 * vrs->main_img.height) + (0.5 * vrs->rc.wall_height);
 	while (y < y_start)
 	{
-		print_pixel(x, y, vrs, vrs->sky_clr);
+		print_pixel(x, y, vrs, vrs->map.color_ceiling);
 		y++;
 	}
 	while (y < y_stop)
@@ -99,7 +99,7 @@ void	draw_vert_line(int x, t_vars *vrs)
 	}
 	while (y < vrs->main_img.height)
 	{
-		print_pixel(x, y, vrs, vrs->floor_clr);
+		print_pixel(x, y, vrs, vrs->map.color_floor);
 		y++;
 	}
 }

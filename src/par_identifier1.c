@@ -68,7 +68,7 @@ void	parse_map_file(const char *filename, t_map *map)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		ft_custom_exit("Error opening file");
+		return (ft_custom_exit("Error opening file"));
 	while (1)
 	{
 		line = parse_next_line(fd);

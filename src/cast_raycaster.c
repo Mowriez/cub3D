@@ -54,7 +54,7 @@ static void	cast_ray(int img_x, t_vars *vrs)
 		vrs->rc.ray_last_pos_y = vrs->rc.ray_pos_y;
 		vrs->rc.ray_pos_x += cos(ray_angle) / RAY_CAST_PRECISION;
 		vrs->rc.ray_pos_y += sin(ray_angle) / RAY_CAST_PRECISION;
-		if ((vrs->map[(int)floor(vrs->rc.ray_pos_y)]
+		if ((vrs->map.map[(int)floor(vrs->rc.ray_pos_y)]
 				[(int)floor(vrs->rc.ray_pos_x)]) == '1')
 			wall_hit = true;
 	}

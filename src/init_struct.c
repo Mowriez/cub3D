@@ -51,8 +51,6 @@ static void	init_rc_vars(t_vars *vrs)
 
 static void	set_game_vars(t_vars *vrs)
 {
-	vrs->floor_clr = 0x00000000;
-	vrs->sky_clr = 0x00666666;
 	vrs->show_overlay = false;
 	vrs->ol.last_sec_change = 0;
 	vrs->ol.fps_i = 60;
@@ -62,20 +60,18 @@ static void	set_game_vars(t_vars *vrs)
 	init_rc_vars(vrs);
 }
 
-int	init_struct(int argc, char**argv, t_vars **vrs)
+int	parse_init_struct(char**argv, t_vars **vrs)
 {
 	*vrs = malloc(sizeof(t_vars));
 	if (!(*vrs))
 		return (err_msg("fatal: malloc failed in struct vrs init."));
-	(*vrs)->av = argv;
-	(*vrs)->ac = argc;
 	init_mlx_session(*vrs);
 	init_main_img(*vrs);
 	set_game_vars(*vrs);
 	init_minimap(*vrs);
 	init_textures(*vrs);
-	if (init_map(*vrs))
+	if (init_map(*vrs, argv))
 		return (1);
-	(*vrs)->map[(int)(*vrs)->rc.pl_pos_y][(int)(*vrs)->rc.pl_pos_x] = '0';
+	(*vrs)->map.map[(int)(*vrs)->rc.pl_pos_y][(int)(*vrs)->rc.pl_pos_x] = '0';
 	return (0);
 }

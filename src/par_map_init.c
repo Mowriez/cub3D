@@ -20,8 +20,8 @@ void	ft_init_map_identifiers(t_map *map)
 	map->texture_ea = NULL;
 	map->color_ceiling = -1;
 	map->color_floor = -1;
-	map->rows = -1;
-	map->columns = -1;
+	map->height = -1;
+	map->width = -1;
 	map->line_array = NULL;
 	map->line_count = 0;
 }

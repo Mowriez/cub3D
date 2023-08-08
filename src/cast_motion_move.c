@@ -23,8 +23,8 @@ void	move_forwards(t_vars *vrs)
 	new_y = vrs->rc.pl_pos_y + sin(vrs->rc.view_angle) * MV_SP;
 	hitbox_x = vrs->rc.pl_pos_x + (HIT_BOX * cos(vrs->rc.view_angle) * MV_SP);
 	hitbox_y = vrs->rc.pl_pos_y + (HIT_BOX * sin(vrs->rc.view_angle) * MV_SP);
-	if (vrs->map[(int)floor(hitbox_y)][(int)floor(hitbox_x)] == '0'
-		&& vrs->map[(int)floor(new_y)][(int)floor(new_x)] == '0')
+	if (vrs->map.map[(int)floor(hitbox_y)][(int)floor(hitbox_x)] == '0'
+		&& vrs->map.map[(int)floor(new_y)][(int)floor(new_x)] == '0')
 	{
 		vrs->rc.pl_pos_x = new_x;
 		vrs->rc.pl_pos_y = new_y;
@@ -42,8 +42,8 @@ void	move_backwards(t_vars *vrs)
 	new_y = vrs->rc.pl_pos_y - sin(vrs->rc.view_angle) * MV_SP;
 	hitbox_x = vrs->rc.pl_pos_x - (HIT_BOX * cos(vrs->rc.view_angle) * MV_SP);
 	hitbox_y = vrs->rc.pl_pos_y - (HIT_BOX * sin(vrs->rc.view_angle) * MV_SP);
-	if (vrs->map[(int)floor(hitbox_y)][(int)floor(hitbox_x)] == '0'
-			&& vrs->map[(int)floor(new_y)][(int)floor(new_x)] == '0')
+	if (vrs->map.map[(int)floor(hitbox_y)][(int)floor(hitbox_x)] == '0'
+			&& vrs->map.map[(int)floor(new_y)][(int)floor(new_x)] == '0')
 	{
 		vrs->rc.pl_pos_x = new_x;
 		vrs->rc.pl_pos_y = new_y;
@@ -63,8 +63,8 @@ void	move_left(t_vars *vrs)
 		+ (HIT_BOX * cos(vrs->rc.view_angle - 0.5 * M_PI) * MV_SP);
 	hitbox_y = vrs->rc.pl_pos_y
 		+ (HIT_BOX * sin(vrs->rc.view_angle - 0.5 * M_PI) * MV_SP);
-	if (vrs->map[(int)floor(hitbox_y)][(int)floor(hitbox_x)] == '0'
-			&& vrs->map[(int)floor(new_y)][(int)floor(new_x)] == '0')
+	if (vrs->map.map[(int)floor(hitbox_y)][(int)floor(hitbox_x)] == '0'
+			&& vrs->map.map[(int)floor(new_y)][(int)floor(new_x)] == '0')
 	{
 		vrs->rc.pl_pos_x = new_x;
 		vrs->rc.pl_pos_y = new_y;
@@ -84,8 +84,8 @@ void	move_right(t_vars *vrs)
 		- (HIT_BOX * cos(vrs->rc.view_angle - 0.5 * M_PI) * MV_SP);
 	hitbox_y = vrs->rc.pl_pos_y
 		- (HIT_BOX * sin(vrs->rc.view_angle - 0.5 * M_PI) * MV_SP);
-	if (vrs->map[(int)floor(hitbox_y)][(int)floor(hitbox_x)] == '0'
-			&& vrs->map[(int)floor(new_y)][(int)floor(new_x)] == '0')
+	if (vrs->map.map[(int)floor(hitbox_y)][(int)floor(hitbox_x)] == '0'
+			&& vrs->map.map[(int)floor(new_y)][(int)floor(new_x)] == '0')
 	{
 		vrs->rc.pl_pos_x = new_x;
 		vrs->rc.pl_pos_y = new_y;

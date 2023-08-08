@@ -33,9 +33,9 @@ static void	cast_view_cone_ray(double angle, double ray_x, double ray_y,
 	{
 		ray_x += cos(angle);
 		ray_y += sin(angle);
-		real_x = (ray_x / vrs->m_map.width) * vrs->map_width;
-		real_y = (ray_y / vrs->m_map.height) * vrs->map_height;
-		if (vrs->map[(int)floor(real_y)][(int)floor(real_x)] == '1')
+		real_x = (ray_x / vrs->m_map.width) * vrs->map.width;
+		real_y = (ray_y / vrs->m_map.height) * vrs->map.height;
+		if (vrs->map.map[(int)floor(real_y)][(int)floor(real_x)] == '1')
 			return ;
 		print_pixel_minimap(ray_x, ray_y, vrs, 0x0039FF14);
 		j++;
@@ -68,8 +68,8 @@ static void	draw_player(t_vars *vrs)
 	int	x;
 	int	y;
 
-	x_pos = (vrs->rc.pl_pos_x * vrs->m_map.width) / vrs->map_width;
-	y_pos = (vrs->rc.pl_pos_y * vrs->m_map.height) / vrs->map_height;
+	x_pos = (vrs->rc.pl_pos_x * vrs->m_map.width) / vrs->map.width;
+	y_pos = (vrs->rc.pl_pos_y * vrs->m_map.height) / vrs->map.height;
 	y = y_pos - 2;
 	while (y < y_pos + 2)
 	{
@@ -97,11 +97,11 @@ void	draw_minimap(t_vars *vrs)
 		map_x = 0;
 		while (map_x < vrs->m_map.width)
 		{
-			x = (map_x * vrs->map_width) / vrs->m_map.width;
-			y = (map_y * vrs->map_height) / vrs->m_map.height;
-			if (vrs->map[y][x] == '1')
+			x = (map_x * vrs->map.width) / vrs->m_map.width;
+			y = (map_y * vrs->map.height) / vrs->m_map.height;
+			if (vrs->map.map[y][x] == '1')
 				print_pixel_minimap(map_x, map_y, vrs, 0x004B0000);
-			else if (vrs->map[y][x] == '0')
+			else if (vrs->map.map[y][x] == '0')
 				print_pixel_minimap(map_x, map_y, vrs, 0x22333333);
 			map_x++;
 		}

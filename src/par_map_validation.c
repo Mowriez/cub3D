@@ -84,6 +84,6 @@ int	valid_map(char **map, int map_width, int map_height)
 	}
 	if (starting_pos != 1)
 		return (err_msg("Invalid amount of starting positions!"));
-	write(1 ,"cool map, Bro\n", 16);
+	printf("map valid\n");
 	return (0);
 }
