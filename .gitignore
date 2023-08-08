@@ -1,4 +1,3 @@
-./idea
 .DS_Store
 # IDE Options
 .vscode/
@@ -40,3 +39,4 @@
 ./obj
 cub3D
 cmake-build-debug/
+cub3d.dSYM/
