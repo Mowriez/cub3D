@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:48 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/08 23:29:11 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:44:25 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,20 @@
 
 int	main(int argc, char **argv)
 {
-	t_vars	*vrs;
+	t_vars	vrs;
 
-	vrs = NULL;
 	if (check_input(argc, argv))
 		return (1);
 	if (parse_init_struct(argv, &vrs))
 		return (1);
-	mlx_hook(vrs->win_ptr, 2, 1L << 0, set_key_status_pressed, vrs);
-	mlx_hook(vrs->win_ptr, 3, 1L << 1, set_key_status_free, vrs);
-	mlx_hook(vrs->win_ptr, 4, 1L << 2, set_mouse_key_status, vrs);
-	mlx_hook(vrs->win_ptr, 6, 1L << 6, mouse_actions, vrs);
-	mlx_hook(vrs->win_ptr, 17, 0L, ft_free, vrs);
-	mlx_loop_hook(vrs->mlx_ptr, visualizer, vrs);
-	mlx_loop(vrs->mlx_ptr);
-	ft_free(vrs);
+	mlx_hook(vrs.win_ptr, 2, 1L << 0, set_key_status_pressed, &vrs);
+	mlx_hook(vrs.win_ptr, 3, 1L << 1, set_key_status_free, &vrs);
+	mlx_hook(vrs.win_ptr, 4, 1L << 2, set_mouse_key_status, &vrs);
+	mlx_hook(vrs.win_ptr, 6, 1L << 6, mouse_actions, &vrs);
+	mlx_hook(vrs.win_ptr, 17, 0L, ft_free, &vrs);
+	mlx_loop_hook(vrs.mlx_ptr, visualizer, &vrs);
+	mlx_loop(vrs.mlx_ptr);
+	ft_free(&vrs);
 	return (0);
 }
 
@@ -43,6 +42,5 @@ int	ft_free(t_vars *vrs)
 	mlx_destroy_image(vrs->mlx_ptr, vrs->tx_s.img_ptr);
 	mlx_destroy_image(vrs->mlx_ptr, vrs->tx_w.img_ptr);
 	mlx_destroy_window(vrs->mlx_ptr, vrs->win_ptr);
-	free(vrs);
 	exit(1);
 }

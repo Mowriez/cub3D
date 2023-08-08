@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/08 23:18:55 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:43:18 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,15 @@ static void	set_game_vars(t_vars *vrs)
 	init_rc_vars(vrs);
 }
 
-int	parse_init_struct(char**argv, t_vars **vrs)
+int	parse_init_struct(char**argv, t_vars *vrs)
 {
-	*vrs = malloc(sizeof(t_vars));
-	if (!(*vrs))
-		return (err_msg("fatal: malloc failed in struct vrs init."));
-	init_mlx_session(*vrs);
-	init_main_img(*vrs);
-	set_game_vars(*vrs);
-	if (init_map(*vrs, argv))
+	init_mlx_session(vrs);
+	init_main_img(vrs);
+	set_game_vars(vrs);
+	if (init_map(vrs, argv))
 		return (1);
-	init_minimap(*vrs);
-	init_textures(*vrs);
-	(*vrs)->map.map[(int)(*vrs)->rc.pl_pos_y][(int)(*vrs)->rc.pl_pos_x] = '0';
+	init_minimap(vrs);
+	init_textures(vrs);
+	vrs->map.map[(int)vrs->rc.pl_pos_y][(int)vrs->rc.pl_pos_x] = '0';
 	return (0);
 }

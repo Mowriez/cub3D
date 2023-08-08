@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:48:03 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/08 14:49:58 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:43:56 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	init_texture_e(t_vars *vrs);
 int		init_map(t_vars *vrs, char **argv);
 
 // init_struct.c
-int		parse_init_struct(char**argv, t_vars **vrs);
+int		parse_init_struct(char**argv, t_vars *vrs);
 
 // key_input_helpers.c
 void	init_input_keys(t_vars *vrs);
