@@ -46,24 +46,29 @@ void	ft_free_char_array(char **array)
 	array = NULL;
 }
 
-void	*ft_realloc(void *ptr, size_t size)
+void	*ft_realloc(void *ptr, size_t orig_len, size_t new_len)
 {
 	void	*new_ptr;
 
-	new_ptr = malloc(size);
-	if (ptr == NULL)
-		return (malloc(size));
-	else if (size == 0)
+	if (new_len == 0)
 	{
 		free(ptr);
 		return (NULL);
 	}
+	else if (!ptr)
+		return (malloc(new_len));
+	else if (new_len <= orig_len)
+		return (ptr);
 	else
 	{
-		if (new_ptr == NULL)
-			return (NULL);
-		ft_memcpy(new_ptr, ptr, size);
-		free(ptr);
+		new_ptr = malloc(new_len);
+		if (new_ptr)
+		{
+			ft_memcpy(new_ptr, ptr, orig_len);
+			free(ptr);
+		}
+		else
+			ft_custom_exit("malloc failed");
 		return (new_ptr);
 	}
 }

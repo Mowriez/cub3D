@@ -30,3 +30,9 @@ int	err_msg(char *msg)
 	res = 1;
 	return (res);
 }
+
+void ft_custom_exit(const char *message)
+{
+	perror(message);
+	exit(EXIT_FAILURE);
+}

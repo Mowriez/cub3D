@@ -12,6 +12,8 @@
 
 #include "../inc/headers/cub3d.h"
 
+static void	ft_line_from_map(t_map *map, char *line);
+
 bool	is_identifier(const char *line, const char *identifier)
 {
 	return (ft_strncmp(line, identifier, ft_strlen(identifier)) == 0);
@@ -31,34 +33,31 @@ void	process_line(t_map *map, char *line)
 		|| is_identifier(trimmed_line, "F")
 		|| is_identifier(trimmed_line, "C"))
 	{
-		if (map->line_array == NULL)
-		{
-			map->line_array = malloc(sizeof(char *));
-			if (map->line_array == NULL)
-			{
-				perror("Memory allocation error");
-				exit(EXIT_FAILURE);
-			}
-		}
-		else
-		{
-			map->line_array = ft_realloc(map->line_array, sizeof(char *)
-					* (map->line_count + 1));
-			if (map->line_array == NULL)
-			{
-				perror("Memory allocation error");
-				exit(EXIT_FAILURE);
-			}
-		}
-		map->line_array[map->line_count] = ft_strdup(line);
-		if (map->line_array[map->line_count] == NULL)
-		{
-			perror("Memory allocation error");
-			exit(EXIT_FAILURE);
-		}
-		map->line_count++;
-		ft_assign_map_identifiers(map, map->line_array[map->line_count - 1], 0);
+		ft_line_from_map(map, line);
 	}
+}
+
+static void	ft_line_from_map(t_map *map, char *line)
+{
+	if (map->line_array == NULL)
+	{
+		map->line_array = malloc(sizeof(char *));
+		if (map->line_array == NULL)
+			ft_custom_exit("malloc failed");
+	}
+	else
+	{
+		map->line_array = ft_realloc(map->line_array, sizeof(char *)
+				* (map->line_count),
+				sizeof(char *) * (map->line_count + 1));
+		if (map->line_array == NULL)
+			ft_custom_exit("malloc failed");
+	}
+	map->line_array[map->line_count] = ft_strdup(line);
+	if (map->line_array[map->line_count] == NULL)
+		ft_custom_exit("malloc failed");
+	map->line_count++;
+	ft_assign_map_identifiers(map, map->line_array[map->line_count - 1], 0);
 }
 
 void	parse_map_file(const char *filename, t_map *map)
@@ -67,15 +66,14 @@ void	parse_map_file(const char *filename, t_map *map)
 	char	*line;
 	char	*trimmed_line;
 
-	line = NULL;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
+		ft_custom_exit("Error opening file");
+	while (1)
 	{
-		perror("Error opening file");
-		exit(EXIT_FAILURE);
-	}
-	while ((line = parse_next_line(fd)) != NULL)
-	{
+		line = parse_next_line(fd);
+		if (line == NULL)
+			break ;
 		trimmed_line = line;
 		while (*trimmed_line == ' ')
 			trimmed_line++;
