@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:48 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/08 14:51:00 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:29:11 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,15 @@ int	main(int argc, char **argv)
 
 int	ft_free(t_vars *vrs)
 {
-	int	i;
-
-	i = 0;
 	ft_free_map(&vrs->map);
+	ft_free_char_array(vrs->map.map);
 	mlx_destroy_image(vrs->mlx_ptr, vrs->main_img.img_ptr);
 	mlx_destroy_image(vrs->mlx_ptr, vrs->m_map.img_ptr);
-	mlx_destroy_image(vrs->mlx_ptr, vrs->tx_n->img_ptr);
-	mlx_destroy_image(vrs->mlx_ptr, vrs->tx_e->img_ptr);
-	mlx_destroy_image(vrs->mlx_ptr, vrs->tx_s->img_ptr);
-	mlx_destroy_image(vrs->mlx_ptr, vrs->tx_w->img_ptr);
+	mlx_destroy_image(vrs->mlx_ptr, vrs->tx_n.img_ptr);
+	mlx_destroy_image(vrs->mlx_ptr, vrs->tx_e.img_ptr);
+	mlx_destroy_image(vrs->mlx_ptr, vrs->tx_s.img_ptr);
+	mlx_destroy_image(vrs->mlx_ptr, vrs->tx_w.img_ptr);
 	mlx_destroy_window(vrs->mlx_ptr, vrs->win_ptr);
-	free(vrs->key_state);
-	free(vrs->tx_e);
-	free(vrs->tx_n);
-	free(vrs->tx_s);
-	free(vrs->tx_w);
 	free(vrs);
 	exit(1);
 }

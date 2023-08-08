@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 23:51:38 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/08 14:50:55 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:31:21 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ static void	generate_blank_map_array(t_map *map)
 
 	i = 0;
 	map->map = malloc(sizeof(char*) * (map->height + 1));
-	map->map[map->height + 1] = NULL;
-	while (map->map[i] != NULL)
+	map->map[map->height] = NULL;
+	while (i < map->height) // this checked for map[i] != NULL, allthough map{i} wasnt allocated yet :(
 	{
 		j = 0;
 		map->map[i] = malloc(sizeof(char) * (map->width + 1));
@@ -97,7 +97,8 @@ static void	generate_blank_map_array(t_map *map)
 		{
 			if (j == map->width)
 				map->map[i][j] = '\0';
-			map->map[i][j] = ' ';
+			else // this didnt have an else before, so the last element was always a space
+				map->map[i][j] = ' ';
 			j++;
 		}
 		i++;
@@ -138,7 +139,6 @@ static void	fill_map_array(t_map *map, char **av)
 		}
 		free(line);
 	}
-//	printf("!!!!!!!!!height: %i\n", map->height);
 }
 
 static void	generate_map_layout(t_map *map, char **av)
@@ -173,17 +173,21 @@ int	init_map(t_vars *vrs, char **av)
 {
 	ft_init_map_identifiers(&(vrs->map));
 	parse_map_identifier(av[1], &(vrs->map));
-	if (ft_filled_map_identifiers(&(vrs->map))) {
+	if (ft_filled_map_identifiers(&(vrs->map)))
 		printf("All map identifiers are filled.\n");
-	}
-	else {
+	else
+	{
 		printf("Some map identifiers are missing.\n");
+		ft_free_map(&vrs->map);
 	}
 	generate_map_layout(&vrs->map, av);
 	fill_map_array(&vrs->map, av);
 	printf("Map Details:\n");
 	print_map(&vrs->map);
-	if (valid_map(vrs->map.map, vrs->map.width, vrs->map.height) != 0) {
+	if (valid_map(vrs->map.map, vrs->map.width, vrs->map.height) != 0) 
+	{
+		ft_free_map(&vrs->map);
+		ft_free_char_array(vrs->map.map);
 		return (1);
 	}
 	find_player_pos(vrs);

@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 20:21:04 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 23:05:30 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/08 22:45:23 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ static void	texture_color_helper(t_vars *vrs, double wall_y)
 
 	if (vrs->rc.wall_side == FACING_EAST)
 	{
-		tex_x = (int)(vrs->tx_e->width
+		tex_x = (int)(vrs->tx_e.width
 				* (vrs->rc.ray_pos_y - floor(vrs->rc.ray_pos_y)));
-		tex_y = (int)floor(vrs->tx_e->height * wall_y);
-		pixel = vrs->tx_e->img_data_addr + (tex_x * vrs->tx_e->bits_p_px / 8)
-			+ (tex_y * vrs->tx_e->ln_len);
+		tex_y = (int)floor(vrs->tx_e.height * wall_y);
+		pixel = vrs->tx_e.img_data_addr + (tex_x * vrs->tx_e.bits_p_px / 8)
+			+ (tex_y * vrs->tx_e.ln_len);
 		vrs->rc.px_color = *(unsigned int *)pixel;
 	}
 	else if (vrs->rc.wall_side == FACING_WEST)
 	{
-		tex_x = (int)(vrs->tx_w->width
+		tex_x = (int)(vrs->tx_w.width
 				* (vrs->rc.ray_pos_y - floor(vrs->rc.ray_pos_y)));
-		tex_y = (int)floor(vrs->tx_w->height * wall_y);
-		pixel = vrs->tx_w->img_data_addr + (tex_x * vrs->tx_w->bits_p_px / 8)
-			+ (tex_y * vrs->tx_w->ln_len);
+		tex_y = (int)floor(vrs->tx_w.height * wall_y);
+		pixel = vrs->tx_w.img_data_addr + (tex_x * vrs->tx_w.bits_p_px / 8)
+			+ (tex_y * vrs->tx_w.ln_len);
 		vrs->rc.px_color = *(unsigned int *)pixel;
 	}
 }
@@ -58,20 +58,20 @@ static void	set_pixel_color(t_vars *vrs, double wall_y)
 
 	if (vrs->rc.wall_side == FACING_NORTH)
 	{
-		tex_x = (int)(vrs->tx_n->width
+		tex_x = (int)(vrs->tx_n.width
 				* (vrs->rc.ray_pos_x - floor(vrs->rc.ray_pos_x)));
-		tex_y = (int)floor(vrs->tx_n->height * wall_y);
-		pixel = vrs->tx_n->img_data_addr + (tex_x * vrs->tx_n->bits_p_px / 8)
-			+ (tex_y * vrs->tx_n->ln_len);
+		tex_y = (int)floor(vrs->tx_n.height * wall_y);
+		pixel = vrs->tx_n.img_data_addr + (tex_x * vrs->tx_n.bits_p_px / 8)
+			+ (tex_y * vrs->tx_n.ln_len);
 		vrs->rc.px_color = *(unsigned int *)pixel;
 	}
 	else if (vrs->rc.wall_side == FACING_SOUTH)
 	{
-		tex_x = (int)(vrs->tx_s->width
+		tex_x = (int)(vrs->tx_s.width
 				* (vrs->rc.ray_pos_x - floor(vrs->rc.ray_pos_x)));
-		tex_y = (int)floor(vrs->tx_s->height * wall_y);
-		pixel = vrs->tx_s->img_data_addr + (tex_x * vrs->tx_s->bits_p_px / 8)
-			+ (tex_y * vrs->tx_s->ln_len);
+		tex_y = (int)floor(vrs->tx_s.height * wall_y);
+		pixel = vrs->tx_s.img_data_addr + (tex_x * vrs->tx_s.bits_p_px / 8)
+			+ (tex_y * vrs->tx_s.ln_len);
 		vrs->rc.px_color = *(unsigned int *)pixel;
 	}
 	texture_color_helper(vrs, wall_y);

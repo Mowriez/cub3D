@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/08 14:48:27 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:18:55 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ int	parse_init_struct(char**argv, t_vars **vrs)
 	init_mlx_session(*vrs);
 	init_main_img(*vrs);
 	set_game_vars(*vrs);
-	init_minimap(*vrs);
 	if (init_map(*vrs, argv))
 		return (1);
+	init_minimap(*vrs);
 	init_textures(*vrs);
 	(*vrs)->map.map[(int)(*vrs)->rc.pl_pos_y][(int)(*vrs)->rc.pl_pos_x] = '0';
 	return (0);

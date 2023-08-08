@@ -6,13 +6,14 @@
 
 
 ### todo - items:
+- ⚙️ correct freeing in all states of initialisation!!! (only alloc'd memory for main struct, map and texture-strings)
 - ✅  textures
 - ⚙️ documentation
-- ❌ reset key -> not neccessary
+- ✅ reset key -> not neccessary
 - ✅ smooth movement -> works great with limiter
 - ✅ fisheye effect calculated
 - ✅ > new approach max
-- ❌ > upgrade to full dda --> nevermind, not doing it, discrete caster works fantastic as well
+- ✅ > upgrade to full dda --> nevermind, not doing it, discrete caster works fantastic as well
 
 - ✅ debugging tools
 
@@ -32,10 +33,12 @@
 
 ⚙️ Parsing part
 ### needs initial discussing how to implement:
-- 🔧	basic error checking (partly implemented, will most likely need refactor)
-- 🔧 	map struct to fill with information from map file
-	- ⚙️ cast_drawer and cast_raycaster will need to get map information from map struct,
+- ✅	basic error checking (partly implemented, will most likely need refactor)
+- ✅ 	map struct to fill with information from map file
+	- ✅ cast_drawer and cast_raycaster will need to get map information from map struct,
     - ✅ textures, floor and ceiling colors as well.
+	⚙️more checks: all 6 indicators set, correct file type, maybe check if can open files
+
 
 
 🔧 Memory management errors:

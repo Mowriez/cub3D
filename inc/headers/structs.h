@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 23:20:13 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/08 23:09:28 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,13 @@ typedef struct s_vars {
 	t_overlay		ol;
 
 	// textures
-	t_tex			*tx_n;
-	t_tex			*tx_s;
-	t_tex			*tx_e;
-	t_tex			*tx_w;
+	t_tex			tx_n;
+	t_tex			tx_s;
+	t_tex			tx_e;
+	t_tex			tx_w;
 
 	// keyboard and mouse input key state (pressed or unpressed)
-	bool			*key_state;
+	bool			key_state[7];
 
 	// comparation variable for mouse movement
 	int				prev_x;
