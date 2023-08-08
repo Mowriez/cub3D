@@ -60,7 +60,7 @@ static void	ft_line_from_map(t_map *map, char *line)
 	ft_assign_map_identifiers(map, map->line_array[map->line_count - 1], 0);
 }
 
-void	parse_map_file(const char *filename, t_map *map)
+void	parse_map_identifier(const char *filename, t_map *map)
 {
 	int		fd;
 	char	*line;
@@ -68,7 +68,7 @@ void	parse_map_file(const char *filename, t_map *map)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (ft_custom_exit("Error opening file"));
+		ft_custom_exit("Error opening file");
 	while (1)
 	{
 		line = parse_next_line(fd);

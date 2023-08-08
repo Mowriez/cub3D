@@ -103,7 +103,7 @@ int	ft_assign_map_identifiers(t_map *map, char *input, int i);
 // par_identifier1.c
 bool is_identifier(const char *line, const char *identifier);
 void process_line(t_map *map, char *line);
-void parse_map_file(const char *filename, t_map *map);
+void	parse_map_identifier(const char *filename, t_map *map);
 
 // par_map_init
 void	ft_init_map_identifiers(t_map *map);
@@ -134,5 +134,6 @@ int		mouse_actions(int x, int y, t_vars *vrs);
 void	draw_scope(t_vars *vrs);
 void	print_pixel(int x, int y, t_vars *vrs, unsigned int color);
 int		valid_map(char **map, int map_width, int map_height);
+int		is_valid_character(char c);
 
 #endif

@@ -12,7 +12,7 @@
 
 #include "../inc/headers/cub3d.h"
 
-static int	is_valid_character(char c)
+int	is_valid_character(char c)
 {
 	if (c == '0' || c == '1' || c == ' ' || c == 'N' || c == 'S' || c == 'E'
 		|| c == 'W')
