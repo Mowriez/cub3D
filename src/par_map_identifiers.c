@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   par_identifier.c                                   :+:      :+:    :+:   */
+/*   par_map_identifiers.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 13:15:19 by mwagner           #+#    #+#             */
-/*   Updated: 2023/08/09 08:22:29 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 20:09:42 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ int	ft_assign_map_identifiers(t_map *map, char *input, int i)
 	{
 		map->color_ceiling = ft_get_rgb_color(&input[i + 2]);
 		if (map->color_ceiling == -1)
-			return (EXIT_FAILURE);
+			return (set_error_value(map, 1));
 	}
 	else if (ft_strncmp(&input[i], "F ", 2) == 0 && map->color_floor == -1)
 	{
 		map->color_floor = ft_get_rgb_color(&input[i + 2]);
 		if (map->color_floor == -1)
-			return (EXIT_FAILURE);
+			return (set_error_value(map, 2));
 	}
 	else if (ft_strncmp(&input[i], "NO ", 3) == 0 && !map->texture_no)
 		map->texture_no = ft_strdup_skip_space(&input[i + 3]);
@@ -63,7 +63,7 @@ int	ft_assign_map_identifiers(t_map *map, char *input, int i)
 	else if (ft_strncmp(&input[i], "EA ", 3) == 0 && !map->texture_ea)
 		map->texture_ea = ft_strdup_skip_space(&input[i + 3]);
 	else
-		return (EXIT_FAILURE);
+		return (set_error_value(map, 3));
 	return (EXIT_SUCCESS);
 }
 
@@ -78,7 +78,10 @@ int	ft_get_rgb_color(char *s)
 		s++;
 	rgb = ft_split(s, ',');
 	if (!rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
+	{
+		ft_free_char_array(rgb);
 		return (-1);
+	}
 	printf("Contents of rgb array: [%s] [%s] [%s]\n", rgb[0], rgb[1], rgb[2]);
 	red = ft_check_number_rgb(rgb[0]);
 	green = ft_check_number_rgb(rgb[1]);

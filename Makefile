@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/08/09 08:45:39 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/08/09 20:20:22 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ BLU = \033[34m
 RES = \033[0m
 
 CC = gcc
-CCFLAG = -Wall -Werror -Wextra -Ofast -g
+CCFLAG = -Wall -Werror -Wextra -Ofast
+#-fsanitize=address -g
 
 NAME = cub3D
 

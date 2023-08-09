@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 23:51:38 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/09 09:04:01 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 20:08:51 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,26 +96,15 @@ int	init_map(t_vars *vrs, char **av)
 {
 	ft_init_map_identifiers(&(vrs->map));
 	parse_map_identifier(av[1], &(vrs->map));
-	if (!(ft_filled_map_identifiers(&(vrs->map))))
-	{
-		printf("Some map identifiers are missing.\n");
-		ft_free_map(&vrs->map);
-		return (1);
-	}
+	if (!ft_filled_map_identifiers(&(vrs->map)))
+		return (ft_free_map_identifiers(&vrs->map));
 	if (!ft_check_all_tex(&(vrs->map)))
-	{
-		ft_free_map(&vrs->map);
-		return (1);
-	}
+		return (ft_free_map_identifiers(&vrs->map));
 	generate_map_layout(&vrs->map, av);
 	fill_map_array(&vrs->map, av);
 	print_map(&vrs->map);
 	if (valid_map(vrs->map.map, vrs->map.width, vrs->map.height) != 0)
-	{
-		ft_free_map(&vrs->map);
-		ft_free_char_array(vrs->map.map);
-		return (1);
-	}
+		return (ft_free_map_array(&vrs->map));
 	find_player_pos(vrs);
 	return (0);
 }

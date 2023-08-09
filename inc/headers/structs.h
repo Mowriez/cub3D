@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/09 09:12:16 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 20:11:35 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_map {
 	int				width;
 	char			**line_array;
 	int				line_count;
+	int				err;
 }	t_map;
 
 typedef struct s_vars {

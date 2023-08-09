@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:48 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/09 08:07:32 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:42:47 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	main(int argc, char **argv)
 int	ft_free(t_vars *vrs)
 {
 	ft_free_map(&vrs->map);
-	ft_free_char_array(vrs->map.map);
 	mlx_destroy_image(vrs->mlx_ptr, vrs->main_img.img_ptr);
 	mlx_destroy_image(vrs->mlx_ptr, vrs->m_map.img_ptr);
 	mlx_destroy_image(vrs->mlx_ptr, vrs->tx_n.img_ptr);

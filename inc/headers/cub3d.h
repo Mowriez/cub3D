@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:48:03 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/09 09:10:03 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 20:11:22 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ bool 	ft_check_tex_exist(const char *tex_location);
 bool 	ft_check_all_tex(t_map *map);
 
 // par_free.c
-void	ft_free_map(t_map *map);
+int		ft_free_map(t_map *map);
 void	ft_free_char_array(char **array);
 
 // par_identifier.c
@@ -140,5 +140,8 @@ int		is_starting_pos(char c);
 int		is_valid_character(char c);
 void	fill_array_line(const char *line, int i, char **map);
 void	check_line_for_map_start(char *line, int *map_start);
+int		ft_free_map_identifiers(t_map *map);
+int		ft_free_map_array(t_map *map);
+int		set_error_value(t_map *map, int i);
 
 #endif
