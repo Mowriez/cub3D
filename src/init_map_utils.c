@@ -36,12 +36,13 @@ static void	generate_blank_map_array(t_map *map)
 	int	j;
 
 	i = 0;
+
 	map->map = malloc(sizeof(char *) * (map->height + 1));
 	map->map[map->height] = NULL;
 	while (i < map->height)
 	{
 		j = 0;
-		map->map[i] = malloc(sizeof(char) * (map->width + 1));
+		map->map[i] = malloc((int)(sizeof(char) * (map->width)));
 		while (j <= map->width)
 		{
 			if (j == map->width)
