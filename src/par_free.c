@@ -15,11 +15,11 @@
 static void	print_err_msg(int error)
 {
 	if (error == 1)
-		printf("Invalid ceiling color\n");
+		err_msg("Invalid ceiling color");
 	else if (error == 2)
-		printf("Invalid floor color\n");
+		printf("Invalid floor color");
 	else if (error == 3)
-		printf("Invalid line in map\n");
+		printf("Invalid line in map");
 }
 
 int	ft_free_map_identifiers(t_map *map)
@@ -30,7 +30,7 @@ int	ft_free_map_identifiers(t_map *map)
 	if (map->err)
 		print_err_msg(map->err);
 	else
-		printf("Some map identifiers are missing or invalid.\n");
+		err_msg("Some map identifiers are missing or invalid");
 	if (map->texture_no != NULL)
 		free(map->texture_no);
 	if (map->texture_so != NULL)
@@ -38,7 +38,7 @@ int	ft_free_map_identifiers(t_map *map)
 	if (map->texture_we != NULL)
 		free(map->texture_we);
 	if (map->texture_ea != NULL)
-	free(map->texture_ea);
+		free(map->texture_ea);
 	if (map->line_array != NULL)
 	{
 		while (i < map->line_count)
@@ -53,7 +53,7 @@ int	ft_free_map_array(t_map *map)
 	int	i;
 
 	i = 0;
-	printf("Invalid map.\n");
+	err_msg("invalid line in mapfile");
 	if (map->texture_no != NULL)
 		free(map->texture_no);
 	if (map->texture_so != NULL)
@@ -61,7 +61,7 @@ int	ft_free_map_array(t_map *map)
 	if (map->texture_we != NULL)
 		free(map->texture_we);
 	if (map->texture_ea != NULL)
-	free(map->texture_ea);
+		free(map->texture_ea);
 	if (map->line_array != NULL)
 	{
 		while (i < map->line_count)
@@ -84,7 +84,7 @@ int	ft_free_map(t_map *map)
 	if (map->texture_we != NULL)
 		free(map->texture_we);
 	if (map->texture_ea != NULL)
-	free(map->texture_ea);
+		free(map->texture_ea);
 	if (map->line_array != NULL)
 	{
 		while (i < map->line_count)

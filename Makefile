@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/08/09 20:20:22 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/08/09 23:31:35 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ BLU = \033[34m
 RES = \033[0m
 
 CC = gcc
-CCFLAG = -Wall -Werror -Wextra -Ofast
-#-fsanitize=address -g
+CCFLAG = -Wall -Werror -Wextra -Ofast -g
+#-fsanitize=address
 
 NAME = cub3D
 
@@ -32,7 +32,8 @@ SRC_NO_DIR =	cast_drawer.c \
 				deb_overlay.c \
 				error.c \
 				init_textures.c \
-				init_map_utils.c \
+				init_map_utils1.c \
+				init_map_utils2.c \
 				init_map.c \
 				init_map_identifiers.c \
 				init_struct_utils.c \
@@ -102,10 +103,8 @@ fclean:
 	@make clean -C $(D_MLX)
 	@make fclean -C $(D_INC)libft
 
-# !doesnt recompile MLX/LIBFT, for faster compilation during project development.
 re: fclean all
 
-# !prompts for a commit message, then pushes to remote repository. remove before handing in project
 git:
 	git add .
 	@echo -n "Enter the commit message: "; \

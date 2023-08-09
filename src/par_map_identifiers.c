@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 13:15:19 by mwagner           #+#    #+#             */
-/*   Updated: 2023/08/09 20:09:42 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 23:09:45 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int	ft_get_rgb_color(char *s)
 		ft_free_char_array(rgb);
 		return (-1);
 	}
-	printf("Contents of rgb array: [%s] [%s] [%s]\n", rgb[0], rgb[1], rgb[2]);
 	red = ft_check_number_rgb(rgb[0]);
 	green = ft_check_number_rgb(rgb[1]);
 	blue = ft_check_number_rgb(rgb[2]);

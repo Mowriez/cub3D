@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cast_motion_move.c                                 :+:      :+:    :+:   */
+/*   motion_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 21:52:34 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 15:49:54 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 23:35:39 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/headers/cub3d.h"
 
-void	move_forwards(t_vars *vrs)
+static void	move_forwards(t_vars *vrs)
 {
 	double	new_x;
 	double	new_y;
@@ -31,7 +31,7 @@ void	move_forwards(t_vars *vrs)
 	}
 }
 
-void	move_backwards(t_vars *vrs)
+static void	move_backwards(t_vars *vrs)
 {
 	double	new_x;
 	double	new_y;
@@ -50,7 +50,7 @@ void	move_backwards(t_vars *vrs)
 	}
 }
 
-void	move_left(t_vars *vrs)
+static void	move_left(t_vars *vrs)
 {
 	double	new_x;
 	double	new_y;
@@ -71,7 +71,7 @@ void	move_left(t_vars *vrs)
 	}
 }
 
-void	move_right(t_vars *vrs)
+static void	move_right(t_vars *vrs)
 {
 	double	new_x;
 	double	new_y;
@@ -92,7 +92,7 @@ void	move_right(t_vars *vrs)
 	}
 }
 
-void	move(t_vars *vrs)
+void	move_player(t_vars *vrs)
 {
 	if (vrs->key_state[0] == KEY_PRESSED)
 		move_forwards(vrs);

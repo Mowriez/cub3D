@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   par_map_validation.c                               :+:      :+:    :+:   */
+/*   par_map_valid.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 13:17:51 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/09 08:44:37 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 23:48:54 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ static int	is_border(int x, int y, int width, int height)
 static int	first_checks(char **map, int *x, int *y, int *starting_pos)
 {
 	if (!is_valid_character(map[*y][*x]))
-		return (err_msg("invalid character in map!"));
+		return (err_msg("invalid character in map."));
 	if (is_starting_pos(map[*y][*x]))
 		(*starting_pos)++;
 	return (0);
 }
 
-int	valid_map(char **map, int map_w, int map_h)
+int	is_map_invalid(char **map, int map_w, int map_h)
 {
 	int	x;
 	int	y;
@@ -63,13 +63,13 @@ int	valid_map(char **map, int map_w, int map_h)
 			if ((map[y][x] == '0' || is_starting_pos(map[y][x])))
 			{
 				if (is_border(x, y, map_w, map_h) || !closed_nb(map, x, y))
-					return (err_msg("map not closed!"));
+					return (err_msg("map not closed."));
 			}
 			x++;
 		}
 		y++;
 	}
 	if (starting_pos != 1)
-		return (err_msg("Invalid amount of starting positions!"));
+		return (err_msg("Invalid amount of starting positions."));
 	return (0);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map_utils.c                                   :+:      :+:    :+:   */
+/*   init_map_utils1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 08:14:57 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/09 09:08:43 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/10 00:04:45 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,16 @@ static int	process_map_line(t_map *map, char *line, int *map_start)
 		free(line);
 		return (1);
 	}
-	if (!map_start)
+	if (!(*map_start))
+	{
 		check_line_for_map_start(line, map_start);
-	if (map_start)
+	}
+	if (*map_start)
 	{
 		map->height++;
 		if ((int)ft_strlen(line) > map->width)
 			map->width = (int)ft_strlen(line);
+		check_line_valid(line, map);
 	}
 	return (0);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   par_error.c                                        :+:      :+:    :+:   */
+/*   par_error_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwagner <mwagner@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:04:41 by mwagner           #+#    #+#             */
-/*   Updated: 2023/08/07 18:05:21 by mwagner          ###   ########.fr       */
+/*   Updated: 2023/08/09 23:08:47 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,9 @@ bool	ft_texture_exists(const char *file_path)
 bool	ft_check_tex_exist(const char *tex_location)
 {
 	if (ft_texture_exists(tex_location))
-	{
-		printf("Texture '%s' exists.\n", tex_location);
 		return (true);
-	}
 	else
 	{
-		printf("Texture '%s' does not exist\n", tex_location);
 		err_msg("Can't open texture: Check map identifiers");
 		return (false);
 	}

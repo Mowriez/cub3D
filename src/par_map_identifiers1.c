@@ -1,41 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   par_identifier1.c                                  :+:      :+:    :+:   */
+/*   par_map_identifiers1.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mwagner <mwagner@student.42wolfsburg.de>   +#+  +:+       +#+        */
+/*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:56:40 by mwagner           #+#    #+#             */
-/*   Updated: 2023/08/07 18:56:45 by mwagner          ###   ########.fr       */
+/*   Updated: 2023/08/09 23:42:22 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/headers/cub3d.h"
-
-static void	ft_line_from_map(t_map *map, char *line);
-
-bool	is_identifier(const char *line, const char *identifier)
-{
-	return (ft_strncmp(line, identifier, ft_strlen(identifier)) == 0);
-}
-
-void	process_line(t_map *map, char *line)
-{
-	char	*trimmed_line;
-
-	trimmed_line = line;
-	while (*trimmed_line == ' ')
-		trimmed_line++;
-	if (is_identifier(trimmed_line, "NO")
-		|| is_identifier(trimmed_line, "SO")
-		|| is_identifier(trimmed_line, "WE")
-		|| is_identifier(trimmed_line, "EA")
-		|| is_identifier(trimmed_line, "F")
-		|| is_identifier(trimmed_line, "C"))
-	{
-		ft_line_from_map(map, line);
-	}
-}
 
 static void	ft_line_from_map(t_map *map, char *line)
 {
@@ -58,6 +33,29 @@ static void	ft_line_from_map(t_map *map, char *line)
 		ft_custom_exit("malloc failed");
 	map->line_count++;
 	ft_assign_map_identifiers(map, map->line_array[map->line_count - 1], 0);
+}
+
+bool	is_identifier(const char *line, const char *identifier)
+{
+	return (ft_strncmp(line, identifier, ft_strlen(identifier)) == 0);
+}
+
+void	process_line(t_map *map, char *line)
+{
+	char	*trimmed_line;
+
+	trimmed_line = line;
+	while (*trimmed_line == ' ')
+		trimmed_line++;
+	if (is_identifier(trimmed_line, "NO")
+		|| is_identifier(trimmed_line, "SO")
+		|| is_identifier(trimmed_line, "WE")
+		|| is_identifier(trimmed_line, "EA")
+		|| is_identifier(trimmed_line, "F")
+		|| is_identifier(trimmed_line, "C"))
+	{
+		ft_line_from_map(map, line);
+	}
 }
 
 void	parse_map_identifier(const char *filename, t_map *map)

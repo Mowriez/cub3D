@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 23:51:38 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/09 20:08:51 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 23:53:42 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,6 @@ static void	find_player_pos(t_vars *vrs)
 	}
 }
 
-static void	print_map(t_map *map)
-{
-	printf("Map Details:\n");
-	printf("Texture NO: %s\n", map->texture_no);
-	printf("Texture SO: %s\n", map->texture_so);
-	printf("Texture WE: %s\n", map->texture_we);
-	printf("Texture EA: %s\n", map->texture_ea);
-	printf("Color Ceiling usable int value: %d\n", map->color_ceiling);
-	printf("Color Floor usable int value: %d\n", map->color_floor);
-	printf("Rows: %d\n", map->height);
-	printf("Columns: %d\n", map->width);
-}
-
 static void	fill_map_array(t_map *map, char **av)
 {
 	char	*line;
@@ -101,10 +88,12 @@ int	init_map(t_vars *vrs, char **av)
 	if (!ft_check_all_tex(&(vrs->map)))
 		return (ft_free_map_identifiers(&vrs->map));
 	generate_map_layout(&vrs->map, av);
+	if (vrs->map.err == 4)
+		return (ft_free_map_array(&vrs->map));
 	fill_map_array(&vrs->map, av);
 	print_map(&vrs->map);
-	if (valid_map(vrs->map.map, vrs->map.width, vrs->map.height) != 0)
-		return (ft_free_map_array(&vrs->map));
+	if (is_map_invalid(vrs->map.map, vrs->map.width, vrs->map.height))
+		return (ft_free_map(&vrs->map));
 	find_player_pos(vrs);
 	return (0);
 }
