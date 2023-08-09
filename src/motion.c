@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_input_helpers.c                                :+:      :+:    :+:   */
+/*   cast_motion.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/03 21:49:52 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/08 23:10:17 by mtrautne         ###   ########.fr       */
+/*   Created: 2023/08/05 20:00:56 by mtrautne          #+#    #+#             */
+/*   Updated: 2023/08/09 08:03:00 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/headers/cub3d.h"
 
-void	init_input_keys(t_vars *vrs)
+int	motion(t_vars *vrs)
 {
-	int	i;
-
-	i = 0;
-	while (i < 7)
-	{
-		vrs->key_state[i] = false;
-		i++;
-	}
+	if (vrs->key_state[4] == KEY_PRESSED || vrs->key_state[5] == KEY_PRESSED)
+		pan_view_keyboard(vrs);
+	if (vrs->key_state[0] == KEY_PRESSED || vrs->key_state[1] == KEY_PRESSED
+		|| vrs->key_state[2] == KEY_PRESSED || vrs->key_state[3] == KEY_PRESSED)
+		move(vrs);
+	return (0);
 }

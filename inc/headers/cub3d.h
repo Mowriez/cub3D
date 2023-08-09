@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:48:03 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/08 23:43:56 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 08:20:53 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,10 +130,13 @@ void	move_left(t_vars *vrs);
 void	move_right(t_vars *vrs);
 void	move(t_vars *vrs);
 int		set_mouse_key_status(int keycode, int x, int y, t_vars *vrs);
-int		mouse_actions(int x, int y, t_vars *vrs);
+int		pan_view_mouse(int x, int y, t_vars *vrs);
 void	draw_scope(t_vars *vrs);
 void	print_pixel(int x, int y, t_vars *vrs, unsigned int color);
 int		valid_map(char **map, int map_width, int map_height);
 int		is_valid_character(char c);
+void	pan_view_keyboard(t_vars *vrs);
+void	generate_map_layout(t_map *map, char **av);
+void	fill_map_array(t_map *map, char **av);
 
 #endif

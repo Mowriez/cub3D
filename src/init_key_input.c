@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_input.c                                        :+:      :+:    :+:   */
+/*   init_user_input.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/30 21:46:33 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/07 23:07:13 by mtrautne         ###   ########.fr       */
+/*   Created: 2023/08/03 21:49:52 by mtrautne          #+#    #+#             */
+/*   Updated: 2023/08/09 08:01:24 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/headers/cub3d.h"
+
+void	init_input_keys(t_vars *vrs)
+{
+	int	i;
+
+	i = 0;
+	while (i < 7)
+	{
+		vrs->key_state[i] = false;
+		i++;
+	}
+}
 
 int	set_key_status_pressed(int keycode, t_vars *vrs)
 {
@@ -48,4 +60,21 @@ int	set_key_status_free(int keycode, t_vars *vrs)
 	if (keycode == KEY_O)
 		vrs->show_overlay = !(vrs->show_overlay);
 	return (0);
+}
+
+int	set_mouse_key_status(int keycode, int x, int y, t_vars *vrs)
+{
+	if (keycode == LEFT_MOUSE && y > 5)
+		vrs->key_state[6] = !vrs->key_state[6];
+	if (vrs->key_state[6] == KEY_PRESSED)
+	{
+		#ifdef __APPLE__
+		mlx_mouse_hide(vrs->mlx_ptr, vrs->win_ptr);
+		mlx_mouse_move(vrs->win_ptr, (int)(vrs->win_width / 2),
+			(int)(vrs->win_height / 2));
+		#endif
+	}
+	else if (vrs->key_state[6] == KEY_FREE)
+		mlx_mouse_show(vrs->mlx_ptr, vrs->win_ptr);
+	return (x + y - x - y);
 }

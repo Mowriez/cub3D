@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/08/08 23:25:53 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/08/09 08:29:30 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,30 +20,30 @@ CCFLAG = -Wall -Werror -Wextra -Ofast -g
 NAME = cub3D
 
 SRC_NO_DIR =	cast_drawer.c \
-				cast_drawer_helper.c \
+				cast_drawer_scope.c \
 				cast_minimap.c \
-				cast_motion_move.c \
-				cast_motion.c \
-				cast_mouse_pan.c \
+				motion_move.c \
+				motion.c \
+				motion_pan.c \
 				cast_raycaster.c \
-				deb_dtoa.c \
-				deb_helpers.c \
+				deb_utils2.c \
+				deb_utils1.c \
 				deb_overlay.c \
 				error.c \
 				init_textures.c \
-				init_helpers.c \
+				init_map_utils.c \
 				init_map.c \
+				init_struct_utils.c \
 				init_struct.c \
-				key_input_helpers.c \
-				key_input.c \
+				init_key_input.c \
 				main.c \
 				par_error_check.c \
 				par_gnl.c	\
-				par_identifier.c \
-				par_identifier1.c \
-				par_map_init.c \
+				par_map_identifiers2.c \
+				par_map_identifiers.c \
+				par_map_identifiers3.c \
 				par_map_validation.c \
-				par_parser.c \
+				par_argv_check.c \
 				par_utils.c \
 				par_utils1.c \
 				00_timing.c

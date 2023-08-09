@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:20:48 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/08 23:44:25 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 08:07:32 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	mlx_hook(vrs.win_ptr, 2, 1L << 0, set_key_status_pressed, &vrs);
 	mlx_hook(vrs.win_ptr, 3, 1L << 1, set_key_status_free, &vrs);
 	mlx_hook(vrs.win_ptr, 4, 1L << 2, set_mouse_key_status, &vrs);
-	mlx_hook(vrs.win_ptr, 6, 1L << 6, mouse_actions, &vrs);
+	mlx_hook(vrs.win_ptr, 6, 1L << 6, pan_view_mouse, &vrs);
 	mlx_hook(vrs.win_ptr, 17, 0L, ft_free, &vrs);
 	mlx_loop_hook(vrs.mlx_ptr, visualizer, &vrs);
 	mlx_loop(vrs.mlx_ptr);

@@ -6,14 +6,39 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 13:15:19 by mwagner           #+#    #+#             */
-/*   Updated: 2023/08/07 16:03:32 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 08:22:29 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/headers/cub3d.h"
 
-static char	*ft_strdup_skip_space(const char *s);
-static int	ft_check_number_rgb(char *s);
+static char	*ft_strdup_skip_space(const char *s)
+{
+	char	*output;
+
+	while (*s == ' ')
+		s++;
+	(output = ft_strdup(s));
+	return (output);
+}
+
+static int	ft_check_number_rgb(char *s)
+{
+	int	value;
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] < '0' || s[i] > '9')
+			return (-1);
+		i++;
+	}
+	value = ft_atoi(s);
+	if (value > 255 || value < 0)
+		return (-1);
+	return (value);
+}
 
 int	ft_assign_map_identifiers(t_map *map, char *input, int i)
 {
@@ -62,32 +87,4 @@ int	ft_get_rgb_color(char *s)
 	if (red == -1 || green == -1 || blue == -1)
 		return (-1);
 	return ((red << 16) | (green << 8) | blue);
-}
-
-static char	*ft_strdup_skip_space(const char *s)
-{
-	char	*output;
-
-	while (*s == ' ')
-		s++;
-	(output = ft_strdup(s));
-	return (output);
-}
-
-static int	ft_check_number_rgb(char *s)
-{
-	int	value;
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] < '0' || s[i] > '9')
-			return (-1);
-		i++;
-	}
-	value = ft_atoi(s);
-	if (value > 255 || value < 0)
-		return (-1);
-	return (value);
 }
