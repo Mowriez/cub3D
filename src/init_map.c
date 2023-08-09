@@ -95,11 +95,14 @@ int	init_map(t_vars *vrs, char **av)
 {
 	ft_init_map_identifiers(&(vrs->map));
 	parse_map_identifier(av[1], &(vrs->map));
-	if (ft_filled_map_identifiers(&(vrs->map)))
-		printf("All map identifiers are filled.\n");
-	else
+	if (!(ft_filled_map_identifiers(&(vrs->map))))
 	{
 		printf("Some map identifiers are missing.\n");
+		ft_free_map(&vrs->map);
+		return (1);
+	}
+	if (!ft_check_all_tex(&(vrs->map)))
+	{
 		ft_free_map(&vrs->map);
 		return (1);
 	}

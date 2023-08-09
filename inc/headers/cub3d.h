@@ -92,6 +92,9 @@ int		set_key_status_free(int keycode, t_vars *vrs);
 
 // par_error_check.c
 bool	ft_valid_file_ending(const char *filename, char *expected_end);
+bool	ft_texture_exists(const char *file_path);
+bool 	ft_check_tex_exist(const char *tex_location);
+bool 	ft_check_all_tex(t_map *map);
 
 // par_gnl.c
 char	*parse_next_line(int fd);
