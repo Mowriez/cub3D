@@ -34,14 +34,16 @@ static void	generate_blank_map_array(t_map *map)
 {
 	int	i;
 	int	j;
+	int	size;
 
+	size = map->width;
 	i = 0;
 	map->map = malloc(sizeof(char *) * (map->height + 1));
 	map->map[map->height] = NULL;
 	while (i < map->height)
 	{
 		j = 0;
-		map->map[i] = malloc(sizeof(char) * (map->width + 1));
+		map->map[i] = malloc(size);
 		while (j <= map->width)
 		{
 			if (j == map->width)
@@ -91,6 +93,7 @@ void	generate_map_layout(t_map *map, char **av)
 	int		fd;
 
 	map->height = 0;
+	map->width = 0;
 	map_start = 0;
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
