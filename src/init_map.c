@@ -6,12 +6,11 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 23:51:38 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/09 08:16:23 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 09:04:01 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/headers/cub3d.h"
-
 
 static void	set_player_param(t_vars *vrs, int x, int y)
 {
@@ -63,6 +62,35 @@ static void	print_map(t_map *map)
 	printf("Columns: %d\n", map->width);
 }
 
+static void	fill_map_array(t_map *map, char **av)
+{
+	char	*line;
+	int		map_start;
+	int		i;
+	int		fd;
+
+	i = 0;
+	map_start = 0;
+	fd = open(av[1], O_RDONLY);
+	if (fd == -1)
+		ft_custom_exit("Error opening file");
+	while (1)
+	{
+		line = parse_next_line(fd);
+		if (line == NULL)
+			break ;
+		if (!map_start)
+			check_line_for_map_start(line, &map_start);
+		if (map_start)
+		{
+			fill_array_line(line, i, map->map);
+			i++;
+		}
+		free(line);
+	}
+	close (fd);
+}
+
 int	init_map(t_vars *vrs, char **av)
 {
 	ft_init_map_identifiers(&(vrs->map));
@@ -79,7 +107,7 @@ int	init_map(t_vars *vrs, char **av)
 	fill_map_array(&vrs->map, av);
 	printf("Map Details:\n");
 	print_map(&vrs->map);
-	if (valid_map(vrs->map.map, vrs->map.width, vrs->map.height) != 0) 
+	if (valid_map(vrs->map.map, vrs->map.width, vrs->map.height) != 0)
 	{
 		ft_free_map(&vrs->map);
 		ft_free_char_array(vrs->map.map);

@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:42:42 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/08 23:09:28 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 09:12:16 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ typedef struct s_overlay {
 	double		d_wall_hit_x;
 	double		d_wall_hit_y;
 	long long	last_sec_change;
-	long 		cur_time_ms;
-	long 		last_loop_time;
+	long		cur_time_ms;
+	long		last_loop_time;
 	int			fps_i;
 	int			frames;
 	char		*fps;
@@ -73,50 +73,33 @@ typedef struct s_map {
 	char			*texture_so;
 	char			*texture_we;
 	char			*texture_ea;
-	char 			**map;
+	char			**map;
 	int				color_ceiling;
 	int				color_floor;
 	int				height;
 	int				width;
-	char 			**line_array;
-	int 			line_count;
-} t_map;
+	char			**line_array;
+	int				line_count;
+}	t_map;
 
-// base variables
 typedef struct s_vars {
-	// mlx instance and window
 	void			*mlx_ptr;
 	void			*win_ptr;
 	double			win_width;
 	double			win_height;
-
-	// mlx images (main and minimap)
 	t_mlx_img		main_img;
 	t_mlx_img		m_map;
-
-	// map struct
 	t_map			map;
-
-	// raycasting variables
 	t_raycast		rc;
-
-	// overlay
 	bool			show_overlay;
 	t_overlay		ol;
-
-	// textures
 	t_tex			tx_n;
 	t_tex			tx_s;
 	t_tex			tx_e;
 	t_tex			tx_w;
-
-	// keyboard and mouse input key state (pressed or unpressed)
 	bool			key_state[7];
-
-	// comparation variable for mouse movement
 	int				prev_x;
 }	t_vars;
-
 
 typedef struct s_dtoa {
 	int			is_negative;

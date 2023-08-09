@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:11:00 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/09 07:56:32 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 08:51:20 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,6 @@ void	draw_minimap(t_vars *vrs)
 				print_pixel_minimap(map_x, map_y, vrs, 0x004B0000);
 			else if (vrs->map.map[y][x] == '0')
 				print_pixel_minimap(map_x, map_y, vrs, 0x22333333);
-			else
-				print_pixel_minimap(map_x, map_y, vrs, 0x00000000);
 			map_x++;
 		}
 		map_y++;

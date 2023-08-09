@@ -6,7 +6,7 @@
 #    By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/26 14:55:56 by mtrautne          #+#    #+#              #
-#    Updated: 2023/08/09 08:29:30 by mtrautne         ###   ########.fr        #
+#    Updated: 2023/08/09 08:45:39 by mtrautne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ SRC_NO_DIR =	cast_drawer.c \
 				par_map_identifiers2.c \
 				par_map_identifiers.c \
 				par_map_identifiers3.c \
-				par_map_validation.c \
+				par_map_valid_utils.c \
+				par_map_valid.c \
 				par_argv_check.c \
 				par_utils.c \
 				par_utils1.c \

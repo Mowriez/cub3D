@@ -39,6 +39,8 @@
     - ✅ textures, floor and ceiling colors as well.
 	⚙️more checks: all 6 indicators set, correct file type, maybe check if opening tex files works
 					additional number after colors
+					close fd in every failcase in map initialiser
+					spaces from clion?
 
 
 

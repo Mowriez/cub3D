@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:48:03 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/09 08:20:53 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 09:10:03 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,12 @@ bool	ft_valid_file_ending(const char *filename, char *expected_end);
 char	*parse_next_line(int fd);
 
 // par_identifier.c
-int	ft_get_rgb_color(char *s);
-int	ft_assign_map_identifiers(t_map *map, char *input, int i);
+int		ft_get_rgb_color(char *s);
+int		ft_assign_map_identifiers(t_map *map, char *input, int i);
 
 // par_identifier1.c
-bool is_identifier(const char *line, const char *identifier);
-void process_line(t_map *map, char *line);
+bool	is_identifier(const char *line, const char *identifier);
+void	process_line(t_map *map, char *line);
 void	parse_map_identifier(const char *filename, t_map *map);
 
 // par_map_init
@@ -112,16 +112,15 @@ bool	ft_filled_map_identifiers(t_map *level);
 // par_parser.c
 int		check_input(int argc, char**argv);
 
-
 // par_utils.c
 int		ft_strcmp(const char *s1, const char *s2);
-bool 	ft_valid_map_chars(const char *filename);
+bool	ft_valid_map_chars(const char *filename);
 int		ft_skip_spaces(const char *input);
 
 // par_utils1.c
 void	ft_free_map(t_map *map);
 void	ft_free_char_array(char **array);
-void *ft_realloc(void *ptr, size_t originalLength, size_t newLength);
+void	*ft_realloc(void *ptr, size_t originalLength, size_t newLength);
 
 void	print_fps(t_vars *vrs);
 void	move_forwards(t_vars *vrs);
@@ -137,6 +136,9 @@ int		valid_map(char **map, int map_width, int map_height);
 int		is_valid_character(char c);
 void	pan_view_keyboard(t_vars *vrs);
 void	generate_map_layout(t_map *map, char **av);
-void	fill_map_array(t_map *map, char **av);
+int		is_starting_pos(char c);
+int		is_valid_character(char c);
+void	fill_array_line(const char *line, int i, char **map);
+void	check_line_for_map_start(char *line, int *map_start);
 
 #endif

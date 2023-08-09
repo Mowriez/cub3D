@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 14:34:05 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/03 20:58:21 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/09 08:50:49 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	err_msg(char *msg)
 	return (res);
 }
 
-void ft_custom_exit(const char *message)
+void	ft_custom_exit(const char *message)
 {
 	perror(message);
 	exit(EXIT_FAILURE);
