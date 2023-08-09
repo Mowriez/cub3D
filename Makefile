@@ -33,20 +33,19 @@ SRC_NO_DIR =	cast_drawer.c \
 				init_textures.c \
 				init_map_utils.c \
 				init_map.c \
+				init_map_identifiers.c \
 				init_struct_utils.c \
 				init_struct.c \
 				init_key_input.c \
 				main.c \
 				par_error_check.c \
-				par_gnl.c	\
-				par_map_identifiers2.c \
+				par_free.c	\
 				par_map_identifiers.c \
-				par_map_identifiers3.c \
+				par_map_identifiers1.c \
 				par_map_valid_utils.c \
 				par_map_valid.c \
 				par_argv_check.c \
 				par_utils.c \
-				par_utils1.c \
 				00_timing.c
 
 D_SRC = ./src/

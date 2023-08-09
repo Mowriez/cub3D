@@ -22,42 +22,51 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (s1[i] - s2[i]);
 }
 
-int	ft_skip_spaces(const char *input)
+void	*ft_realloc(void *ptr, size_t orig_len, size_t new_len)
 {
-	int	i;
+	void	*new_ptr;
 
-	i = 0;
-	while (input[i] == ' ')
-		i++;
-	return (i);
-}
-
-// not required atm, since new map parsing needed
-static bool	ft_valid_char(char c)
-{
-	return (c == '0' || c == '1' || c == 'N'
-		|| c == 'S' || c == 'E' || c == 'W');
-}
-
-bool	ft_valid_map_chars(const char *filename)
-{
-	int		fd;
-	char	buffer[1];
-
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
+	if (new_len == 0)
 	{
-		perror("Error opening file");
-		return (false);
+		free(ptr);
+		return (NULL);
 	}
-	while (read(fd, buffer, sizeof(buffer)))
+	else if (!ptr)
+		return (malloc(new_len));
+	else if (new_len <= orig_len)
+		return (ptr);
+	else
 	{
-		if (buffer[0] != '\n' && !ft_valid_char(buffer[0]))
+		new_ptr = malloc(new_len);
+		if (new_ptr)
 		{
-			close(fd);
-			return (false);
+			ft_memcpy(new_ptr, ptr, orig_len);
+			free(ptr);
 		}
+		else
+			ft_custom_exit("malloc failed");
+		return (new_ptr);
 	}
-	close(fd);
-	return (true);
+}
+
+char	*parse_next_line(int fd)
+{
+	char		*line;
+	static char	*static_str[10300];
+	size_t		len;
+
+	if (fd < 0 || BUFFER_SIZE < 1)
+		return (NULL);
+	static_str[fd] = ft_read(fd, static_str[fd]);
+	if (!static_str[fd])
+		return (NULL);
+	line = ft_next_line(static_str[fd]);
+	static_str[fd] = ft_resize_static_str(static_str[fd]);
+	if (line != NULL)
+	{
+		len = ft_strlen(line);
+		if (len > 0 && line[len - 1] == '\n')
+			line[len - 1] = '\0';
+	}
+	return (line);
 }

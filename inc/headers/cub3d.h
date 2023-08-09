@@ -96,8 +96,9 @@ bool	ft_texture_exists(const char *file_path);
 bool 	ft_check_tex_exist(const char *tex_location);
 bool 	ft_check_all_tex(t_map *map);
 
-// par_gnl.c
-char	*parse_next_line(int fd);
+// par_free.c
+void	ft_free_map(t_map *map);
+void	ft_free_char_array(char **array);
 
 // par_identifier.c
 int		ft_get_rgb_color(char *s);
@@ -108,7 +109,7 @@ bool	is_identifier(const char *line, const char *identifier);
 void	process_line(t_map *map, char *line);
 void	parse_map_identifier(const char *filename, t_map *map);
 
-// par_map_init
+// init_map_identifiers.c
 void	ft_init_map_identifiers(t_map *map);
 bool	ft_filled_map_identifiers(t_map *level);
 
@@ -117,13 +118,9 @@ int		check_input(int argc, char**argv);
 
 // par_utils.c
 int		ft_strcmp(const char *s1, const char *s2);
-bool	ft_valid_map_chars(const char *filename);
-int		ft_skip_spaces(const char *input);
-
-// par_utils1.c
-void	ft_free_map(t_map *map);
-void	ft_free_char_array(char **array);
 void	*ft_realloc(void *ptr, size_t originalLength, size_t newLength);
+char	*parse_next_line(int fd);
+
 
 void	print_fps(t_vars *vrs);
 void	move_forwards(t_vars *vrs);

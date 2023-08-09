@@ -45,30 +45,3 @@ void	ft_free_char_array(char **array)
 	free(array);
 	array = NULL;
 }
-
-void	*ft_realloc(void *ptr, size_t orig_len, size_t new_len)
-{
-	void	*new_ptr;
-
-	if (new_len == 0)
-	{
-		free(ptr);
-		return (NULL);
-	}
-	else if (!ptr)
-		return (malloc(new_len));
-	else if (new_len <= orig_len)
-		return (ptr);
-	else
-	{
-		new_ptr = malloc(new_len);
-		if (new_ptr)
-		{
-			ft_memcpy(new_ptr, ptr, orig_len);
-			free(ptr);
-		}
-		else
-			ft_custom_exit("malloc failed");
-		return (new_ptr);
-	}
-}
