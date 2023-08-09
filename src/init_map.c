@@ -52,6 +52,7 @@ static void	find_player_pos(t_vars *vrs)
 
 static void	print_map(t_map *map)
 {
+	printf("Map Details:\n");
 	printf("Texture NO: %s\n", map->texture_no);
 	printf("Texture SO: %s\n", map->texture_so);
 	printf("Texture WE: %s\n", map->texture_we);
@@ -105,7 +106,6 @@ int	init_map(t_vars *vrs, char **av)
 	}
 	generate_map_layout(&vrs->map, av);
 	fill_map_array(&vrs->map, av);
-	printf("Map Details:\n");
 	print_map(&vrs->map);
 	if (valid_map(vrs->map.map, vrs->map.width, vrs->map.height) != 0)
 	{

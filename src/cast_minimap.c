@@ -100,10 +100,11 @@ void	draw_minimap(t_vars *vrs)
 			x = (map_x * vrs->map.width) / vrs->m_map.width;
 			y = (map_y * vrs->map.height) / vrs->m_map.height;
 			if (vrs->map.map[y][x] == '1')
-				print_pixel_minimap(map_x, map_y, vrs, 0x004B0000);
+				print_pixel_minimap(map_x++, map_y, vrs, 0x004B0000);
 			else if (vrs->map.map[y][x] == '0')
-				print_pixel_minimap(map_x, map_y, vrs, 0x22333333);
-			map_x++;
+				print_pixel_minimap(map_x++, map_y, vrs, 0x22333333);
+			else
+				print_pixel_minimap(map_x++, map_y, vrs, 0xFF000000);
 		}
 		map_y++;
 	}

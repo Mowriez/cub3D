@@ -16,6 +16,8 @@ void	init_minimap(t_vars *vrs)
 {
 	vrs->m_map.width = vrs->win_width / 4.5;
 	vrs->m_map.height = vrs->map.height * (vrs->m_map.width / vrs->map.width);
+	if (vrs->m_map.height > vrs->win_height / 2)
+		vrs->m_map.height = vrs->win_height / 2;
 	vrs->m_map.img_ptr = mlx_new_image(vrs->mlx_ptr, vrs->m_map.width,
 			vrs->m_map.height);
 	vrs->m_map.data_addr = mlx_get_data_addr(vrs->m_map.img_ptr,
