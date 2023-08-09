@@ -43,7 +43,7 @@ static void	generate_blank_map_array(t_map *map)
 	while (i < map->height)
 	{
 		j = 0;
-		map->map[i] = malloc(size);
+		map->map[i] = malloc(size + 1);
 		while (j <= map->width)
 		{
 			if (j == map->width)
