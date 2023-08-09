@@ -6,7 +6,7 @@
 
 
 ### todo - items:
-- ⚙️ correct freeing in all states of initialisation!!! (only alloc'd memory for main struct, map and texture-strings)
+- ✅ correct freeing in all states of initialisation!!! (only alloc'd memory for main struct, map and texture-strings)
 - ✅  textures
 - ⚙️ documentation
 - ✅ reset key -> not neccessary
@@ -22,7 +22,7 @@
 - ✅ wrong color at intersection of walls
 - ✅ mirroring input keys with south-start
 
-⏸️ refactoring -> mostly done, implementing new functions first
+✅ refactoring
 
 
 ### to include fps counter and limiter:
@@ -38,17 +38,17 @@
 	- ✅ cast_drawer and cast_raycaster will need to get map information from map struct,
     - ✅ textures, floor and ceiling colors as well.
 	⚙️more checks: all 6 indicators set, correct file type, maybe check if opening tex files works
-					additional number after colors
-					close fd in every failcase in map initialiser
-					spaces from clion?
+					✅additional number after colors
+					⚙️close fd in every failcase in map initialiser
+					✅spaces from clion?
 
 
 
-🔧 Memory management errors:
+✅ Memory management errors:
 
 - Invalid read of size 4 ft_free (main.c:46) in main cub3d
 -  definitely lost: 192 bytes in 4 blocks
 -  ✅ Invalid read of size 1  -> error was in realloc, refactored function.
 
 
--> Should be repaired for now, closed fd after freeing its address.
+✅ Should be repaired for now, closed fd after freeing its address.
