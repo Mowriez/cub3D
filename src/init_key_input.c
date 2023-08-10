@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 21:49:52 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/09 09:08:11 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/10 11:04:53 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	set_mouse_key_status(int keycode, int x, int y, t_vars *vrs)
 	// 	mlx_mouse_move(vrs->win_ptr, (int)(vrs->win_width / 2),
 	// 		(int)(vrs->win_height / 2));
 	// }
-	else if (vrs->key_state[6] == KEY_FREE)
-		mlx_mouse_show(vrs->mlx_ptr, vrs->win_ptr);
+	// else if (vrs->key_state[6] == KEY_FREE)
+	// 	mlx_mouse_show(vrs->mlx_ptr, vrs->win_ptr);
 	return (x + y - x - y);
 }
