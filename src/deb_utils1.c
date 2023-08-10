@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 20:19:17 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/09 23:19:41 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/10 18:22:37 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static void	print_helper_1(t_vars *vrs)
 		0x0039FF14, vrs->ol.dist_to_wall);
 }
 
-	// print_fps(vrs);
 void	print_overlay_vars(t_vars *vrs)
 {
+	print_fps(vrs);
 	print_helper_1(vrs);
 }
