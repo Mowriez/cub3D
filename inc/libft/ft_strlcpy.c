@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrautne <mtrautne@student.42wolfsburg.    +#+  +:+       +#+        */
+/*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 13:17:09 by mtrautne          #+#    #+#             */
-/*   Updated: 2022/06/08 23:30:10 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/10 11:21:23 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	if (dstsize == 0)
 		return (len_src);
 	while (i < dstsize && src[i] != '\0')
-	{	
+	{
 		dst[i] = src[i];
 		i++;
 	}

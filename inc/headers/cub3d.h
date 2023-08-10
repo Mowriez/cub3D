@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 16:48:03 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/09 23:54:03 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/10 11:19:00 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <stdbool.h>
-# include <float.h>
 
 // Project specific headers --------------------------------------------------
 # include "../libft/libft.h"
@@ -34,9 +33,6 @@
 
 # elif defined(__APPLE__)
 #  include "../mlx/minilibx_opengl_20191021/mlx.h"
-
-# else
-#  error "Unsupported operating system"
 # endif
 
 // function declarations -----------------------------------------------------
