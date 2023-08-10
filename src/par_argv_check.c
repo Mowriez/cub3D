@@ -17,7 +17,7 @@ int	check_input(int argc, char**argv)
 	const char	*map_filename = argv[1];
 
 	if (argc != 2)
-		return (err_msg("incorrect number of arguments\n"));
+		return (err_msg("Incorrect number of arguments\n"));
 	if (!ft_valid_file_ending(map_filename, ".cub"))
 		return (err_msg("Invalid file ending. Please provide a .cub file.\n"));
 	return (0);

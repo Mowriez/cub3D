@@ -64,7 +64,7 @@ int	ft_assign_map_identifiers(t_map *map, char *input, int i)
 		map->texture_ea = ft_strdup_skip_space(&input[i + 3]);
 	else
 		return (set_error_value(map, 3));
-	return (EXIT_SUCCESS);
+	return (0);
 }
 
 int	ft_get_rgb_color(char *s)

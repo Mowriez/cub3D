@@ -39,7 +39,7 @@ static int	is_border(int x, int y, int width, int height)
 static int	first_checks(char **map, int *x, int *y, int *starting_pos)
 {
 	if (!is_valid_character(map[*y][*x]))
-		return (err_msg("invalid character in map."));
+		return (err_msg("Invalid character in map."));
 	if (is_starting_pos(map[*y][*x]))
 		(*starting_pos)++;
 	return (0);
@@ -63,7 +63,7 @@ int	is_map_invalid(char **map, int map_w, int map_h)
 			if ((map[y][x] == '0' || is_starting_pos(map[y][x])))
 			{
 				if (is_border(x, y, map_w, map_h) || !closed_nb(map, x, y))
-					return (err_msg("map not closed."));
+					return (err_msg("Map not closed."));
 			}
 			x++;
 		}

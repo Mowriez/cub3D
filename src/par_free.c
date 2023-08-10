@@ -17,9 +17,9 @@ static void	print_err_msg(int error)
 	if (error == 1)
 		err_msg("Invalid ceiling color");
 	else if (error == 2)
-		printf("Invalid floor color");
+		err_msg("Invalid floor color");
 	else if (error == 3)
-		printf("Invalid line in map");
+		err_msg("Invalid line in map");
 }
 
 int	ft_free_map_identifiers(t_map *map)
