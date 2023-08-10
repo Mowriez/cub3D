@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 18:56:40 by mwagner           #+#    #+#             */
-/*   Updated: 2023/08/09 23:42:22 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/10 10:58:14 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,8 @@ bool	is_identifier(const char *line, const char *identifier)
 	return (ft_strncmp(line, identifier, ft_strlen(identifier)) == 0);
 }
 
-void	process_line(t_map *map, char *line)
+void	process_line(t_map *map, char *trimmed_line)
 {
-	char	*trimmed_line;
-
-	trimmed_line = line;
-	while (*trimmed_line == ' ')
-		trimmed_line++;
 	if (is_identifier(trimmed_line, "NO")
 		|| is_identifier(trimmed_line, "SO")
 		|| is_identifier(trimmed_line, "WE")
@@ -54,7 +49,7 @@ void	process_line(t_map *map, char *line)
 		|| is_identifier(trimmed_line, "F")
 		|| is_identifier(trimmed_line, "C"))
 	{
-		ft_line_from_map(map, line);
+		ft_line_from_map(map, trimmed_line);
 	}
 }
 
@@ -81,7 +76,7 @@ void	parse_map_identifier(const char *filename, t_map *map)
 				|| ft_strncmp(trimmed_line, "EA", 2) == 0
 				|| ft_strncmp(trimmed_line, "F", 1) == 0
 				|| ft_strncmp(trimmed_line, "C", 1) == 0))
-			process_line(map, line);
+			process_line(map, trimmed_line);
 		free(line);
 	}
 	close(fd);
