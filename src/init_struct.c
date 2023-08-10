@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 15:54:50 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/09 22:16:35 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/10 14:24:57 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ int	parse_init_struct(char**argv, t_vars *vrs)
 	{
 		mlx_destroy_image(vrs->mlx_ptr, vrs->main_img.img_ptr);
 		mlx_destroy_window(vrs->mlx_ptr, vrs->win_ptr);
-		free(vrs->mlx_ptr);
+		free(vrs->mlx_ptr->win_list);
+		free(vrs->mlx_ptr->win_list);
 		return (1);
 	}
 	init_textures(vrs);

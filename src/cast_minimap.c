@@ -6,7 +6,7 @@
 /*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 00:11:00 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/09 08:51:20 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/10 11:50:44 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ static void	print_pixel_minimap(int x, int y, t_vars *vrs, unsigned int color)
 {
 	char	*pixel;
 
+	if (x > (vrs->m_map.width - 1) || x < 0 || y > (vrs->m_map.height - 1)
+		|| y < 0)
+		return ;
 	pixel = vrs->m_map.data_addr + (x * vrs->m_map.bpp / 8)
 		+ (y * vrs->m_map.ln_len);
 	*(unsigned int *)pixel = color;
@@ -56,7 +59,8 @@ static void	draw_view_cone(int x_pos, int y_pos, t_vars *vrs)
 			+ (i * vrs->rc.fov_angle / 50);
 		ray_x = x_pos;
 		ray_y = y_pos;
-		cast_view_cone_ray(angle, ray_x, ray_y, vrs);
+		if (vrs->map.width < 200 && vrs->map.height < 200)
+			cast_view_cone_ray(angle, ray_x, ray_y, vrs);
 		i++;
 	}
 }
