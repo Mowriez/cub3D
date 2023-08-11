@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_key_input.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtrautne <mtrautne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mtrautne <mtrautne@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 21:49:52 by mtrautne          #+#    #+#             */
-/*   Updated: 2023/08/10 11:26:36 by mtrautne         ###   ########.fr       */
+/*   Updated: 2023/08/11 08:13:04 by mtrautne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ int	set_mouse_key_status(int keycode, int x, int y, t_vars *vrs)
 {
 	if (keycode == LEFT_MOUSE && y > 5)
 		vrs->key_state[6] = !vrs->key_state[6];
-	if (vrs->key_state[6] == KEY_PRESSED)
-	{
-		mlx_mouse_hide(vrs->mlx_ptr, vrs->win_ptr);
-		mlx_mouse_move(vrs->win_ptr, (int)(vrs->win_width / 2),
-			(int)(vrs->win_height / 2));
-	}
-	else if (vrs->key_state[6] == KEY_FREE)
-		mlx_mouse_show(vrs->mlx_ptr, vrs->win_ptr);
+	// if (vrs->key_state[6] == KEY_PRESSED)
+	// {
+	// 	mlx_mouse_hide(vrs->mlx_ptr, vrs->win_ptr);
+	// 	mlx_mouse_move(vrs->win_ptr, (int)(vrs->win_width / 2),
+	// 		(int)(vrs->win_height / 2));
+	// }
+	// else if (vrs->key_state[6] == KEY_FREE)
+	// 	mlx_mouse_show(vrs->mlx_ptr, vrs->win_ptr);
 	return (x + y - x - y);
 }
