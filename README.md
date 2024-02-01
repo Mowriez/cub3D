@@ -6,10 +6,10 @@ Description
 Cub3D is a 42 School project that focuses on raycasting, a technique used in computer graphics for rendering 3D scenes. This project is inspired by the classic game Wolfenstein 3D.
 Features
 
-    Raycasting Engine: Utilizes the raycasting technique to render a 3D environment.
-    Map Parsing: Reads a simple map from a provided file to generate the game world.
-    Textured Walls: Renders textured walls to enhance the visual experience.
-    Player Movement: Allows the player to move within the 3D space and rotate the view.
+- Raycasting Engine: Utilizes the raycasting technique to render a 3D environment.<br>
+- Map Parsing: Reads a simple map from a provided file to generate the game world.<br>
+- Textured Walls: Renders textured walls to enhance the visual experience.<br>
+- Player Movement: Allows the player to move within the 3D space and rotate the view.<br>
 
 Usage
 
